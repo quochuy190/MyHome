@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="0.5dp"
+    android:id="@+id/ll_setup_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/spr_item_setup"
+    android:padding="@dimen/dp5">
+
+    <ImageView
+        android:id="@+id/img_setup_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/dp5"
+        android:src="@drawable/ic_setup_1"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.12" />
+
+    <TextView
+        android:paddingLeft="@dimen/dp10"
+        android:textColor="@color/bot_bar"
+        android:id="@+id/txt_name_setup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:text="@string/title_thongke"
+        android:textAllCaps="true"
+        android:textSize="@dimen/txt_15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_setup_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_setup_1"
+        app:layout_constraintTop_toTopOf="@+id/img_setup_1" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_right_setup"
+        app:layout_constraintBottom_toBottomOf="@+id/img_setup_1"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintTop_toTopOf="@+id/img_setup_1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

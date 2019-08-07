@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">MyHome</string>
+    <!--base-->
+    <string name="txt_loading_dialog">Đang tải. Vui lòng đợi...</string>
+    <string name="error_network">Lỗi kết nối</string>
+    <string name="error">Lỗi</string>
+    <string name="error_network_message">Lỗi kết nối, vui lòng kiểm tra mạng và thử lại</string>
+
+    <string name="txt_taianh">Chọn ảnh đại diện</string>
+    <string name="hide_register_user">Tên đăng nhập</string>
+    <string name="hide_register_fullname">Họ và tên</string>
+    <string name="hide_register_phone">Số điện thoại</string>
+    <string name="hide_register_email">Email</string>
+    <string name="hide_register_city">Tỉnh/Thành phố</string>
+    <string name="hide_register_address">Địa chỉ</string>
+    <string name="hide_register_pass">Mật khẩu</string>
+    <string name="hide_register_pass_comfirm">Nhập lại mật khẩu</string>
+    <string name="btn_reg_user">ĐĂNG KÝ TÀI KHOẢN</string>
+    <!--string bottom bar-->
+    <string name="title_home">Trang chủ</string>
+    <string name="title_book">Đặt phòng</string>
+    <string name="title_thongke">Thống kê</string>
+    <string name="title_service">Dịch vụ</string>
+    <string name="title_setup">Cài đặt</string>
+</resources>

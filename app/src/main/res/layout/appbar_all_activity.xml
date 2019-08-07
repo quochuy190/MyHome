@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_appbar"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_main"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:padding="@dimen/dp5"
+            app:layout_constraintHeight_percent="0.8"
+            android:id="@+id/btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:src="@drawable/icon_back"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            />
+
+        <ImageView
+            android:id="@+id/img_home"
+            android:padding="@dimen/dp5"
+            app:layout_constraintHeight_percent="0.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:tint="@color/White"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            />
+        <TextView
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textColor="@color/White"
+            android:gravity="center"
+            android:textSize="@dimen/txt_16sp"
+            android:text="EVNCPC CSKH"
+            app:layout_constraintWidth_percent="0.75"
+            android:textCursorDrawable="@color/Black"
+            android:id="@+id/txt_title"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.appbar.AppBarLayout>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_add_avata"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp15"
+            android:src="@drawable/icon_add_avata"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            android:id="@+id/txt_taianh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp3"
+            android:padding="@dimen/dp1"
+            android:text="@string/txt_taianh"
+            android:textColor="@color/Black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_add_avata" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_spinner_chose"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_taianh"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_group"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner_"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_spinner"
+                android:dropDownVerticalOffset="@dimen/height_spinner"
+                android:singleLine="true"
+                android:spinnerMode="dropdown"
+                android:theme="@style/Spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_username"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_spinner_chose"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_user"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_group"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_username"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_user"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_user"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_fullname"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_username"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_fullname"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_group"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_fullname"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_fullname"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_fullname"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_phone"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_fullname"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_phone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_phone"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_email"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_phone"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_email"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_email"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_email"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_city"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_email"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_city"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_city"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_city"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_city"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_city"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+            <ImageView
+                android:id="@+id/icon_get_city"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="@dimen/dp7"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.6"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_address"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_city"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_address"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_city"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_address"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_address"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_address"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_pass"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_address"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_pass"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_pass_login"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+
+                android:id="@+id/edt_pass"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_pass"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_pass"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_pass_comfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@color/White"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_pass"
+            app:layout_constraintWidth_percent="0.85">
+
+            <ImageView
+                android:id="@+id/icon_pass_comfirm"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/icon_pass_login"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+
+                android:id="@+id/edt_pass_comfirm"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_pass_comfirm"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_pass_comfirm"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp5"
+                android:src="@drawable/ic_start_red"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.03" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_reg_user"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp30"
+            android:background="@drawable/spr_btn_login"
+            android:text="@string/btn_reg_user"
+            android:textColor="@color/White"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.065"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_pass_comfirm"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_reg_user" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginBottom="8dp"
+        android:padding="@dimen/dp10"
+        android:src="@drawable/logo_color"
+        app:layout_constraintBottom_toTopOf="@+id/ll_user"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4" />
+
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp30"
+        android:background="@drawable/spr_btn_login"
+        android:text="Đăng nhập"
+        android:textColor="@color/White"
+        android:textSize="@dimen/txt_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_pass"
+        app:layout_constraintWidth_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_user"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp10"
+        android:background="@color/White"
+        android:padding="@dimen/dp3"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_center_ver"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="@id/guideline_start">
+
+        <EditText
+            android:paddingRight="@dimen/dp20"
+            android:paddingLeft="@dimen/dp20"
+            android:id="@+id/edt_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/White"
+            android:gravity="center"
+            android:hint="Tên đăng nhập"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:textColor="@color/app_main"
+            android:textColorHint="@color/Gray"
+            android:textCursorDrawable="@color/app_main"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            app:layout_constraintWidth_percent="0.13"
+            android:id="@+id/img_icon_user_login"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/icon_user_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_pass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/White"
+        android:padding="@dimen/dp3"
+        app:layout_constraintTop_toTopOf="@id/guideline_center_ver"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="@id/guideline_start">
+
+        <EditText
+
+            android:paddingRight="@dimen/dp20"
+            android:paddingLeft="@dimen/dp20"
+            android:id="@+id/edt_pass"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/White"
+            android:gravity="center"
+            android:hint="Mật khẩu"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:textColor="@color/app_main"
+            android:textColorHint="@color/Gray"
+            android:textCursorDrawable="@color/app_main"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            app:layout_constraintWidth_percent="0.13"
+            android:id="@+id/img_icon_pass_login"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/icon_pass_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            app:layout_constraintWidth_percent="0.13"
+            android:id="@+id/icon_show_pass"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/icon_show_unpass"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center_ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/txt_remember_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="Quên mật khẩu?"
+        android:textColor="@color/app_main"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <TextView
+        android:id="@+id/txt_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp5"
+        android:text="Chưa có tài khoản? Đăng ký"
+        android:textColor="@color/blue_click"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_remember_pass" />
+</androidx.constraintlayout.widget.ConstraintLayout>

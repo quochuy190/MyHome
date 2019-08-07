@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_home"
+        android:icon="@drawable/ic_home_selected"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/tab_datphong"
+        android:icon="@drawable/ic_datphong_selected"
+        android:title="@string/title_book" />
+
+    <item
+        android:id="@+id/tab_thongke"
+        android:icon="@drawable/ic_lichdat_selected"
+        android:title="@string/title_thongke" />
+
+    <item
+        android:id="@+id/tab_setup"
+        android:icon="@drawable/ic_caidat_selected"
+        android:title="@string/title_setup" />
+</menu>
