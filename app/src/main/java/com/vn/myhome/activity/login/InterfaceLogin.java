@@ -24,7 +24,8 @@ public interface InterfaceLogin {
 
         void api_get_city(String USERNAME);
 
-        void api_update_device(String USERNAME);
+        void api_update_device(String USERNAME,String VERSION, String DEVICE_MODEL, String TOKEN_KEY,
+                               String OS_VERSION, String DEVICE_TYPE, String UUID );
 
 
     }
@@ -39,5 +40,7 @@ public interface InterfaceLogin {
         void show_get_type(GetTypeResponse objRes);
 
         void show_get_city(CityResponse objResCity);
+
+        void show_update_device(ObjErrorApi objError);
     }
 }

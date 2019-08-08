@@ -152,7 +152,37 @@ public class PresenterLogin implements InterfaceLogin.Presenter {
     }
 
     @Override
-    public void api_update_device(String USERNAME) {
+    public void api_update_device(String USERNAME, String VERSION, String DEVICE_MODEL, String TOKEN_KEY,
+                                  String OS_VERSION, String DEVICE_TYPE, String UUID) {
+        String sService = "user/update_device";
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("USERNAME", USERNAME);
+        mMap.put("VERSION", VERSION);
+        mMap.put("DEVICE_MODEL", DEVICE_MODEL);
+        mMap.put("TOKEN_KEY", TOKEN_KEY);
+        mMap.put("OS_VERSION", OS_VERSION);
+        mMap.put("DEVICE_TYPE", DEVICE_TYPE);
+        mMap.put("UUID", UUID);
 
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(sService);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    ObjErrorApi obj = new Gson().fromJson(objT, ObjErrorApi.class);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    mView.show_error_api("get_city");
+                }
+            }
+        }, sService, mMap);
     }
+
+
 }

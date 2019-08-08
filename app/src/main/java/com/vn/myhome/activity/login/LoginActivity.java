@@ -2,6 +2,7 @@ package com.vn.myhome.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -9,10 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.vn.myhome.BuildConfig;
 import com.vn.myhome.MainActivity;
 import com.vn.myhome.R;
 import com.vn.myhome.base.BaseActivity;
@@ -146,6 +147,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void show_login(ObjLogin objLogin) {
         hideDialogLoading();
         if (objLogin != null && objLogin.getERROR().equals("0000")) {
+            String sTokenKey = SharedPrefs.getInstance().get(Constants.KEY_TOKEN, String.class);
+            String UUID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+            mPresenter.api_update_device(sUserName, BuildConfig.VERSION_NAME,
+                    android.os.Build.BRAND + " " + android.os.Build.MODEL, sTokenKey,
+                    android.os.Build.VERSION.RELEASE, "2", UUID);
             SharedPrefs.getInstance().put(Constants.KEY_SAVE_OBJECT_LOGIN, objLogin);
             SharedPrefs.getInstance().put(Constants.KEY_SAVE_IS_LOGIN, true);
             SharedPrefs.getInstance().put(Constants.KEY_SAVE_USERNAME, sUserName);
@@ -169,6 +175,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void show_get_city(CityResponse objResCity) {
+
+    }
+
+    @Override
+    public void show_update_device(ObjErrorApi objError) {
 
     }
 }

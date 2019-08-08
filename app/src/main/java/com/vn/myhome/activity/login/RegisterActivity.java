@@ -234,6 +234,11 @@ public class RegisterActivity extends BaseActivity implements InterfaceLogin.Vie
 
     }
 
+    @Override
+    public void show_update_device(ObjErrorApi objError) {
+
+    }
+
     Intent intent_city = null;
 
     @Override

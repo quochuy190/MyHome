@@ -234,4 +234,9 @@ public class ActivityListCity extends BaseActivity
             }
         } else showDialogNotify("Thông báo", objResCity.getRESULT());
     }
+
+    @Override
+    public void show_update_device(ObjErrorApi objError) {
+
+    }
 }
