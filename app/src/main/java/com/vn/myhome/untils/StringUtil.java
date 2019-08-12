@@ -176,7 +176,7 @@ public class StringUtil {
             if (number.length() > 0) {
                 long iNumber = Long.parseLong(number);
                 DecimalFormat formatter = new DecimalFormat("###,###,###,###");
-                sMonney = (formatter.format(iNumber) + "đ");
+                sMonney = (formatter.format(iNumber) + " Đ");
             } else {
                 sMonney = "";
             }

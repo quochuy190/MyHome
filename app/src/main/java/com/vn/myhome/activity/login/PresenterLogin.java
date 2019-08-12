@@ -164,7 +164,7 @@ public class PresenterLogin implements InterfaceLogin.Presenter {
         mMap.put("DEVICE_TYPE", DEVICE_TYPE);
         mMap.put("UUID", UUID);
 
-        mApiService.getApiService(new CallbackData<String>() {
+        mApiService.getApi_Token_Enable(new CallbackData<String>() {
             @Override
             public void onGetDataErrorFault(Exception e) {
                 mView.show_error_api(sService);

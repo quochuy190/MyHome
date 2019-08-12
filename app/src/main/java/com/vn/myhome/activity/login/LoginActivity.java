@@ -59,8 +59,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new PresenterLogin(this);
+        initData();
         initEvent();
 
+    }
+
+    private void initData() {
+        sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+        sPass = SharedPrefs.getInstance().get(Constants.KEY_SAVE_PASSWORD, String.class);
+        if (sUserName!=null&&sUserName.length()>0)
+            edt_username.setText(sUserName);
+        if (sPass!=null&&sPass.length()>0)
+            edt_pass.setText(sPass);
     }
 
     private void initEvent() {
@@ -148,6 +158,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         hideDialogLoading();
         if (objLogin != null && objLogin.getERROR().equals("0000")) {
             String sTokenKey = SharedPrefs.getInstance().get(Constants.KEY_TOKEN, String.class);
+            if (sTokenKey == null)
+                sTokenKey = "";
             String UUID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
             mPresenter.api_update_device(sUserName, BuildConfig.VERSION_NAME,
                     android.os.Build.BRAND + " " + android.os.Build.MODEL, sTokenKey,

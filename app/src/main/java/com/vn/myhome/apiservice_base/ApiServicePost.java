@@ -1,6 +1,8 @@
 package com.vn.myhome.apiservice_base;
 
 import com.vn.myhome.callback.CallbackData;
+import com.vn.myhome.config.Constants;
+import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.untils.SharedPrefs;
 
 import org.json.JSONArray;
@@ -58,10 +60,10 @@ public class ApiServicePost {
     public void getApi_Token_Enable(final CallbackData<String> callbackData, String sService,
                                       Map<String, String> mData) {
         String sToken = "";
-      /*  ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);
+        ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         if (objLogin != null && objLogin.getTOKEN() != null) {
             sToken = objLogin.getTOKEN();
-        }*/
+        }
         apiRestFul_All = InterfaceApiPostAll.retrofit_restful_all.create(InterfaceApiPostAll.class);
         Call<ResponseBody> getApiservice = apiRestFul_All.getApiServiceRest("Bearer " + sToken, sService, mData);
         getApiservice.enqueue(new Callback<ResponseBody>() {

@@ -56,6 +56,7 @@ public class AdapterListCity extends RecyclerView.Adapter<AdapterListCity.TopicV
         ObjCity obj = mList.get(position);
         if (obj != null && obj.getNAME().length() > 0)
             holder.txt_name.setText(Html.fromHtml(StringUtil.convert_html(obj.getNAME())));
+
     }
 
     @Override

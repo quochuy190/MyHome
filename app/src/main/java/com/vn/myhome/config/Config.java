@@ -9,6 +9,7 @@ package com.vn.myhome.config;
  */
 public class Config {
     public static String BASE_URL_API = "http://api.onmyhome.vn";
+    public static String BASE_URL_MEDIA = "http://onmyhome.vn/";
 
     public static String STATUS_ORDER_DANGXULY = "1";
     public static String STATUS_ORDER_DATIEPNHAN = "2";
