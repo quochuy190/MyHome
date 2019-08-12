@@ -10,11 +10,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.demono.AutoScrollViewPager;
+import com.google.android.material.tabs.TabLayout;
 import com.vn.myhome.R;
 import com.vn.myhome.activity.home.InterfaceRoom;
 import com.vn.myhome.activity.home.RoomPresenter;
 import com.vn.myhome.adapter.AdapterHomeStay;
+import com.vn.myhome.adapter.AdapterViewPagerHomeImage;
 import com.vn.myhome.base.BaseFragment;
+import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.GetAlbumImageHomeResponse;
@@ -41,6 +45,10 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View {
     public static FragmentHome fragment;
     @BindView(R.id.rcv_homestay_home)
     RecyclerView rcv_home;
+    @BindView(R.id.viewpager_home)
+    AutoScrollViewPager viewpager_home;
+    @BindView(R.id.tab_auto_scroll)
+    TabLayout tab_auto_scroll;
     RecyclerView.LayoutManager mLayoutManager;
     AdapterHomeStay mAdapter;
     List<ObjHomeStay> mList;
@@ -72,6 +80,7 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View {
 
             }
         });
+        mListImage = new ArrayList<>();
         init();
         initData();
         initEvent();
@@ -107,6 +116,25 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View {
         rcv_home.setAdapter(mAdapter);
     }
 
+    List<String> mListImage;
+    AdapterViewPagerHomeImage objAdapter;
+
+    private void initAutoScroll() {
+        objAdapter = new AdapterViewPagerHomeImage(mListImage, R.layout.imgviewpager, getContext());
+        viewpager_home.setAdapter(objAdapter);
+        viewpager_home.startAutoScroll();
+        viewpager_home.setSlideDuration(5000);
+        viewpager_home.setCycle(true);
+        tab_auto_scroll.setupWithViewPager(viewpager_home);
+
+        objAdapter.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClickItem(int position, Object item) {
+
+            }
+        });
+    }
+
     @Override
     public void show_error_api(String sService) {
         hideDialogLoading();
@@ -126,7 +154,13 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View {
 
     @Override
     public void show_get_cover_idx(GetImageCoverResponse obj) {
-
+        hideDialogLoading();
+        if (obj != null && obj.getERROR().equals("0000")) {
+            if (obj.getINFO() != null) {
+                mListImage.addAll(obj.getINFO());
+                initAutoScroll();
+            }
+        }
     }
 
     @Override
