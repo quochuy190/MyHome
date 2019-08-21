@@ -12,6 +12,7 @@
         <item name="android:windowFullscreen">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColorSecondary">@color/White</item>
+
     </style>
     <style name="Theme_Dialog" parent="android:Theme.Holo.Dialog">
         <item name="android:windowMinWidthMajor">100%</item>
@@ -34,5 +35,10 @@
         <item name="android:textColor">@color/app_main</item>
         <item name="android:textSize">11.5sp</item>
     </style>
+
+    <style name="MyDatePickerStyle" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="colorAccent">@color/app_main</item>
+    </style>
+
 
 </resources>

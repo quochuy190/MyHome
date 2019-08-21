@@ -22,5 +22,5 @@ public class Constants {
     public static final String KEY_SAVE_PASSWORD = "KEY_SAVE_PASSWORD";
     public static final String KEY_SAVE_OBJECT_LOGIN = "KEY_SAVE_OBJECT_LOGIN";
     public static final String KEY_SEND_LOGIN_TO_MAIN = "KEY_SEND_LOGIN_TO_MAIN";
-
+    public static final String KEY_SEND_ROOM_DETAIL = "KEY_SEND_ROOM_DETAIL";
 }

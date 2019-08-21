@@ -111,12 +111,6 @@ public class TimeUtils {
             // convent date 2
             SimpleDateFormat sdf2 = new SimpleDateFormat(outputDateFormat);
             Date date_2 = sdf2.parse(outputDate);
-            if (System.currentTimeMillis() < date_1.getTime()) {
-                return false;
-            }
-            if (System.currentTimeMillis() < date_2.getTime()) {
-                return false;
-            }
             //long_date2 = System.currentTimeMillis();
             if (date_2.getTime() >= date_1.getTime()) {
                 return true;

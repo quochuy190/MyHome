@@ -16,9 +16,11 @@ import androidx.core.app.ActivityCompat;
 import java.text.DecimalFormat;
 import java.text.Normalizer;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -176,7 +178,8 @@ public class StringUtil {
             if (number.length() > 0) {
                 long iNumber = Long.parseLong(number);
                 DecimalFormat formatter = new DecimalFormat("###,###,###,###");
-                sMonney = (formatter.format(iNumber) + " Đ");
+                sMonney = (formatter.format(iNumber) + "" +
+                        "VND");
             } else {
                 sMonney = "";
             }
@@ -456,5 +459,27 @@ public class StringUtil {
             Toast.makeText(mContext, "You don't assign permission.", Toast.LENGTH_SHORT).show();
         }
     }
-*/
+*/   public static boolean compare_two_date(String inputDate, String outputDate,
+                                            String inputDateFormat, String outputDateFormat) {
+       try {
+           SimpleDateFormat sdf = new SimpleDateFormat(inputDateFormat);
+           Date date_1 = sdf.parse(inputDate);
+           // convent date 2
+           SimpleDateFormat sdf2 = new SimpleDateFormat(outputDateFormat);
+           Date date_2 = sdf2.parse(outputDate);
+           if (System.currentTimeMillis() < date_1.getTime()) {
+               return false;
+           }
+           if (System.currentTimeMillis() < date_2.getTime()) {
+               return false;
+           }
+           //long_date2 = System.currentTimeMillis();
+           if (date_2.getTime() >= date_1.getTime()) {
+               return true;
+           }
+       } catch (ParseException e) {
+           e.printStackTrace();
+       }
+       return false;
+   }
 }

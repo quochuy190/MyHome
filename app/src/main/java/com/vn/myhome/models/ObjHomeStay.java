@@ -26,10 +26,18 @@ public class ObjHomeStay implements Serializable {
     String DESCRIPTION;
     @SerializedName("PRICE")
     String PRICE;
+    @SerializedName("PROMOTION")
+    String PROMOTION;
     @SerializedName("ADDRESS")
     String ADDRESS;
     @SerializedName("ID_HOST")
     String ID_HOST;
+    @SerializedName("ID_SERVICE")
+    String ID_SERVICE;
+    @SerializedName("RATING")
+    String RATING;
+    @SerializedName("STATE")
+    String STATE;
     @SerializedName("INFOMATION")
     String INFOMATION;
     @SerializedName("UPDATE_TIME")
@@ -60,7 +68,102 @@ public class ObjHomeStay implements Serializable {
     String IMG;
     @SerializedName("AVATAR")
     String AVATAR;
+    @SerializedName("CHECKLOCK")
+    String CHECKLOCK;
+    @SerializedName("MOBILE")
+    String MOBILE;
+    @SerializedName("EMAIL")
+    String EMAIL;
+    @SerializedName("HOST_NAME")
+    String HOST_NAME;
 
+    public String getHOST_NAME() {
+        return HOST_NAME;
+    }
+
+    public void setHOST_NAME(String HOST_NAME) {
+        this.HOST_NAME = HOST_NAME;
+    }
+
+    public String getERROR() {
+        return ERROR;
+    }
+
+    public void setERROR(String ERROR) {
+        this.ERROR = ERROR;
+    }
+
+    public String getMESSAGE() {
+        return MESSAGE;
+    }
+
+    public void setMESSAGE(String MESSAGE) {
+        this.MESSAGE = MESSAGE;
+    }
+
+    public String getRESULT() {
+        return RESULT;
+    }
+
+    public void setRESULT(String RESULT) {
+        this.RESULT = RESULT;
+    }
+
+    public String getPROMOTION() {
+        return PROMOTION;
+    }
+
+    public void setPROMOTION(String PROMOTION) {
+        this.PROMOTION = PROMOTION;
+    }
+
+    public String getID_SERVICE() {
+        return ID_SERVICE;
+    }
+
+    public void setID_SERVICE(String ID_SERVICE) {
+        this.ID_SERVICE = ID_SERVICE;
+    }
+
+    public String getRATING() {
+        return RATING;
+    }
+
+    public void setRATING(String RATING) {
+        this.RATING = RATING;
+    }
+
+    public String getSTATE() {
+        return STATE;
+    }
+
+    public void setSTATE(String STATE) {
+        this.STATE = STATE;
+    }
+
+    public String getCHECKLOCK() {
+        return CHECKLOCK;
+    }
+
+    public void setCHECKLOCK(String CHECKLOCK) {
+        this.CHECKLOCK = CHECKLOCK;
+    }
+
+    public String getMOBILE() {
+        return MOBILE;
+    }
+
+    public void setMOBILE(String MOBILE) {
+        this.MOBILE = MOBILE;
+    }
+
+    public String getEMAIL() {
+        return EMAIL;
+    }
+
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
+    }
 
     public String getID() {
         return ID;

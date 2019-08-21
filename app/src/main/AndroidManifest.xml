@@ -35,6 +35,21 @@
 
         </activity>
         <activity
+            android:name=".activity.myhome.ActivityListMyhome"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".activity.home.ActivityListHomeStay"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".activity.home.ActivityRoomDetail"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>

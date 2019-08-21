@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vn.myhome.R;
 import com.vn.myhome.activity.login.LoginActivity;
+import com.vn.myhome.activity.myhome.ActivityListMyhome;
 import com.vn.myhome.adapter.AdapterSetupMain;
 import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.callback.ItemClickListener;
@@ -110,6 +111,9 @@ public class FragmentSetup extends BaseFragment {
                 switch (obj.getId()) {
                     case 0:
 
+                        break;
+                    case 1:
+                        startActivity(new Intent(getContext(), ActivityListMyhome.class));
                         break;
                     case 5:
                         SharedPrefs.getInstance().put(Constants.KEY_SAVE_IS_LOGIN, false);

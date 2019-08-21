@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/White"
+        app:layout_constraintBottom_toTopOf="@+id/ll_booking"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_booking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_booking"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_btn"
+            android:background="@drawable/spr_btn_login"
+            android:text="Đặt phòng"
+            android:textColor="@color/White"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.28" />
+
+        <TextView
+            android:id="@+id/txt_price_total"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_booking"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_booking" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="/đêm"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_booking"
+            app:layout_constraintStart_toEndOf="@+id/txt_price_total"
+            app:layout_constraintTop_toTopOf="@+id/btn_booking" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/ll_booking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_room_avata"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_defaul"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/ll_info_host"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
+                android:background="@drawable/spr_bg_detail_room"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_room_avata">
+
+                <TextView
+                    android:id="@+id/txt_name_roomdetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_marginBottom="@dimen/dp3"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:padding="@dimen/dp2"
+                    android:textAllCaps="true"
+                    android:textColor="@color/app_main"
+                    android:textSize="@dimen/txt_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_room_avata" />
+
+                <TextView
+                    android:id="@+id/txt_address_roomdetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:padding="@dimen/dp2"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ic_detail_room_1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp3"
+                        android:src="@drawable/ic_setup_2"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.09" />
+
+                    <TextView
+                        android:id="@+id/txt_name_host"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ic_detail_room_1"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ic_detail_room_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp3"
+                        android:src="@drawable/ic_setup_4"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.09" />
+
+                    <TextView
+                        android:id="@+id/txt_email_host"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/DodgerBlue"
+                        android:textSize="@dimen/txt_15sp"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ic_detail_room_2"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_2" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ic_detail_room_3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp3"
+                        android:src="@drawable/ic_setup_5"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.09" />
+
+                    <TextView
+                        android:id="@+id/txt_phome_host"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ic_detail_room_3"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_3" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:background="@color/app_main" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_marginBottom="@dimen/dp3"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:padding="@dimen/dp2"
+                    android:text="tiện nghi"
+                    android:textAllCaps="true"
+                    android:textColor="@color/app_main"
+                    android:textSize="@dimen/txt_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_room_avata" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ic_detail_room_4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp3"
+                        android:src="@drawable/ic_setup_3"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.09" />
+
+                    <TextView
+                        android:id="@+id/txt_guest_max_title"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="Số người tối đa"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_4"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_guest_max"
+                        app:layout_constraintStart_toEndOf="@+id/ic_detail_room_4"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_4" />
+
+                    <TextView
+                        android:id="@+id/txt_guest_max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_4" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ic_detail_room_5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp3"
+                        android:src="@drawable/ic_bed"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.09" />
+
+                    <TextView
+                        android:id="@+id/txt_guest_bed_title"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="Số giường tối đa"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_5"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_bed_max"
+                        app:layout_constraintStart_toEndOf="@+id/ic_detail_room_5"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_5" />
+
+                    <TextView
+                        android:id="@+id/txt_bed_max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ic_detail_room_6"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp3"
+                        android:src="@drawable/ic_bed"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.09" />
+
+                    <TextView
+                        android:id="@+id/txt_guest_room_title"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="Số phòng"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_6"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_room_max"
+                        app:layout_constraintStart_toEndOf="@+id/ic_detail_room_6"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_6" />
+
+                    <TextView
+                        android:id="@+id/txt_room_max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ic_detail_room_6" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_giaphong_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:ellipsize="end"
+                android:maxLines="2"
+
+                android:text="Giá phòng"
+                android:textAllCaps="true"
+                android:textColor="@color/app_main"
+                android:textSize="@dimen/txt_18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_info_host" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
+                android:background="@drawable/spr_bg_detail_room"
+                android:padding="@dimen/dp10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_giaphong_title">
+
+                <TextView
+                    android:id="@+id/txt_price_thu_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="Thứ 2 - Thứ 5"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_price_thu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical|right"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="2.000.000 đ"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_price_thu_title"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_price_weeked_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="Thứ 6 - Chủ nhật"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_price_thu" />
+
+                <TextView
+                    android:id="@+id/txt_price_weeked"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical|right"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="2.000.000 đ"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_price_weeked_title"
+                    app:layout_constraintTop_toBottomOf="@id/txt_price_thu" />
+
+                <TextView
+                    android:id="@+id/txt_price_dondep_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="Phí dọn dẹp"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_price_weeked" />
+
+                <TextView
+                    android:id="@+id/txt_price_dondep"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical|right"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="2.000.000 đ"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_price_dondep_title"
+                    app:layout_constraintTop_toBottomOf="@id/txt_price_weeked" />
+
+                <TextView
+                    android:id="@+id/txt_price_add_guest_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="Phí tăng thêm khách/1 người"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_price_dondep" />
+
+                <TextView
+                    android:id="@+id/txt_price_add_guest"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical|right"
+                    android:padding="@dimen/dp2"
+                    android:singleLine="true"
+                    android:text="2.000.000 đ"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_price_add_guest_title"
+                    app:layout_constraintTop_toBottomOf="@id/txt_price_dondep" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:background="@color/app_main"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_price_add_guest" />
+
+                <com.skyhope.showmoretextview.ShowMoreTextView
+                    android:id="@+id/txt_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:padding="@dimen/dp5"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txt_chitiet_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:ellipsize="end"
+                android:maxLines="2"
+
+                android:text="Chi tiết"
+                android:textAllCaps="true"
+                android:textColor="@color/app_main"
+                android:textSize="@dimen/txt_18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_price" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
+                android:background="@drawable/spr_bg_detail_room"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_chitiet_title">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_view_all_image"
+                    android:background="@drawable/spr_click_view_tranparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp7">
+
+                    <TextView
+                        android:id="@+id/txt_view_all_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp3"
+                        android:layout_marginBottom="@dimen/dp3"
+                        android:ellipsize="end"
+                        android:padding="@dimen/dp2"
+                        android:singleLine="true"
+                        android:text="Hình ảnh chi tiết"
+                        android:textColor="@color/app_main"
+                        android:textSize="@dimen/txt_18sp"
+                        android:textStyle="bold"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:src="@drawable/ic_right_setup"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_view_all_image"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.8"
+                        app:layout_constraintTop_toTopOf="@+id/txt_view_all_image" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/view_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:background="@color/app_main"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_price_add_guest" />
+
+                <TextView
+                    android:id="@+id/txt_infomation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp10"
+                    android:padding="@dimen/dp5"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/appbar_all_activity" />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_spinner"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/spr_btn_login"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20"
+        android:text="Thêm mới"
+        android:textColor="@color/White"
+        android:textSize="@dimen/txt_16sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp10"
+        android:id="@+id/recycle_list_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</LinearLayout>

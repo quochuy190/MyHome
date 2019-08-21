@@ -10,7 +10,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/Silver"
+        android:background="@color/bg_app"
         android:id="@+id/recycle_list_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >

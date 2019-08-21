@@ -15,7 +15,6 @@ import com.vn.myhome.R;
 import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Config;
 import com.vn.myhome.models.ObjHomeStay;
-import com.vn.myhome.models.ResponseApi.ObjCity;
 import com.vn.myhome.untils.StringUtil;
 
 import java.net.MalformedURLException;
@@ -32,7 +31,7 @@ import butterknife.ButterKnife;
  * Created by QQ on 7/7/2017.
  */
 
-public class AdapterHomeStay extends RecyclerView.Adapter<AdapterHomeStay.ViewHoderItem> {
+public class AdapterMyRoom extends RecyclerView.Adapter<AdapterMyRoom.ViewHoderItem> {
     private static final String TAG = "AdapterHomeStay";
     private List<ObjHomeStay> mList;
     private Context context;
@@ -47,7 +46,7 @@ public class AdapterHomeStay extends RecyclerView.Adapter<AdapterHomeStay.ViewHo
         OnIListener = onIListener;
     }
 
-    public AdapterHomeStay(List<ObjHomeStay> mList, Context context) {
+    public AdapterMyRoom(List<ObjHomeStay> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
@@ -55,7 +54,7 @@ public class AdapterHomeStay extends RecyclerView.Adapter<AdapterHomeStay.ViewHo
     @Override
     public ViewHoderItem onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_homestay_home, parent, false);
+                .inflate(R.layout.item_my_room, parent, false);
         return new ViewHoderItem(view);
     }
 
@@ -66,8 +65,6 @@ public class AdapterHomeStay extends RecyclerView.Adapter<AdapterHomeStay.ViewHo
             holder.txt_name.setText(obj.getNAME());
         if (obj != null && obj.getPRICE().length() > 0)
             holder.txt_price.setText(StringUtil.conventMonney_Long(obj.getPRICE()));
-        if (obj != null && obj.getADDRESS().length() > 0)
-            holder.txt_address.setText(obj.getADDRESS());
         if (obj.getCOVER() != null) {
             try {
                 String sUrl = Config.BASE_URL_MEDIA + obj.getCOVER();
@@ -98,8 +95,6 @@ public class AdapterHomeStay extends RecyclerView.Adapter<AdapterHomeStay.ViewHo
             View.OnClickListener, View.OnLongClickListener {
         @BindView(R.id.txt_name_homestay)
         TextView txt_name;
-        @BindView(R.id.txt_address)
-        TextView txt_address;
         @BindView(R.id.txt_price)
         TextView txt_price;
         @BindView(R.id.txt_status)

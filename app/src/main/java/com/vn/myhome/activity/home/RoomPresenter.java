@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.vn.myhome.apiservice_base.ApiServicePost;
 import com.vn.myhome.callback.CallbackData;
+import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.GetImageCoverResponse;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
 
@@ -85,13 +86,66 @@ public class RoomPresenter implements InterfaceRoom.Presenter {
     }
 
     @Override
-    public void api_search_home(String USERNAME, String LOCATION, String CHECKIN, String CHECKOUT, String PEOPLE, String PRICE_FROM, String PRICE_TO, String AMENITIES) {
+    public void api_search_home(String USERNAME, String LOCATION, String CHECKIN, String CHECKOUT,
+                                String PEOPLE, String PRICE_FROM, String PRICE_TO, String AMENITIES) {
+        String sService = "room/search_home";
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("USERNAME", USERNAME);
+        mMap.put("LOCATION", LOCATION);
+        mMap.put("CHECKIN", CHECKIN);
+        mMap.put("CHECKOUT", CHECKOUT);
+        mMap.put("PEOPLE", PEOPLE);
+        mMap.put("PRICE_FROM", PRICE_FROM);
+        mMap.put("PRICE_TO", PRICE_TO);
+        mMap.put("AMENITIES", AMENITIES);
 
+        mApiService.getApi_Token_Enable(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api("");
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    GetRoomResponse obj = new Gson().fromJson(objT, GetRoomResponse.class);
+                    mView.show_search_home(obj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    mView.show_error_api("");
+                }
+            }
+        }, sService, mMap);
     }
 
     @Override
     public void api_get_room_detail(String USERNAME, String GENLINK) {
+        String sService = "room/get_room_detail";
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("USERNAME", USERNAME);
+        mMap.put("GENLINK", GENLINK);
 
+        mApiService.getApi_Token_Enable(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api("");
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    ObjHomeStay obj = new Gson().fromJson(objT, ObjHomeStay.class);
+                    mView.show_get_room_detail(obj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    mView.show_error_api("");
+                }
+            }
+        }, sService, mMap);
     }
 
     @Override

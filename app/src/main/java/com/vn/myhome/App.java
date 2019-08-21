@@ -3,6 +3,7 @@ package com.vn.myhome;
 import android.app.Application;
 
 import com.google.gson.Gson;
+import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.ObjCity;
 
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ public class App extends Application {
 
     public static ObjCity mCity;
     public static List<ObjCity> mListCity;
+    public static List<ObjHomeStay> mListHomeStay;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mListCity = new ArrayList<>();
+        mListHomeStay = new ArrayList<>();
         sInstance = this;
         mGSon = new Gson();
     }

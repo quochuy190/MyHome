@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/appbar_all_activity"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@drawable/spr_bg_detail_room"
+                android:id="@+id/ll_name_room"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_spinner"
+                android:layout_marginTop="@dimen/dp15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9">
+
+                <ImageView
+                    android:id="@+id/icon_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_group"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+
+                    android:id="@+id/edt_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:hint="Tên nhà"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_phone"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_city"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_spinner"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_name_room"
+                app:layout_constraintWidth_percent="0.9">
+
+                <ImageView
+                    android:id="@+id/icon_city"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_city"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/edt_city"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/White"
+                    android:focusable="false"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_city"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_city"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/icon_get_city"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginRight="@dimen/dp7"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_down"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.6"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_address"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_spinner"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_city"
+                app:layout_constraintWidth_percent="0.9">
+
+                <ImageView
+                    android:id="@+id/icon_address"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_city"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/edt_address"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_address"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_price"
+                app:layout_constraintStart_toStartOf="@+id/ll_address"
+                app:layout_constraintTop_toBottomOf="@+id/ll_address"
+                app:layout_constraintWidth_percent="0.43"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/txt_app"
+                    android:text="Giá phòng T2 - T5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="2.000.000 VND"
+                    android:background="@drawable/spr_bg_detail_room"
+                    android:id="@+id/edt_price_t2_t5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_spinner"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_address"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_price_cuoituan"
+                app:layout_constraintEnd_toEndOf="@+id/ll_address"
+                app:layout_constraintTop_toBottomOf="@+id/ll_address"
+                app:layout_constraintWidth_percent="0.43"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/txt_app"
+                    android:text="Cuối tuần"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="2.000.000 VND"
+                    android:background="@drawable/spr_bg_detail_room"
+                    android:id="@+id/edt_price_cuoituan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_spinner"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_address"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_number_guest"
+                app:layout_constraintStart_toStartOf="@+id/ll_address"
+                app:layout_constraintTop_toBottomOf="@+id/ll_price"
+                app:layout_constraintWidth_percent="0.43"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/txt_app"
+                    android:text="Số khách tối đa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="3"
+                    android:background="@drawable/spr_bg_detail_room"
+                    android:id="@+id/edt_number_guest"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_spinner"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_address"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_number_bed"
+                app:layout_constraintEnd_toEndOf="@+id/ll_address"
+                app:layout_constraintTop_toBottomOf="@+id/ll_price"
+                app:layout_constraintWidth_percent="0.43"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/txt_app"
+                    android:text="Số giường"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="2"
+                    android:background="@drawable/spr_bg_detail_room"
+                    android:id="@+id/edt_number_bed"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_spinner"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_address"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_number_room"
+                app:layout_constraintStart_toStartOf="@+id/ll_address"
+                app:layout_constraintTop_toBottomOf="@+id/ll_number_bed"
+                app:layout_constraintWidth_percent="0.43"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/txt_app"
+                    android:text="Số lượng phòng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="6"
+                    android:background="@drawable/spr_bg_detail_room"
+                    android:id="@+id/edt_number_room"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_spinner"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_address"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_huy_book"
+                app:layout_constraintEnd_toEndOf="@+id/ll_address"
+                app:layout_constraintTop_toBottomOf="@+id/ll_number_bed"
+                app:layout_constraintWidth_percent="0.43"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/txt_app"
+                    android:text="Số giường"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="2"
+                    android:background="@drawable/spr_bg_detail_room"
+                    android:id="@+id/edt_huy_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_spinner"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_register_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_address"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <EditText
+                app:layout_constraintDimensionRatio="3:1"
+                android:maxLines="3"
+                android:inputType="text"
+                android:scrollHorizontally="false"
+                android:imeOptions="actionDone"
+                android:id="@+id/edt_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp5"
+                android:background="@drawable/spr_bg_detail_room"
+                android:gravity="top"
+                android:hint="Mô tả"
+                android:padding="@dimen/dp10"
+                android:textColor="@color/txt_app"
+                android:textCursorDrawable="@color/txt_app"
+                android:textSize="@dimen/txt_16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_number_room" />
+
+            <Button
+                android:textSize="@dimen/txt_16sp"
+                android:id="@+id/btn_add_room"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp7"
+                android:background="@drawable/spr_btn_login"
+                android:text="TẠO PHÒNG"
+                android:textColor="@color/White"
+                app:layout_constraintTop_toBottomOf="@+id/edt_content"
+                app:layout_constraintDimensionRatio="4:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent=".45" />
+
+            <View
+                android:layout_marginTop="@dimen/dp10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_room"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>
