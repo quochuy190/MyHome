@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+    <include layout="@layout/appbar_all_activity" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp5"
+        android:background="@drawable/spr_bg_tablayout"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp1">
+
+        <TextView
+            android:id="@+id/txt_lichdatnha"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:background="@drawable/spr_tablayout_lichnha"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="@string/tab_lichdatphong"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_lichdonnha"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:background="@drawable/spr_tablayout_lichnha"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="@string/tab_lichdonnha"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_calendar"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:background="@drawable/spr_tablayout_lichnha"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="@string/tab_calendar"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_lichnha_admin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_app">
+
+    </androidx.viewpager.widget.ViewPager>
+
+</LinearLayout>

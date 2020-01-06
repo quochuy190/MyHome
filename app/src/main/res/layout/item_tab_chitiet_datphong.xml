@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingBottom="@dimen/dp10"
+    android:paddingTop="@dimen/dp10"
+    android:paddingLeft="@dimen/dp5"
+    android:paddingRight="@dimen/dp5"
+    android:layout_marginRight="@dimen/dp10"
+    android:layout_marginLeft="@dimen/dp10"
+    android:layout_marginTop="@dimen/dp10"
+    android:background="@drawable/spr_bg_tablayout_new_room"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_name_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="@color/app_main"
+        android:textSize="@dimen/txt_16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_name_booker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_home" />
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_time_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_booker" />
+
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_create_time_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_time_book" />
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_status_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_create_time_book" />
+
+    <TextView
+        android:visibility="gone"
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_status_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_status_room" />
+
+    <Button
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintEnd_toStartOf="@+id/btn_open_room"
+        android:textSize="@dimen/txt_13sp"
+        android:id="@+id/btn_booking_clearroom"
+        android:textColor="@color/White"
+        android:text="Đặt dọn phòng"
+        android:background="@drawable/spr_btn_red"
+        android:layout_marginTop="@dimen/dp5"
+        app:layout_constraintWidth_percent="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_status_pay"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_btn_30" />
+    <Button
+
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/btn_booking_clearroom"
+        android:textSize="@dimen/txt_13sp"
+        android:id="@+id/btn_open_room"
+        android:textColor="@color/White"
+        android:text="Mở khóa phòng"
+        android:background="@drawable/spr_btn_login"
+        android:layout_marginTop="@dimen/dp5"
+        app:layout_constraintWidth_percent="0.48"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_status_pay"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_btn_30" />
+</androidx.constraintlayout.widget.ConstraintLayout>

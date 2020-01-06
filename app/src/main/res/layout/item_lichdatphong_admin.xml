@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/dp10"
+    android:paddingTop="@dimen/dp10"
+    android:paddingLeft="@dimen/dp5"
+    android:paddingRight="@dimen/dp5"
+    android:layout_marginRight="@dimen/dp10"
+    android:layout_marginLeft="@dimen/dp10"
+    android:background="@drawable/spr_bg_tablayout_new_room"
+    android:layout_marginTop="@dimen/dp10"
+    android:orientation="vertical">
+
+    <TextView
+        android:singleLine="true"
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_name_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/app_main"
+        android:textSize="@dimen/txt_16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_name_booker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_home" />
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_time_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_booker" />
+
+
+    <TextView
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_create_time_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_time_book" />
+
+    <TextView
+        android:singleLine="true"
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_status_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_create_time_book" />
+
+    <TextView
+
+        android:singleLine="true"
+        android:visibility="visible"
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_status_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_status_room" />
+
+    <TextView
+        android:singleLine="true"
+        android:visibility="visible"
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_status_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_status_room" />
+    <TextView
+        android:singleLine="true"
+        android:visibility="visible"
+        android:padding="@dimen/dp1"
+        android:id="@+id/txt_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_status_room" />
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <Button
+           android:visibility="gone"
+           android:textAllCaps="false"
+           android:textSize="@dimen/txt_14sp"
+           android:id="@+id/btn_booking_clearroom"
+           android:textColor="@color/White"
+           android:text="Cập nhật đặt phòng"
+           android:background="@drawable/spr_btn_blue_status_pay"
+           android:layout_marginTop="@dimen/dp5"
+           app:layout_constraintWidth_percent="0.47"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           android:layout_width="0dp"
+           android:layout_height="@dimen/height_btn_35" />
+       <Button
+           android:textSize="@dimen/txt_14sp"
+           android:id="@+id/btn_open_room"
+           android:textColor="@color/White"
+           android:textAllCaps="false"
+           android:text="Cập nhật thanh toán"
+           android:background="@drawable/spr_btn_blue_status_book"
+           android:layout_marginTop="@dimen/dp5"
+           app:layout_constraintWidth_percent="0.47"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           android:layout_width="0dp"
+           android:layout_height="@dimen/height_btn_35" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp1"
+    android:background="@drawable/spr_click_view"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp7"
+    android:paddingBottom="@dimen/dp7">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/logo_evn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp5"
+        android:padding="@dimen/dp7"
+        android:src="@drawable/logo_app"
+        app:layout_constraintBottom_toBottomOf="parent
+"
+        app:layout_constraintDimensionRatio="1:1.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".2" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/txt_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginEnd="8dp"
+        android:padding="@dimen/dp3"
+        android:text="@string/app_name"
+        android:textColor="@color/blue_introduce"
+        android:textSize="@dimen/txt_16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/logo_evn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/txt_date_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp5"
+        android:padding="@dimen/dp3"
+        android:text="12/07/2019 9:08"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_14sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+    <TextView
+        android:ellipsize="end"
+        android:id="@+id/txt_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp5"
+        android:fontFamily="@font/helve"
+        android:maxLines="3"
+        android:minLines="3"
+        android:padding="@dimen/dp3"
+        android:textColor="@color/blue_introduce"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/logo_evn"
+        app:layout_constraintTop_toBottomOf="@+id/txt_date_time" />
+
+    <Button
+        android:id="@+id/btn_update_version"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/spr_btn_login"
+        android:text="Cập nhật"
+        android:textColor="@color/White"
+        android:textSize="@dimen/txt_12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_content"
+        app:layout_constraintDimensionRatio="4.5:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txt_content"
+        app:layout_constraintWidth_percent="0.3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

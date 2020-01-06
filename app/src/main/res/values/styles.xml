@@ -19,11 +19,9 @@
         <item name="android:windowMinWidthMinor">100%</item>
     </style>
     <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
-        <item name="android:textAllCaps">true</item>
         <item name="android:paddingStart">1dp</item>
         <item name="android:paddingEnd">1dp</item>
         <item name="android:textColor">@color/Black</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
     </style>
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
@@ -39,6 +37,35 @@
     <style name="MyDatePickerStyle" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="colorAccent">@color/app_main</item>
     </style>
+    <style name="SwitchCompatStyle" >
 
+        <!--    <item name="thumbTint">@color/blue_introduce</item>
+            <item name="trackTint">@color/Silver</item>-->
+        <!-- Active thumb color & Active track color(30% transparency) -->
+        <item name="colorControlActivated">@color/blue_introduce</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/Gray</item>
+        <!-- Inactive track color(30% transparency) -->
+        <item name="android:colorForeground">@color/Silver</item>
+    </style>
 
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/Gray</item>
+        <item name="android:textSize">@dimen/txt_15sp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/Black</item>
+        <item name="colorControlNormal">@color/Orange</item>
+        <item name="colorControlActivated">@color/Blue</item>
+    </style>
+    <style name="TextLabeTextInput" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/Gray</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/Gray</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/app_main</item>
+        <item name="colorControlNormal">@color/app_main</item>
+        <item name="colorControlActivated">@color/app_main</item>
+    </style>
 </resources>

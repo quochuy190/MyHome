@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp7"
+    android:background="@drawable/spr_bg_tablayout_new_room"
+    android:orientation="vertical"
+    android:padding="@dimen/dp7">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avata"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
+            android:src="@drawable/btn_avatar"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.22" />
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/txt_cmt"
+            android:layout_marginLeft="@dimen/dp5"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_avata"
+            android:id="@+id/txt_name_contact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp1"
+            android:text="@string/app_name"
+            android:textColor="@color/app_main"
+            android:textSize="@dimen/txt_16sp" />
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/txt_phone"
+            android:layout_marginLeft="@dimen/dp5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name_contact"
+            app:layout_constraintStart_toEndOf="@+id/img_avata"
+            android:id="@+id/txt_cmt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp1"
+            android:text="@string/app_name"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/txt_16sp" />
+        <TextView
+            android:layout_marginLeft="@dimen/dp5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_cmt"
+            app:layout_constraintStart_toEndOf="@+id/img_avata"
+            app:layout_constraintBottom_toBottomOf="@+id/img_avata"
+            android:id="@+id/txt_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp1"
+            android:text="@string/app_name"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/txt_16sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_marginTop="@dimen/dp2"
+        android:layout_marginLeft="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cmt"
+        app:layout_constraintStart_toEndOf="@+id/img_avata"
+        app:layout_constraintBottom_toBottomOf="@+id/img_avata"
+        android:id="@+id/txt_ngaysinh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp1"
+        android:text="Ngày sinh: "
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_16sp" />
+    <TextView
+        android:layout_marginTop="@dimen/dp2"
+        android:layout_marginLeft="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cmt"
+        app:layout_constraintStart_toEndOf="@+id/img_avata"
+        app:layout_constraintBottom_toBottomOf="@+id/img_avata"
+        android:id="@+id/txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp1"
+        android:text="Email"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_16sp" />
+    <TextView
+        android:layout_marginTop="@dimen/dp2"
+        android:layout_marginLeft="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cmt"
+        app:layout_constraintStart_toEndOf="@+id/img_avata"
+        app:layout_constraintBottom_toBottomOf="@+id/img_avata"
+        android:id="@+id/txt_tinh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp1"
+        android:text="Tỉnh/TP"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_16sp" />
+    <TextView
+        android:layout_marginTop="@dimen/dp2"
+        android:layout_marginLeft="@dimen/dp5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cmt"
+        app:layout_constraintStart_toEndOf="@+id/img_avata"
+        app:layout_constraintBottom_toBottomOf="@+id/img_avata"
+        android:id="@+id/txt_diachi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp1"
+        android:text="Địa chỉ"
+        android:textColor="@color/Gray"
+        android:textSize="@dimen/txt_16sp" />
+</LinearLayout>

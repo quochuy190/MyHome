@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/appbar_all_activity" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar"
+        android:id="@+id/ll_title_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/txt_start_booking"
+            android:textSize="@dimen/txt_15sp"
+            android:textColor="@color/Black"
+            android:text="Ngày đến"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/txt_end_booking"
+            android:textSize="@dimen/txt_15sp"
+            android:textColor="@color/Black"
+            android:text="Ngày đi"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:background="@color/LightGrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_title_day"
+        android:id="@+id/ll_week_title"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp7"
+            android:text="CN"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp7"
+            android:text="T2"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp7"
+            android:text="T3"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp7"
+            android:text="T4"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp7"
+            android:text="T5"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp7"
+            android:text="T6"
+            android:textColor="@color/Brown"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp7"
+            android:text="T7"
+            android:textColor="@color/Brown"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_list_calendar_custom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_week_title">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_booking"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_btn"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/spr_btn_login"
+            android:text="Đặt phòng"
+            android:textColor="@color/White"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

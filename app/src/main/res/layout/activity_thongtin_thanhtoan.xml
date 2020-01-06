@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/appbar_thongtin_thanhtoan"
+        layout="@layout/appbar_all_activity" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_thongtin_thanhtoan">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+            android:layout_marginTop="@dimen/dp10"
+            android:padding="@dimen/dp1"
+            android:text="Tên tài khoản"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+
+            android:padding="@dimen/dp1"
+            android:text="VŨ XUÂN TRƯỜNG"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+            android:layout_marginTop="@dimen/dp10"
+            android:padding="@dimen/dp1"
+            android:text="Số tài khoản"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+
+            android:padding="@dimen/dp1"
+            android:text="1902 5376 1560 21"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+            android:layout_marginTop="@dimen/dp10"
+            android:padding="@dimen/dp1"
+            android:text="Chi nhánh"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+
+            android:padding="@dimen/dp1"
+            android:text="TECHCOMBACK chi nhánh Hoàn Kiếm"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+            android:layout_marginTop="@dimen/dp10"
+            android:padding="@dimen/dp1"
+            android:text="Số tiền"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_price_thanhtoan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+            android:padding="@dimen/dp1"
+            android:text="180.000VNĐ"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+            android:layout_marginTop="@dimen/dp10"
+            android:padding="@dimen/dp1"
+            android:text="Nội dung chuyển tiền"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/txt_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7"
+            android:padding="@dimen/dp1"
+            android:text="180.000VNĐ"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp7"
+        android:layout_marginTop="@dimen/dp10"
+        android:padding="@dimen/dp1"
+        android:text="@string/txt_note_chuyenkhoan"
+        android:textColor="@color/blue_end"
+        android:textSize="@dimen/txt_13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_hoanthanh" />
+    <Button
+        android:id="@+id/btn_hoanthanh"
+        android:background="@drawable/spr_btn_login"
+        android:textColor="@color/White"
+        android:textAllCaps="false"
+        android:text="Hoàn thành"
+        android:textSize="@dimen/txt_16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/dp7"
+        app:layout_constraintWidth_percent="0.4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

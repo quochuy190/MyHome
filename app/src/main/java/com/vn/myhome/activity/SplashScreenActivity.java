@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
-import com.bumptech.glide.Glide;
+
 import com.vn.myhome.MainActivity;
 import com.vn.myhome.R;
 import com.vn.myhome.activity.login.LoginActivity;
@@ -21,7 +21,7 @@ public class SplashScreenActivity extends BaseActivity {
     /**
      * Duration of wait
      **/
-    private final int SPLASH_DISPLAY_LENGTH = 1500;
+    private final int SPLASH_DISPLAY_LENGTH = 2000;
     Intent mainIntent = new Intent();
     Intent mainIntent_welcom = new Intent();
     String id;
@@ -33,8 +33,8 @@ public class SplashScreenActivity extends BaseActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         boolean isLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_IS_LOGIN, Boolean.class);
-        img_splash = (ImageView) findViewById(R.id.img_logo);
-        Glide.with(this).load(R.drawable.img_splash).into(img_splash);
+/*        img_splash = (ImageView) findViewById(R.id.img_logo);
+        Glide.with(this).load(R.drawable.img_splash).into(img_splash);*/
         if (isLogin) {
             mainIntent.setClass(SplashScreenActivity.this, MainActivity.class);
         } else {

@@ -16,8 +16,58 @@ public class ObjErrorApi {
     String MESSAGE;
     @SerializedName("RESULT")
     String RESULT;
+    @SerializedName("GENLINK")
+    String GENLINK;
     @SerializedName("CODE_ACTIVE")
     String CODE_ACTIVE;
+    @SerializedName("IDROOM")
+    String IDROOM;
+    @SerializedName("CONTENT")
+    String CONTENT;
+    @SerializedName("STATUS")
+    String STATUS;
+    @SerializedName("PRICE")
+    String PRICE;
+
+    public String getPRICE() {
+        return PRICE;
+    }
+
+    public void setPRICE(String PRICE) {
+        this.PRICE = PRICE;
+    }
+
+    public String getSTATUS() {
+        return STATUS;
+    }
+
+    public void setSTATUS(String STATUS) {
+        this.STATUS = STATUS;
+    }
+
+    public String getCONTENT() {
+        return CONTENT;
+    }
+
+    public void setCONTENT(String CONTENT) {
+        this.CONTENT = CONTENT;
+    }
+
+    public String getGENLINK() {
+        return GENLINK;
+    }
+
+    public void setGENLINK(String GENLINK) {
+        this.GENLINK = GENLINK;
+    }
+
+    public String getIDROOM() {
+        return IDROOM;
+    }
+
+    public void setIDROOM(String IDROOM) {
+        this.IDROOM = IDROOM;
+    }
 
     public String getERROR() {
         return ERROR;

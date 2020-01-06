@@ -1,13 +1,21 @@
 package com.vn.myhome.base;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
 import android.text.Html;
+import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
+
 import com.vn.myhome.R;
 import com.vn.myhome.callback.ClickDialog;
 
@@ -34,6 +42,16 @@ public class BaseFragment extends Fragment {
             dialog.dismiss();
         }
     }
+    public void hideDialogLoadingDelay(){
+        StopDialogLoadingHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }, 1000);
+    }
 
 
     public void showDialogLoading() {
@@ -58,7 +76,35 @@ public class BaseFragment extends Fragment {
             dialog.show();
         }
     }
+    Dialog dialog_call;
+    public void showDialog_CallPhone(ClickDialog clickDialog) {
+        dialog_call = new Dialog(getContext(), R.style.Theme_Dialog);
+        // dialog.setCancelable(false);
+        dialog_call.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_call.setContentView(R.layout.dialog_confirm_call);
+        dialog_call.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        TextView txt_name = dialog_call.findViewById(R.id.txt_title);
+        TextView txt_exit = dialog_call.findViewById(R.id.txt_exit);
+        TextView txt_call = dialog_call.findViewById(R.id.txt_call);
+        String sName = "Tổng đài chăm sóc khách hàng <b><font color='#FF0000'>0981.04.5225</font></b>";
+        txt_name.setText(Html.fromHtml(sName), TextView.BufferType.SPANNABLE);
+        txt_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_call.dismiss();
+                clickDialog.onClickYesDialog();
+            }
+        });
+        txt_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_call.dismiss();
+            }
+        });
 
+        dialog_call.show();
+
+    }
     public void showDialogLoadingtime(int time) {
         StopDialogLoadingHandler.postDelayed(new Runnable() {
             @Override
@@ -165,13 +211,13 @@ public class BaseFragment extends Fragment {
             builder.setTitle(title)
                     .setCancelable(false)
                     .setMessage(Html.fromHtml(message))
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Có", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
                             clickDialog.onClickYesDialog();
                         }
                     })
-                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    .setNegativeButton("Không", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             clickDialog.onClickNoDialog();

@@ -21,6 +21,14 @@ public class ObjCity implements Serializable {
     @SerializedName("OD")
     String OD;
 
+    public ObjCity(String MATP, String NAME) {
+        this.MATP = MATP;
+        this.NAME = NAME;
+    }
+
+    public ObjCity() {
+    }
+
     public String getMATP() {
         return MATP;
     }

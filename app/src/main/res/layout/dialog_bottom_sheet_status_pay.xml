@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_history_menu_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/White"
+    android:orientation="vertical"
+    android:padding="@dimen/dp7"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+    <TextView
+        android:id="@+id/txt_title_bottom_dialog"
+        android:background="@drawable/spr_click_view"
+        android:paddingTop="@dimen/dp5"
+        android:textAllCaps="true"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/txt_13sp"
+        android:textColor="@color/Gray"
+        android:text="Cập nhật trạng thái thanh toán"
+       android:paddingBottom="@dimen/dp25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="@color/LightGrey"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"/>
+    <TextView
+        android:background="@drawable/spr_click_view"
+        android:id="@+id/txt_menu_dialog_1"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/txt_16sp"
+        android:textColor="@color/blue_introduce"
+        android:text="Chưa thanh toán"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="@color/LightGrey"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"/>
+    <TextView
+        android:background="@drawable/spr_click_view"
+        android:id="@+id/txt_menu_dialog_2"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/txt_16sp"
+        android:textColor="@color/blue_introduce"
+        android:text="Đã đặt cọc"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/view_dialog_3"
+        android:background="@color/LightGrey"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"/>
+    <TextView
+        android:background="@drawable/spr_click_view"
+        android:id="@+id/txt_menu_dialog_3"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/txt_16sp"
+        android:textColor="@color/blue_introduce"
+        android:text="Đã thanh toán"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/view_dialog_4"
+        android:background="@color/LightGrey"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"/>
+    <TextView
+        android:background="@drawable/spr_click_view"
+        android:id="@+id/txt_menu_dialog_4"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/txt_16sp"
+        android:textColor="@color/blue_introduce"
+        android:text="Hủy đặt phòng"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/view_dialog_5"
+        android:background="@color/LightGrey"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"/>
+    <TextView
+        android:visibility="gone"
+        android:background="@drawable/spr_click_view"
+        android:id="@+id/txt_menu_dialog_5"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/txt_16sp"
+        android:textColor="@color/blue_introduce"
+        android:text="Hủy đặt phòng"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="@color/LightGrey"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"/>
+    <TextView
+        android:background="@drawable/spr_click_view"
+        android:id="@+id/txt_dong_dialog"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/txt_16sp"
+        android:textColor="@color/red_money"
+        android:text="Đóng"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

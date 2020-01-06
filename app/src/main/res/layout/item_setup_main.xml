@@ -6,18 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/spr_item_setup"
-    android:padding="@dimen/dp5">
+    android:padding="@dimen/dp7">
 
     <ImageView
         android:id="@+id/img_setup_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="@dimen/dp5"
+        android:padding="@dimen/dp7"
         android:src="@drawable/ic_setup_1"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.12" />
+        app:layout_constraintWidth_percent="0.11" />
 
     <TextView
         android:paddingLeft="@dimen/dp10"
@@ -36,13 +36,14 @@
         app:layout_constraintTop_toTopOf="@+id/img_setup_1" />
 
     <ImageView
+        android:layout_marginRight="@dimen/dp5"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_right_setup"
         app:layout_constraintBottom_toBottomOf="@+id/img_setup_1"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintHeight_percent="0.5"
         app:layout_constraintTop_toTopOf="@+id/img_setup_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

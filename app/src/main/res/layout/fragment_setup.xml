@@ -1,19 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_app"
     android:orientation="vertical">
 
-    <include layout="@layout/appbar_all_activity" />
+    <include
+        android:id="@+id/appbar_setup"
+        layout="@layout/appbar_all_activity"
+        android:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_setup"
-        android:background="@color/app_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp7"
+        android:background="@color/app_main"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo_setup">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/app_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcv_setup" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txt_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="@dimen/dp7"
+        android:text="ĐĂNG XUẤT"
+        android:textColor="@color/DarkRed"
+        android:textSize="@dimen/txt_18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_logo_setup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp7"
+        android:src="@drawable/logo_app"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_setup"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <TextView
+        android:id="@+id/txt_version_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/dp5"
+        android:text="Version "
+        android:textColor="@color/txt_app"
+        android:textSize="@dimen/txt_15sp"
+
+        app:layout_constraintBottom_toBottomOf="@id/img_logo_setup"
+        app:layout_constraintStart_toEndOf="@+id/img_logo_setup" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

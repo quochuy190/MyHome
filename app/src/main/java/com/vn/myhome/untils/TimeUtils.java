@@ -5,7 +5,10 @@ import android.annotation.SuppressLint;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -66,6 +69,200 @@ public class TimeUtils {
         return strDateTime;
     }
 
+    public static String CompareDates(String date1, String date2) {
+        String isTrue = "";
+        try {
+            String pattern = "EEEE dd-MMM-yyyy";
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            Date Date1 = formatter.parse(date1);
+            Date Date2 = formatter.parse(date2);
+            if (Date1 != null && Date2 != null) {
+                if (Date1.equals(Date2)) {
+                    isTrue = "1";
+                } else if (Date1.before(Date2)) {
+                    isTrue = "3";
+                } else {
+                    isTrue = "2";
+                }
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return isTrue;
+    }
+
+    public static String CompareDates_Two(String date1, String date2) {
+        String isTrue = "";
+        try {
+            String pattern = "EEEE dd-MMM-yyyy";
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            String pattern_date2 = "dd/MM/yyyy";
+            SimpleDateFormat formatter_date2 = new SimpleDateFormat(pattern_date2);
+            Date Date1 = formatter.parse(date1);
+            Date Date2 = formatter_date2.parse(date2);
+            if (Date1 != null && Date2 != null) {
+                if (Date1.equals(Date2)) {
+                    isTrue = "1";
+                } else if (Date1.before(Date2)) {
+                    isTrue = "3";
+                } else {
+                    isTrue = "2";
+                }
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return isTrue;
+    }
+
+    public static boolean CompareDates_Three(String dateStart, String dateEnd, String current) {
+        boolean isTrue = false;
+        try {
+            String pattern = "EEEE dd-MMM-yyyy";
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            String pattern_date2 = "dd/MM/yyyy";
+            SimpleDateFormat formatter_date2 = new SimpleDateFormat(pattern_date2);
+            Date DateStart = formatter_date2.parse(dateStart);
+            Date DateEnd = formatter_date2.parse(dateEnd);
+            Date DateCurrent = formatter.parse(current);
+            if (DateCurrent.before(DateEnd) && DateCurrent.after(DateStart)) {
+                isTrue = true;
+                return isTrue;
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return isTrue;
+    }
+
+    public static boolean CompareDates_Three_Tab_Lich(String dateStart, String dateEnd, String current) {
+        boolean isTrue = false;
+        try {
+            String pattern = "EEEE dd-MMM-yyyy";
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            String pattern_date2 = "dd/MM/yyyy";
+            SimpleDateFormat formatter_date2 = new SimpleDateFormat(pattern_date2);
+            Date DateStart = formatter.parse(dateStart);
+            Date DateEnd = formatter.parse(dateEnd);
+            Date DateCurrent = formatter.parse(current);
+            if (DateCurrent.before(DateEnd) && DateCurrent.after(DateStart)) {
+                isTrue = true;
+                return isTrue;
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return isTrue;
+    }
+
+    public static String CompareDates_3(String date1, String date2) {
+        String isTrue = "";
+        try {
+            String pattern = "dd/MM/yyyy";
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            String pattern_date2 = "dd/MM/yyyy";
+            SimpleDateFormat formatter_date2 = new SimpleDateFormat(pattern_date2);
+            Date Date1 = formatter.parse(date1);
+            Date Date2 = formatter_date2.parse(date2);
+            if (Date1 != null && Date2 != null) {
+                if (Date1.equals(Date2)) {
+                    isTrue = "1";
+                } else if (Date1.before(Date2)) {
+                    isTrue = "3";
+                } else {
+                    isTrue = "2";
+                }
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return isTrue;
+    }
+
+    public static List<Date> get_list_date(String sDateStart, String sDateEnd) {
+        List<Date> dates = new ArrayList<Date>();
+        DateFormat formatter;
+        formatter = new SimpleDateFormat("EEEE dd-MMM-yyyy");
+        Date startDate = null;
+        try {
+            startDate = (Date) formatter.parse(sDateStart);
+            Date endDate = (Date) formatter.parse(sDateEnd);
+            long interval = 24 * 1000 * 60 * 60; // 1 hour in millis
+            long endTime = endDate.getTime(); // create your endtime here, possibly using Calendar or Date
+            long curTime = startDate.getTime();
+            while (curTime <= endTime) {
+                dates.add(new Date(curTime));
+                curTime += interval;
+            }
+            for (int i = 0; i < dates.size(); i++) {
+                Date lDate = (Date) dates.get(i);
+                String ds = formatter.format(lDate);
+                System.out.println(" Date is ..." + ds);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dates;
+    }
+
+    public static String get_string_week_day(String sDay) {
+        Date d1 = null;
+        SimpleDateFormat format = new SimpleDateFormat("EEEE dd-MMM-yyyy");
+        try {
+            d1 = format.parse(sDay);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(d1);
+        String weekDay = "";
+        //  int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+
+        if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+            weekDay = "monday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {
+            weekDay = "tuesday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
+            weekDay = "wednesday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
+            weekDay = "thursday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+            weekDay = "friday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+            weekDay = "saturday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            weekDay = "sunday";
+        }
+        return weekDay;
+    }
+
+    public static boolean check_weekend(Date sDay) {
+        boolean isWeekend = false;
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(sDay);
+        String weekDay = "";
+        //  int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+
+        if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+            weekDay = "monday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {
+            weekDay = "tuesday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
+            weekDay = "wednesday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
+            weekDay = "thursday";
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+            weekDay = "friday";
+            isWeekend = true;
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+            weekDay = "saturday";
+            isWeekend = true;
+        } else if (c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            weekDay = "sunday";
+        }
+        return isWeekend;
+    }
+
     public static String StringTimetoDate(Date sDateinput, String fomatDateoutput) {
         String strDateTime = "";
         Date da = null;
@@ -92,7 +289,7 @@ public class TimeUtils {
             Date date = new Date(long_date2);
             SimpleDateFormat df2 = new SimpleDateFormat(fomatDateinput);
             String da = df2.format(date);
-                     //
+            //
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -136,4 +333,5 @@ public class TimeUtils {
         }
         return false;
     }
+
 }

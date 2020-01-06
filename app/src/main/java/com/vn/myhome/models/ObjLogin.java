@@ -62,6 +62,8 @@ public class ObjLogin {
     String ACTIVE_CODE;
     @SerializedName("ID_PROVINCE")
     String ID_PROVINCE;
+    @SerializedName("PROVINCE_NAME")
+    String PROVINCE_NAME;
     @SerializedName("TOKEN")
     String TOKEN;
     @SerializedName("TEN_CN")
@@ -72,6 +74,14 @@ public class ObjLogin {
     String TEN_TK;
     @SerializedName("SO_TK")
     String SO_TK;
+
+    public String getPROVINCE_NAME() {
+        return PROVINCE_NAME;
+    }
+
+    public void setPROVINCE_NAME(String PROVINCE_NAME) {
+        this.PROVINCE_NAME = PROVINCE_NAME;
+    }
 
     public String getID() {
         return ID;

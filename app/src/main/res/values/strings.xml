@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MyHome</string>
+    <string name="txt_sologan">Giải pháp kết nối du lịch Việt</string>
     <!--base-->
     <string name="txt_loading_dialog">Đang tải. Vui lòng đợi...</string>
     <string name="error_network">Lỗi kết nối</string>
@@ -7,24 +8,45 @@
     <string name="error_network_message">Lỗi kết nối, vui lòng kiểm tra mạng và thử lại</string>
 
     <string name="txt_taianh">Chọn ảnh đại diện</string>
-    <string name="hide_register_user">Tên đăng nhập</string>
-    <string name="hide_register_fullname">Họ và tên</string>
-    <string name="hide_register_phone">Số điện thoại</string>
-    <string name="hide_register_email">Email</string>
-    <string name="hide_register_city">Tỉnh/Thành phố</string>
-    <string name="hide_register_address">Địa chỉ</string>
-    <string name="hide_register_pass">Mật khẩu</string>
-    <string name="hide_register_pass_comfirm">Nhập lại mật khẩu</string>
+    <string name="hide_register_user">Tên đăng nhập *</string>
+    <string name="hide_register_fullname">Họ và tên *</string>
+    <string name="hide_register_phone">Số điện thoại *</string>
+    <string name="hide_birthday">Ngày sinh *</string>
+    <string name="hide_cmnd">Số CMT *</string>
+    <string name="hide_register_email">Email *</string>
+    <string name="hide_register_city">Tỉnh/Thành phố *</string>
+    <string name="hide_tower">Tòa nhà </string>
+    <string name="hide_register_address">Địa chỉ *</string>
+    <string name="hide_register_pass">Mật khẩu *</string>
+    <string name="hide_register_pass_comfirm">Nhập lại mật khẩu *</string>
     <string name="btn_reg_user">ĐĂNG KÝ TÀI KHOẢN</string>
+    <string name="hide_number_room">Số phòng *</string>
+    <string name="hide_number_bed">Số giường ngủ *</string>
     <!--string bottom bar-->
-    <string name="title_home">Trang chủ</string>
-    <string name="title_book">Đặt phòng</string>
+    <string name="title_home">Tìm kiếm</string>
+    <string name="title_book">Lịch nhà</string>
+    <string name="title_myhome">MyHome</string>
+    <string name="title_dichvu">Lịch dọn dẹp</string>
     <string name="title_thongke">Thống kê</string>
     <string name="title_service">Dịch vụ</string>
     <string name="title_setup">Cài đặt</string>
     <string name="test_text_showmore">Sáng 12/8, báo cáo về những nội dung còn nhiều ý kiến khác nhau giữa cơ quan thẩm tra và cơ quan soạn thảo dự thảo luật, Chủ nhiệm UB Tài chính - Ngân sách Nguyễn Đức Hải đề cập vấn đề bổ sung quyền truy cập dữ liệu điện tử, phần mềm ứng dụng của cơ quan được kiểm toán. Ông Hải cho biết, qua thảo luận tại kỳ họp thứ 7 của Quốc hội, có ý kiến tán thành bổ sung quyền này nhưng đề nghị quy định chặt chẽ để bảo đảm bí mật của đơn vị được kiểm toán. Có ý kiến đề nghị quy định cụ thể về thẩm quyền, trách nhiệm, điều kiện về trình độ và phân quyền truy cập phù hợp với từng cấp độ kiểm toán viên, ý kiến khác đề nghị không nên giao quyền truy cập cho kiểm toán vì liên quan đến an ninh, tài liệu mật, tối mật.</string>
     <string name="hide_search_name_homestay">Tên thành phố hoặc homestay</string>
     <string name="hide_search_quantity_homestay">Số khách</string>
-    <string name="hide_search_date_start_homestay">Ngày đến</string>
-    <string name="hide_search_date_end_homestay">Ngày đi</string>
+    <string name="hide_search_date_start_homestay">Ngày bắt đầu</string>
+    <string name="hide_search_date_end_homestay">Ngày kết thúc</string>
+    <string name="hide_new_room_sort_des">Mô tả ngắn *</string>
+    <string name="hide_new_room_full_des">Mô tả chi tiết *</string>
+    <string name="txt_title_tab_info_room">Thông tin nhà</string>
+    <string name="txt_title_tab_info_price">Thông tin giá</string>
+    <string name="txt_title_tab_until">Tiện ích</string>
+    <string name="txt_enable_book_room">Cho phép hủy trước 7 ngày</string>
+    <string name="txt_note_chuyenkhoan">Trạng thái chuyển khoản được xác nhận trong vòng 15 phút,
+        Nếu lâu hơn vui lòng liên hệ <b>0981.04.5225</b> để được hỗ trợ</string>
+    <string name="txt_title_gia_book">Giá booking\n(VND)</string>
+    <string name="txt_title_chiphi_tong">Chi phí tổng\n(VND)</string>
+    <string name="txt_title_loinhuan">Lợi nhuận\n(VND)</string>
+    <string name="tab_lichdatphong">Lịch đặt nhà</string>
+    <string name="tab_lichdonnha">Lịch dọn nhà</string>
+    <string name="tab_calendar">Calendar</string>
 </resources>

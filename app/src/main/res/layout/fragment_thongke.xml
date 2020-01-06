@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
+
+    <include
+        android:id="@+id/appbar_thongke"
+        layout="@layout/appbar_all_activity" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_thongke">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_date_start"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp5"
+                android:background="@drawable/spr_spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txt_chon_date_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:padding="@dimen/dp1"
+                    android:text="Chọn ngày tháng"
+                    android:textColor="@color/Gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_date_start"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+
+                    android:id="@+id/edt_date_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:backgroundTint="@color/White"
+                    android:focusable="false"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/dp1"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_date_start"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_chon_date_title" />
+
+                <ImageView
+                    android:id="@+id/img_date_start"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="@dimen/dp3"
+                    android:padding="@dimen/dp1"
+                    android:src="@drawable/ic_date"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.6"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_chon_stype"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_marginEnd="@dimen/dp10"
+                android:background="@drawable/spr_spinner"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/ll_date_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gl_1"
+                app:layout_constraintTop_toTopOf="@id/ll_date_start">
+
+                <TextView
+                    android:id="@+id/txt_chon_stype_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:padding="@dimen/dp1"
+                    android:text="Chọn ngày tháng"
+                    android:textColor="@color/Gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_thongke_tong"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp5"
+                android:background="@color/app_main"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_date_start">
+
+                <TextView
+                    android:id="@+id/txt_title_dongthutong"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="Doanh thu tổng"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_bam"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="(Bấm để xem chi tiết)"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_dongthutong" />
+
+                <TextView
+                    android:id="@+id/txt_doanhthutong"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_vnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_bam"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/txt_vnd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="(VND)"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_doanhthutong"
+                    app:layout_constraintVertical_chainStyle="packed" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_chiphi_dichvu"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp5"
+                android:background="@color/CadetBlue"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/gl_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_thongke_tong">
+
+                <TextView
+                    android:id="@+id/txt_title_chiphi_dichvu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="Chi phí dịch vụ"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/txt_chiphi_dichvu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="0VND"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_chiphi_dichvu_phantram"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_chiphi_dichvu"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+
+                <TextView
+                    android:background="@drawable/spr_edt_circle"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.45"
+                    android:id="@+id/txt_chiphi_dichvu_phantram"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="0%"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_chiphi_dichvu"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_chiphi_banhang"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:background="@color/Purple"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gl_1"
+                app:layout_constraintTop_toBottomOf="@+id/ll_date_start">
+
+                <TextView
+                    android:id="@+id/txt_title_chiphibanhang"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="Chi phí bán hàng"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_chiphi_banhang"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="0VND"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_chiphi_banhang_phantram"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_chiphibanhang"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+
+                <TextView
+                    android:background="@drawable/spr_edt_circle"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.45"
+                    android:id="@+id/txt_chiphi_banhang_phantram"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="0%"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_chiphi_banhang"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_chiphi_khac"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:background="@color/SandyBrown"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gl_1"
+                app:layout_constraintTop_toBottomOf="@+id/ll_thongke_tong">
+
+                <TextView
+                    android:id="@+id/txt_title_chiphi_khac"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="Chi phí khác"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/txt_chiphi_khac"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="0VND"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_chiphi_khac_phantram"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_chiphi_khac"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+
+                <TextView
+
+                    android:background="@drawable/spr_edt_circle"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.45"
+                    android:id="@+id/txt_chiphi_khac_phantram"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:padding="@dimen/dp1"
+                    android:text="0%"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_chiphi_khac"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp10"
+                android:background="@drawable/spr_bg_tablayout_new_room"
+                android:padding="@dimen/dp7"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_chiphi_khac">
+
+                <TextView
+                    android:id="@+id/txt_tong_doanhthu_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:text="Doanh thu tổng: "
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_tong_doanhthu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textColor="@color/Green"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_tong_doanhthu_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_tong_doanhthu_title" />
+
+                <TextView
+                    android:id="@+id/txt_tong_chiphi_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:text="Chi phí tổng: "
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tong_doanhthu_title" />
+
+                <TextView
+                    android:id="@+id/txt_tong_chiphi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="0đ"
+                    android:textColor="@color/OrangeRed"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_tong_chiphi_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_tong_chiphi_title" />
+
+                <TextView
+                    android:id="@+id/txt_tong_loinhuan_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="Lợi nhuận: "
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tong_chiphi_title" />
+
+                <TextView
+                    android:id="@+id/txt_tong_loinhuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:textColor="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_tong_loinhuan_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_tong_loinhuan_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

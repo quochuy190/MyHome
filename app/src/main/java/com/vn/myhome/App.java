@@ -5,6 +5,7 @@ import android.app.Application;
 import com.google.gson.Gson;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.ObjCity;
+import com.vn.myhome.models.TowerObj;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +26,10 @@ public class App extends Application {
     }
 
     public static ObjCity mCity;
+    public static TowerObj mTower;
     public static List<ObjCity> mListCity;
     public static List<ObjHomeStay> mListHomeStay;
-
+    public static String sTotalNotify="";
     @Override
     public void onCreate() {
         super.onCreate();

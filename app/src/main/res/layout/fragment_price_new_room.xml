@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp15"
+            android:paddingRight="@dimen/dp15">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9">
+
+                <ImageView
+                    android:id="@+id/icon_ll_price"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_money"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:textColor="@color/Silver"
+                    android:layout_margin="@dimen/dp1"
+                    android:padding="@dimen/dp1"
+                    android:text="Giá ngày thường *"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/txt_lable_price"
+                    app:layout_constraintStart_toEndOf="@id/icon_ll_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.vn.myhome.models.CurrencyEditText
+                    android:id="@+id/edt_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_ll_price"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_price" />
+
+                <TextView
+                    android:textColor="@color/Black"
+                    android:layout_marginRight="@dimen/dp7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="(VNĐ)"
+                    android:textSize="@dimen/txt_15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_price_weekend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9">
+                <TextView
+                    android:textColor="@color/Black"
+                    android:layout_marginRight="@dimen/dp7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="(VNĐ)"
+                    android:textSize="@dimen/txt_15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/icon_price_weekend"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_money"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:textColor="@color/Silver"
+                    android:layout_margin="@dimen/dp1"
+                    android:padding="@dimen/dp1"
+                    android:text="Giá cuối tuần, lễ tết *"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/txt_lable_price_weekend"
+                    app:layout_constraintStart_toEndOf="@id/icon_price_weekend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.vn.myhome.models.CurrencyEditText
+                    android:id="@+id/edt_price_weekend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_price_weekend"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_price_weekend" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_clear_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9">
+                <TextView
+                    android:textColor="@color/Black"
+                    android:layout_marginRight="@dimen/dp7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="(VNĐ)"
+                    android:textSize="@dimen/txt_15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/icon_clear_room"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_money"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:textColor="@color/Silver"
+                    android:layout_margin="@dimen/dp1"
+                    android:padding="@dimen/dp1"
+                    android:text="Phí dọn dẹp *"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/txt_lable_clear_room"
+                    app:layout_constraintStart_toEndOf="@id/icon_clear_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.vn.myhome.models.CurrencyEditText
+                    android:id="@+id/edt_clear_room"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_clear_room"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_clear_room" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_number_guest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9">
+                <TextView
+                    android:textColor="@color/Black"
+                    android:layout_marginRight="@dimen/dp7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="(Người)"
+                    android:textSize="@dimen/txt_15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/icon_number_guest"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_group"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:textColor="@color/Silver"
+                    android:layout_margin="@dimen/dp1"
+                    android:padding="@dimen/dp1"
+                    android:text="Số khách tiêu chuẩn *"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/txt_lable_number_guest"
+                    app:layout_constraintStart_toEndOf="@id/icon_number_guest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.vn.myhome.models.CurrencyEditText
+                    android:id="@+id/edt_number_guest"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/icon_number_guest"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_number_guest"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_max_guest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9">
+
+                <ImageView
+                    android:id="@+id/icon_max_guest"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_group"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:textColor="@color/Silver"
+                    android:layout_margin="@dimen/dp1"
+                    android:padding="@dimen/dp1"
+                    android:text="Số khách tối đa *"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/txt_lable_max_guest"
+                    app:layout_constraintStart_toEndOf="@id/icon_max_guest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.vn.myhome.models.CurrencyEditText
+                    android:id="@+id/edt_max_guest"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_max_guest"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_max_guest" />
+                <TextView
+                    android:textColor="@color/Black"
+                    android:layout_marginRight="@dimen/dp7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="(Người)"
+                    android:textSize="@dimen/txt_15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_price_add_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_bg_detail_room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9">
+
+                <ImageView
+                    android:id="@+id/icon_price_add_number"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/icon_money"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:textColor="@color/Silver"
+                    android:layout_margin="@dimen/dp1"
+                    android:padding="@dimen/dp1"
+                    android:text="Phí thêm khách/ 1 người*"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/txt_lable_price_add_number"
+                    app:layout_constraintStart_toEndOf="@id/icon_price_add_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.vn.myhome.models.CurrencyEditText
+                    android:id="@+id/edt_price_add_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_price_add_number"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_price_add_number" />
+
+                <TextView
+                    android:textColor="@color/Black"
+                    android:layout_marginRight="@dimen/dp7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="(VNĐ)"
+                    android:textSize="@dimen/txt_15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_chage_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@drawable/spr_click_view"
+                android:padding="@dimen/dp10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.15">
+
+
+                <TextView
+                    android:id="@+id/txt_setup_change_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_enable_book_room"
+                    android:textColor="@color/progress_bar_line"
+                    android:textSize="@dimen/txt_16sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_set_pass"
+                    style="@style/SwitchCompatStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_btn"
+        android:layout_marginBottom="@dimen/dp7"
+        android:background="@drawable/spr_btn_login"
+        android:text="Cập nhật"
+        android:textColor="@color/White"
+        android:textSize="@dimen/txt_16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.75" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

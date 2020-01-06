@@ -1,6 +1,7 @@
 package com.vn.myhome.models.ResponseApi;
 
 import com.google.gson.annotations.SerializedName;
+import com.vn.myhome.models.ImageRoomObj;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class GetAlbumImageHomeResponse {
     @SerializedName("RESULT")
     String RESULT;
     @SerializedName("INFO")
-    List<String> INFO;
+    List<ImageRoomObj> INFO;
 
     public String getERROR() {
         return ERROR;
@@ -45,11 +46,11 @@ public class GetAlbumImageHomeResponse {
         this.RESULT = RESULT;
     }
 
-    public List<String> getINFO() {
+    public List<ImageRoomObj> getINFO() {
         return INFO;
     }
 
-    public void setINFO(List<String> INFO) {
+    public void setINFO(List<ImageRoomObj> INFO) {
         this.INFO = INFO;
     }
 }

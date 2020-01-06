@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
+import com.vn.myhome.config.Constants;
+
 import java.text.DecimalFormat;
 import java.text.Normalizer;
 import java.text.NumberFormat;
@@ -35,7 +37,7 @@ public class StringUtil {
      *
      * @return
      */
-    public static void start_ch_play(Context mContext){
+    public static void start_ch_play(Context mContext) {
         final String appPackageName = "com.evn.evncpcmobile";
         try {
             mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
@@ -44,6 +46,29 @@ public class StringUtil {
                     Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
         }
     }
+
+    public static String conventNumber(String hit) {
+        String result;
+        double iInt = 0;
+        double iNumber = Double.parseDouble(hit);
+        if (iNumber <= 999) {
+            int i = (int) iNumber;
+            return "" + i;
+        } else if (iNumber > 999 && iNumber < 1000000000) {
+            iInt = iNumber / 1000;
+           // double roundOff = (double) Math.round(iInt * 100) / 100;
+            result = "" + iInt + "K";
+            return result;
+        } else if (iNumber >= 1000000) {
+            iInt = iNumber / 1000000;
+            double roundOff = (double) Math.round(iInt * 100) / 100;
+            result = "" + roundOff + " Tr";
+            return result;
+        }
+        return null;
+    }
+
+
     public static void onLunchAnotherApp(Context context) {
 
         final String appPackageName = "neo.vn.test365children";
@@ -137,12 +162,12 @@ public class StringUtil {
         String sMonney = "";
         if (number == null)
             return "";
-        if (number.matches("[0-9]+") && number.length() > 2) {
+        if (number.matches("[0-9]+") && number.length() > 0) {
             number = number.replaceAll(" ", "");
             number = number.replaceAll(",", "");
-            int iNumber = Integer.parseInt(number);
+            long iNumber = Long.parseLong(number);
             DecimalFormat formatter = new DecimalFormat("###,###,###");
-            sMonney = (formatter.format(iNumber) + " VNĐ");
+            sMonney = (formatter.format(iNumber));
         }
 
         return sMonney;
@@ -186,12 +211,13 @@ public class StringUtil {
         }
         return sMonney;
     }
-   /* public static String removeAccent(String s) {
 
-        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
-        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        return pattern.matcher(temp).replaceAll("");
-    }*/
+    /* public static String removeAccent(String s) {
+
+         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+         return pattern.matcher(temp).replaceAll("");
+     }*/
     public static String removeAccent(String s) {
 
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
@@ -431,55 +457,57 @@ public class StringUtil {
         //hiển thị lên giao diện
         return date;
     }
-   /* public static void call_phone(Context mContext, String phone) {
-        sPhone = phone;
-        if (Build.VERSION.SDK_INT < 23) {
-            phoneCall(mContext, phone);
-        } else {
-            if (ActivityCompat.checkSelfPermission(mContext,
-                    Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                phoneCall(mContext, phone);
-            } else {
-                final String[] PERMISSIONS_STORAGE = {Manifest.permission.CALL_PHONE};
-                //Asking request Permissions
-                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS_STORAGE, Constants.RequestCode.PERMISSION_CALL_PHONE);
+
+     public static void call_phone(Context mContext, String phone) {
+         sPhone = phone;
+         if (Build.VERSION.SDK_INT < 23) {
+             phoneCall(mContext, phone);
+         } else {
+             if (ActivityCompat.checkSelfPermission(mContext,
+                     Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                 phoneCall(mContext, phone);
+             } else {
+                 final String[] PERMISSIONS_STORAGE = {Manifest.permission.CALL_PHONE};
+                 //Asking request Permissions
+                 ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS_STORAGE,
+                         Constants.RequestCode.PERMISSION_CALL_PHONE);
+             }
+         }
+     }
+
+     public static String sPhone;
+
+     private static void phoneCall(Context mContext, String phone) {
+         if (ActivityCompat.checkSelfPermission(mContext,
+                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+             Intent callIntent = new Intent(Intent.ACTION_CALL);
+             callIntent.setData(Uri.parse("tel:" + phone));
+             mContext.startActivity(callIntent);
+         } else {
+             Toast.makeText(mContext, "You don't assign permission.", Toast.LENGTH_SHORT).show();
+         }
+     }
+    public static boolean compare_two_date(String inputDate, String outputDate,
+                                           String inputDateFormat, String outputDateFormat) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(inputDateFormat);
+            Date date_1 = sdf.parse(inputDate);
+            // convent date 2
+            SimpleDateFormat sdf2 = new SimpleDateFormat(outputDateFormat);
+            Date date_2 = sdf2.parse(outputDate);
+            if (System.currentTimeMillis() < date_1.getTime()) {
+                return false;
             }
+            if (System.currentTimeMillis() < date_2.getTime()) {
+                return false;
+            }
+            //long_date2 = System.currentTimeMillis();
+            if (date_2.getTime() >= date_1.getTime()) {
+                return true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        return false;
     }
-
-    public static String sPhone;
-
-    private static void phoneCall(Context mContext, String phone) {
-        if (ActivityCompat.checkSelfPermission(mContext,
-                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            Intent callIntent = new Intent(Intent.ACTION_CALL);
-            callIntent.setData(Uri.parse("tel:" + phone));
-            mContext.startActivity(callIntent);
-        } else {
-            Toast.makeText(mContext, "You don't assign permission.", Toast.LENGTH_SHORT).show();
-        }
-    }
-*/   public static boolean compare_two_date(String inputDate, String outputDate,
-                                            String inputDateFormat, String outputDateFormat) {
-       try {
-           SimpleDateFormat sdf = new SimpleDateFormat(inputDateFormat);
-           Date date_1 = sdf.parse(inputDate);
-           // convent date 2
-           SimpleDateFormat sdf2 = new SimpleDateFormat(outputDateFormat);
-           Date date_2 = sdf2.parse(outputDate);
-           if (System.currentTimeMillis() < date_1.getTime()) {
-               return false;
-           }
-           if (System.currentTimeMillis() < date_2.getTime()) {
-               return false;
-           }
-           //long_date2 = System.currentTimeMillis();
-           if (date_2.getTime() >= date_1.getTime()) {
-               return true;
-           }
-       } catch (ParseException e) {
-           e.printStackTrace();
-       }
-       return false;
-   }
 }

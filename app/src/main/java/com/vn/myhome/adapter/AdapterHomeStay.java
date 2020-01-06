@@ -15,7 +15,6 @@ import com.vn.myhome.R;
 import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Config;
 import com.vn.myhome.models.ObjHomeStay;
-import com.vn.myhome.models.ResponseApi.ObjCity;
 import com.vn.myhome.untils.StringUtil;
 
 import java.net.MalformedURLException;
@@ -37,7 +36,8 @@ public class AdapterHomeStay extends RecyclerView.Adapter<AdapterHomeStay.ViewHo
     private List<ObjHomeStay> mList;
     private Context context;
     private ItemClickListener OnIListener;
-
+    public static final int ITEM_VIEW_HOLDER = 0;
+    public static final int ITEM_VIEW_LOADMORE = 1;
 
     public ItemClickListener getOnIListener() {
         return OnIListener;

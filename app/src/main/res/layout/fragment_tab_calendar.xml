@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:paddingBottom="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_app"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_main"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginBottom="60dp"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_app"
+                app:layout_collapseMode="parallax">
+
+                <TextView
+                    android:id="@+id/txt_lable_chonnha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:text="Chọn nhà"
+                    android:textColor="@color/Gray"
+                    android:textSize="@dimen/txt_14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinner_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_spinner"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:background="@drawable/spr_spinner"
+                    android:dropDownVerticalOffset="@dimen/height_spinner"
+                    android:singleLine="true"
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp"
+                    android:theme="@style/Spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_chonnha">
+
+                </Spinner>
+
+                <ImageView
+                    android:id="@+id/img_down_sp_home"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:layout_marginBottom="@dimen/dp2"
+                    android:padding="@dimen/dp10"
+                    android:src="@drawable/ic_down_blue"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_home"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/spinner_home"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_home" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:background="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="@id/spinner_home"
+                    app:layout_constraintStart_toStartOf="@+id/img_down_sp_home"
+                    app:layout_constraintTop_toTopOf="@id/spinner_home" />
+
+                <TextView
+                    android:id="@+id/txt_lable_trangthai_thanhtoan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="Trạng thái thanh toán"
+                    android:textColor="@color/Gray"
+                    android:textSize="@dimen/txt_14sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_home" />
+
+                <Spinner
+                    android:id="@+id/spinner_trangthai_thanhtoan"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_spinner"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:background="@drawable/spr_spinner"
+                    android:dropDownVerticalOffset="@dimen/height_spinner"
+                    android:singleLine="true"
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp"
+                    android:theme="@style/Spinner"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_trangthai_thanhtoan"
+                    app:layout_constraintWidth_percent="0.46">
+
+                </Spinner>
+
+                <ImageView
+                    android:id="@+id/img_down_status_pay"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:layout_marginBottom="@dimen/dp2"
+                    android:padding="@dimen/dp10"
+                    android:src="@drawable/ic_down_blue"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_trangthai_thanhtoan"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/spinner_trangthai_thanhtoan"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_trangthai_thanhtoan" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:background="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="@id/spinner_trangthai_thanhtoan"
+                    app:layout_constraintStart_toStartOf="@+id/img_down_status_pay"
+                    app:layout_constraintTop_toTopOf="@id/spinner_trangthai_thanhtoan" />
+
+                <TextView
+                    android:id="@+id/txt_lable_trangthai_bookphong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="Trạng thái thanh toán"
+                    android:textColor="@color/Gray"
+                    android:textSize="@dimen/txt_14sp"
+                    app:layout_constraintStart_toStartOf="@+id/spinner_trangthai_bookphong"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_home" />
+
+                <Spinner
+                    android:id="@+id/spinner_trangthai_bookphong"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_spinner"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:background="@drawable/spr_spinner"
+                    android:dropDownVerticalOffset="@dimen/height_spinner"
+                    android:singleLine="true"
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp"
+                    android:theme="@style/Spinner"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_trangthai_thanhtoan"
+                    app:layout_constraintWidth_percent="0.46">
+
+                </Spinner>
+
+                <ImageView
+                    android:id="@+id/img_down_status_bookroom"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:layout_marginBottom="@dimen/dp2"
+                    android:padding="@dimen/dp10"
+                    android:src="@drawable/ic_down_blue"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_trangthai_bookphong"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/spinner_trangthai_bookphong"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_trangthai_bookphong" />
+
+                <View
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:background="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="@id/spinner_trangthai_bookphong"
+                    app:layout_constraintStart_toStartOf="@+id/img_down_status_bookroom"
+                    app:layout_constraintTop_toTopOf="@id/spinner_trangthai_bookphong" />
+
+                <TextView
+                    android:id="@+id/txt_lable_date_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="@string/hide_search_date_start_homestay"
+                    android:textColor="@color/Gray"
+                    android:textSize="@dimen/txt_14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_trangthai_thanhtoan" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_date_start"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_spinner"
+                    android:layout_marginLeft="@dimen/dp10"
+
+                    android:background="@drawable/spr_spinner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_date_start"
+                    app:layout_constraintWidth_percent="0.46">
+
+                    <EditText
+                        android:id="@+id/edt_date_start"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="@color/White"
+                        android:focusable="false"
+                        android:gravity="center_vertical"
+                        android:hint="@string/hide_search_date_start_homestay"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:padding="@dimen/dp1"
+                        android:singleLine="true"
+                        android:textColor="@color/app_main"
+                        android:textColorHint="@color/Silver"
+                        android:textCursorDrawable="@color/app_main"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/img_date_start"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.428" />
+
+                    <ImageView
+                        android:id="@+id/img_date_start"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:padding="@dimen/dp1"
+                        android:src="@drawable/ic_date"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_date_start"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintHeight_percent="0.7"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/edt_date_start" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/txt_lable_date_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="@string/hide_search_date_end_homestay"
+                    android:textColor="@color/Gray"
+                    android:textSize="@dimen/txt_14sp"
+                    app:layout_constraintStart_toStartOf="@+id/ll_date_end"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_trangthai_thanhtoan" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_date_end"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_spinner"
+                    android:layout_marginEnd="@dimen/dp10"
+
+                    android:background="@drawable/spr_spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_lable_date_end"
+                    app:layout_constraintWidth_percent="0.46">
+
+                    <EditText
+                        android:id="@+id/edt_date_end"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="@color/White"
+                        android:focusable="false"
+                        android:gravity="center_vertical"
+                        android:hint="@string/hide_search_date_end_homestay"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:padding="@dimen/dp1"
+                        android:singleLine="true"
+                        android:textColor="@color/app_main"
+                        android:textColorHint="@color/Silver"
+                        android:textCursorDrawable="@color/app_main"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img_date_end"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/img_date_end"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="@dimen/dp3"
+                        android:padding="@dimen/dp1"
+                        android:src="@drawable/ic_date"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_date_end"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintHeight_percent="0.7"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/edt_date_end" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/btn_tracuu"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_btn_30"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:background="@drawable/spr_btn_login"
+                    android:text="tra cứu"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/txt_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_date_start"
+                    app:layout_constraintWidth_percent="0.4" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+       <!--  <Button
+             android:id="@+id/btn_tracuu"
+             android:layout_width="wrap_content"
+             android:layout_height="@dimen/height_btn_30"
+             android:layout_gravity="center_horizontal"
+             android:layout_marginTop="@dimen/dp5"
+             android:background="@drawable/spr_btn_login"
+             android:paddingLeft="@dimen/dp30"
+             android:paddingRight="@dimen/dp30"
+             android:text="tra cứu"
+             android:textColor="@color/White"
+             android:textSize="@dimen/txt_13sp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/ll_date_start" />
+   --> </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:background="@color/White"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/ll_week_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp1"
+                android:background="@color/Silver"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:text="T2"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:text="T3"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:text="T4"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:text="T5"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:text="T6"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:text="T7"
+                    android:textColor="@color/DarkOrange"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:text="CN"
+                    android:textColor="@color/DarkOrange"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_list_tab_lich"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_week_title"></androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

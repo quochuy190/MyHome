@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,19 +30,29 @@ import com.vn.myhome.activity.home.ActivityListHomeStay;
 import com.vn.myhome.activity.home.ActivityRoomDetail;
 import com.vn.myhome.activity.home.InterfaceRoom;
 import com.vn.myhome.activity.home.RoomPresenter;
-import com.vn.myhome.adapter.AdapterHomeStay;
+import com.vn.myhome.adapter.AdapterHomeStay_Search;
 import com.vn.myhome.adapter.AdapterSliderHome;
 import com.vn.myhome.adapter.AdapterViewPagerHomeImage;
 import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Constants;
+import com.vn.myhome.models.MessageEvent;
+import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.GetAlbumImageHomeResponse;
 import com.vn.myhome.models.ResponseApi.GetImageCoverResponse;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
+import com.vn.myhome.models.ResponseApi.ResponGetListNotify;
+import com.vn.myhome.presenter.InterfaceNotify;
+import com.vn.myhome.presenter.NotifyPresenter;
+import com.vn.myhome.untils.KeyboardUtil;
 import com.vn.myhome.untils.SharedPrefs;
 import com.vn.myhome.untils.StringUtil;
 import com.vn.myhome.untils.TimeUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,7 +71,7 @@ import butterknife.ButterKnife;
  * Time: 10:30
  * Version: 1.0
  */
-public class FragmentHome extends BaseFragment implements InterfaceRoom.View, View.OnClickListener {
+public class FragmentHome extends BaseFragment implements InterfaceRoom.View, View.OnClickListener, InterfaceNotify.View {
     private static final String TAG = "FragmentSetup";
     public static FragmentHome fragment;
     @BindView(R.id.rcv_homestay_home)
@@ -91,10 +103,11 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
     @BindView(R.id.edt_quantity)
     EditText edt_quantity;
     RecyclerView.LayoutManager mLayoutManager;
-    AdapterHomeStay mAdapter;
+    AdapterHomeStay_Search mAdapter;
     List<ObjHomeStay> mList;
     int PAGE = 1;
-    int NUMBER = 20;
+    int NUMBER = 200;
+    NotifyPresenter mPresenterNotify;
     Calendar myCalendar_start = Calendar.getInstance();
     Calendar myCalendar_end = Calendar.getInstance();
     private String sFromDate = "", sToDate = "";
@@ -114,16 +127,20 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_new, container, false);
         ButterKnife.bind(this, view);
+        KeyboardUtil.hideSoftKeyboard(getActivity());
         Log.e(TAG, "onCreateView: Setup");
         mPresenter = new RoomPresenter(this);
+        mPresenterNotify = new NotifyPresenter(this);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
         mListImage = new ArrayList<>();
+        price_start = 0;
+        price_end = 150;
         init();
         initSeekbar();
         initData();
@@ -163,6 +180,8 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
     private void initEvent() {
         ll_date_start.setOnClickListener(this);
         ll_date_end.setOnClickListener(this);
+        edt_date_start.setOnClickListener(this);
+        edt_date_end.setOnClickListener(this);
         btn_search.setOnClickListener(this);
 
     }
@@ -173,33 +192,90 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
         sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         if (sUserName != null) {
             showDialogLoading();
+            PAGE = 1;
             get_api();
             mPresenter.api_get_cover_idx(sUserName);
+            mPresenterNotify.api_get_list_notifi(sUserName, "1", "500");
+
+        }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.message.equals(Constants.EventBus.KEY_SEND_NOTIFY)) {
+            sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+            mPresenterNotify.api_get_list_notifi(sUserName, "1", "500");
         }
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
     private void get_api() {
         mPresenter.api_get_listroom_idx(sUserName, "" + PAGE, "" + NUMBER);
     }
-
+    boolean isRefresh = false;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
+    boolean isLoading = true;
     private void init() {
-
         mList = new ArrayList<>();
-        mAdapter = new AdapterHomeStay(mList, getContext());
+        mAdapter = new AdapterHomeStay_Search(mList, getContext());
         mLayoutManager = new GridLayoutManager(getContext(), 1);
-        rcv_home.setNestedScrollingEnabled(false);
+        rcv_home.setNestedScrollingEnabled(true);
         rcv_home.setHasFixedSize(true);
         rcv_home.setLayoutManager(mLayoutManager);
         rcv_home.setItemAnimator(new DefaultItemAnimator());
         rcv_home.setAdapter(mAdapter);
 
-        mAdapter.setOnIListener(new ItemClickListener() {
+        mAdapter.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClickItem(int position, Object item) {
                 Intent intent = new Intent(getContext(), ActivityRoomDetail.class);
                 ObjHomeStay obj = (ObjHomeStay) item;
                 intent.putExtra(Constants.KEY_SEND_ROOM_DETAIL, obj);
                 startActivity(intent);
+            }
+        });
+        // loadmore
+        rcv_home.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    GridLayoutManager layoutmanager = (GridLayoutManager) recyclerView
+                            .getLayoutManager();
+                    visibleItemCount = layoutmanager.getChildCount();
+                    totalItemCount = layoutmanager.getItemCount();
+                    pastVisiblesItems = layoutmanager.findFirstVisibleItemPosition();
+                    //Log.i(TAG, visibleItemCount + " " + totalItemCount + " " + presenter_detail_ringtunes);
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        if (!isLoading) {
+                            isLoading = true;
+                            PAGE++;
+                            mList.add(null);
+                            mAdapter.notifyDataSetChanged();
+                            //  key = ed_key_search_fragment.getText().toString();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    get_api();
+                                }
+                            }, 1000);
+                        }
+                    }
+                }
             }
         });
     }
@@ -239,9 +315,28 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
     }
 
     @Override
+    public void show_list_notifi(ResponGetListNotify objError) {
+        hideDialogLoading();
+
+    }
+
+    @Override
+    public void show_update_list_notifi(ObjErrorApi objError) {
+
+    }
+
+    @Override
     public void show_get_listroom_idx(GetRoomResponse objRes) {
         hideDialogLoading();
         if (objRes != null && objRes.getERROR().equals("0000")) {
+            isLoading = false;
+            if (PAGE == 1) {
+                mList.clear();
+            } else {
+                if (PAGE > 1) {
+                    mList.remove(mList.size() - 1);
+                }
+            }
             mList.addAll(objRes.getINFO());
             mAdapter.notifyDataSetChanged();
         } else {
@@ -285,6 +380,11 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
 
     }
 
+    @Override
+    public void show_check_lock(ObjErrorApi objRes) {
+
+    }
+
     DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -325,6 +425,7 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
     String sDateStart = "", sDateEnd = "";
     String sLOCATION = "", sPEOPLE = "", sPRICE_FROM = "", sPRICE_TO = "", sAMENITIES = "";
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -338,8 +439,18 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
                         .get(Calendar.YEAR), myCalendar_end.get(Calendar.MONTH),
                         myCalendar_end.get(Calendar.DAY_OF_MONTH)).show();
                 break;
+            case R.id.edt_date_start:
+                new DatePickerDialog(getContext(), R.style.MyDatePickerStyle, start_date, myCalendar_start
+                        .get(Calendar.YEAR), myCalendar_start.get(Calendar.MONTH),
+                        myCalendar_start.get(Calendar.DAY_OF_MONTH)).show();
+                break;
+            case R.id.edt_date_end:
+                new DatePickerDialog(getContext(), R.style.MyDatePickerStyle, end_date, myCalendar_end
+                        .get(Calendar.YEAR), myCalendar_end.get(Calendar.MONTH),
+                        myCalendar_end.get(Calendar.DAY_OF_MONTH)).show();
+                break;
             case R.id.btn_search:
-                get_api_search();
+                 get_api_search();
 
                 break;
         }
@@ -375,6 +486,8 @@ public class FragmentHome extends BaseFragment implements InterfaceRoom.View, Vi
         if (TimeUtils.compare_two_date(sDateStart, sDateEnd,
                 "dd/MM/yyyy", "dd/MM/yyyy")) {
             showDialogLoading();
+            sPRICE_TO = sPRICE_TO.replaceAll("\\.", "").replaceAll(",","");
+            sPRICE_FROM = sPRICE_FROM.replaceAll("\\.","").replaceAll(",","");
             mPresenter.api_search_home(sUserName, sLOCATION, sDateStart, sDateEnd, sPEOPLE,
                     sPRICE_FROM, sPRICE_TO, "");
         } else {

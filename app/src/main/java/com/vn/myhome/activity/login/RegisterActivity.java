@@ -24,6 +24,7 @@ import com.vn.myhome.models.ObjTypeUser;
 import com.vn.myhome.models.ResponseApi.CityResponse;
 import com.vn.myhome.models.ResponseApi.GetTypeResponse;
 import com.vn.myhome.untils.KeyboardUtil;
+import com.vn.myhome.untils.PhoneUtil;
 import com.vn.myhome.untils.SharedPrefs;
 
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class RegisterActivity extends BaseActivity implements InterfaceLogin.Vie
     Button btn_reg_user;
     List<String> dataset = new ArrayList<>();
     PresenterLogin mPresenter;
+    boolean is_Register_Admin;
     private String sUserType = "", sUsername = "", sPassWord = "", sEmail = "",
             sFulName = "", sMobile = "", sAddress = "", sDes = "", sProvince = "", sSTK = "",
             sTenTK = "", sTenNN = "", sTenCN = "";
@@ -89,12 +91,14 @@ public class RegisterActivity extends BaseActivity implements InterfaceLogin.Vie
     }
 
     private void initData() {
+        is_Register_Admin = getIntent().getBooleanExtra(Constants.KEY_IS_REGISTER_ADMIN, false);
         mPresenter = new PresenterLogin(this);
         showDialogLoading();
         initGetType();
     }
 
     private void initGetType() {
+
         mPresenter.api_get_type("");
     }
 
@@ -176,9 +180,14 @@ public class RegisterActivity extends BaseActivity implements InterfaceLogin.Vie
             showDialogNotify("Thông báo", "Xác nhận mật khẩu không chính xác.");
             return;
         }
-        showDialogLoading();
-        mPresenter.api_reg_user("user/reg_user", sUsername, sPassWord, sEmail, sFulName,
-                sUserType, sMobile, sAddress, "", sProvince, "", "", "", "");
+        if (PhoneUtil.isPhoneNumberNew(sUsername)){
+            showDialogLoading();
+            mPresenter.api_reg_user("user/reg_user", sUsername, sPassWord, sEmail, sFulName,
+                    sUserType, sMobile, sAddress, "", sProvince, "", "", "", "");
+        }else {
+            showDialogNotify("Lỗi", "Số điện thoại không đúng định dạng");
+        }
+
     }
 
     @Override
@@ -197,8 +206,10 @@ public class RegisterActivity extends BaseActivity implements InterfaceLogin.Vie
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
             Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-            SharedPrefs.getInstance().put(Constants.KEY_SAVE_USERNAME, sUsername);
-            SharedPrefs.getInstance().put(Constants.KEY_SAVE_PASSWORD, sPassWord);
+            if (!is_Register_Admin) {
+                SharedPrefs.getInstance().put(Constants.KEY_SAVE_USERNAME, sUsername);
+                SharedPrefs.getInstance().put(Constants.KEY_SAVE_PASSWORD, sPassWord);
+            }
             setResult(RESULT_OK, new Intent());
             finish();
         } else {

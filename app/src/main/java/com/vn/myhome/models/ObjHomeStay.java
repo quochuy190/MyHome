@@ -76,6 +76,81 @@ public class ObjHomeStay implements Serializable {
     String EMAIL;
     @SerializedName("HOST_NAME")
     String HOST_NAME;
+    @SerializedName("LOCATION_ID")
+    String LOCATION_ID;
+    @SerializedName("LOCATION_NAME")
+    String LOCATION_NAME;
+    @SerializedName("ID_PROVINCE")
+    String ID_PROVINCE;
+    @SerializedName("PROVINCE_NAME")
+    String PROVINCE_NAME;
+    @SerializedName("USER_ID")
+    String USER_ID;
+    @SerializedName("NAME_HOST")
+    String NAME_HOST;
+    @SerializedName("MAX_GUEST_EXIST")
+    String MAX_GUEST_EXIST;
+
+    public String getNAME_HOST() {
+        return NAME_HOST;
+    }
+
+    public void setNAME_HOST(String NAME_HOST) {
+        this.NAME_HOST = NAME_HOST;
+    }
+
+    public ObjHomeStay(String NAME, String GENLINK) {
+        this.NAME = NAME;
+        this.GENLINK = GENLINK;
+    }
+
+    public String getMAX_GUEST_EXIST() {
+        return MAX_GUEST_EXIST;
+    }
+
+    public void setMAX_GUEST_EXIST(String MAX_GUEST_EXIST) {
+        this.MAX_GUEST_EXIST = MAX_GUEST_EXIST;
+    }
+
+    public String getUSER_ID() {
+        return USER_ID;
+    }
+
+    public void setUSER_ID(String USER_ID) {
+        this.USER_ID = USER_ID;
+    }
+
+    public String getLOCATION_ID() {
+        return LOCATION_ID;
+    }
+
+    public void setLOCATION_ID(String LOCATION_ID) {
+        this.LOCATION_ID = LOCATION_ID;
+    }
+
+    public String getLOCATION_NAME() {
+        return LOCATION_NAME;
+    }
+
+    public void setLOCATION_NAME(String LOCATION_NAME) {
+        this.LOCATION_NAME = LOCATION_NAME;
+    }
+
+    public String getID_PROVINCE() {
+        return ID_PROVINCE;
+    }
+
+    public void setID_PROVINCE(String ID_PROVINCE) {
+        this.ID_PROVINCE = ID_PROVINCE;
+    }
+
+    public String getPROVINCE_NAME() {
+        return PROVINCE_NAME;
+    }
+
+    public void setPROVINCE_NAME(String PROVINCE_NAME) {
+        this.PROVINCE_NAME = PROVINCE_NAME;
+    }
 
     public String getHOST_NAME() {
         return HOST_NAME;

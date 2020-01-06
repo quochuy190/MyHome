@@ -1,21 +1,37 @@
 package com.vn.myhome.activity.home;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.skyhope.showmoretextview.ShowMoreTextView;
 import com.vn.myhome.R;
+import com.vn.myhome.activity.book_room.Activity_calendar_booking;
+import com.vn.myhome.adapter.AdapterImageUpFace;
+import com.vn.myhome.adapter.AdapterImage_Zoom_Viewpage;
 import com.vn.myhome.base.BaseActivity;
+import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Config;
 import com.vn.myhome.config.Constants;
+import com.vn.myhome.models.ImageRoomObj;
+import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.GetAlbumImageHomeResponse;
 import com.vn.myhome.models.ResponseApi.GetImageCoverResponse;
@@ -27,6 +43,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -71,8 +89,16 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
     ShowMoreTextView txt_description;
     @BindView(R.id.txt_infomation)
     TextView txt_infomation;
+    @BindView(R.id.btn_booking)
+    Button btn_booking;
     @BindView(R.id.ll_view_all_image)
     ConstraintLayout ll_view_all_image;
+    @BindView(R.id.img_back)
+    ImageView img_back;
+    @BindView(R.id.txt_view_all_image)
+    TextView txt_view_all_image;
+    @BindView(R.id.txt_max_guest_exit)
+    TextView txt_max_guest_exit;
     private ObjHomeStay objRoom;
     private RoomPresenter mPresenter;
     String sUsername;
@@ -86,15 +112,34 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new RoomPresenter(this);
-
+        initListImage();
         initData();
         initEvent();
     }
 
     private void initEvent() {
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         ll_view_all_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+            }
+        });
+        btn_booking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+
+                Intent intent = new Intent(ActivityRoomDetail.this, Activity_calendar_booking.class);
+                intent.putExtra(Constants.KEY_SEND_ROOM_BOOKING, objRoom);
+                startActivity(intent);*/
+                showDialogLoading();
+                mPresenter.api_check_lock(sUsername, objRoom.getGENLINK());
 
             }
         });
@@ -107,6 +152,7 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
             if (objRoom.getGENLINK() != null) {
                 showDialogLoading();
                 mPresenter.api_get_room_detail(sUsername, objRoom.getGENLINK());
+                mPresenter.api_get_album_image(sUsername, objRoom.getGENLINK());
             }
 
         }
@@ -159,6 +205,7 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
     }
 
     private void set_info_room(ObjHomeStay objRoomDetail) {
+        objRoom = objRoomDetail;
         if (objRoomDetail.getNAME() != null)
             txt_name_homestay.setText(objRoomDetail.getNAME());
         if (objRoomDetail.getADDRESS() != null)
@@ -172,9 +219,11 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
         if (objRoomDetail.getMAX_BED() != null)
             txt_bed_max.setText(objRoomDetail.getMAX_BED());
         if (objRoomDetail.getMAX_GUEST() != null)
-            txt_room_max.setText(objRoomDetail.getMAX_GUEST());
+            txt_guest_max.setText(objRoomDetail.getMAX_GUEST());
         if (objRoomDetail.getMAX_ROOM() != null)
-            txt_guest_max.setText(objRoomDetail.getMAX_ROOM());
+            txt_room_max.setText(objRoomDetail.getMAX_ROOM());
+        if (objRoomDetail.getMAX_GUEST_EXIST() != null)
+            txt_max_guest_exit.setText(objRoomDetail.getMAX_GUEST_EXIST());
 
         if (objRoomDetail.getPRICE() != null) {
             txt_price_thu.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE()));
@@ -216,6 +265,77 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
 
     @Override
     public void show_get_album_image(GetAlbumImageHomeResponse objRes) {
+        hideDialogLoading();
+        if (objRes != null && objRes.getERROR().equals("0000")) {
+            mListAnh.clear();
+            mListAnh.addAll(objRes.getINFO());
+            adapterImageUpFace.notifyDataSetChanged();
+            txt_view_all_image.setText("Hình ảnh chi tiết(" + mListAnh.size() + ")");
+        }
+    }
+
+    @Override
+    public void show_check_lock(ObjErrorApi objRes) {
+        hideDialogLoading();
+        if (objRes != null && objRes.getERROR().equals("0000")) {
+            if (objRes.getSTATUS().equals("0")) {
+                Intent intent = new Intent(ActivityRoomDetail.this, Activity_calendar_booking.class);
+                intent.putExtra(Constants.KEY_SEND_ROOM_BOOKING, objRoom);
+                startActivity(intent);
+            } else
+                showDialogNotify("Thông báo", "Bạn không có quyền đặt phòng");
+        } else {
+            showDialogNotify("Thông báo", objRes.getRESULT());
+        }
+    }
+
+    @BindView(R.id.rcv_image_face)
+    RecyclerView rcv_image_face;
+    // private List<String> mList;
+    AdapterImageUpFace adapterImageUpFace;
+    RecyclerView.LayoutManager layoutManager;
+
+    private void initListImage() {
+        adapterImageUpFace = new AdapterImageUpFace(mListAnh, this);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rcv_image_face.setNestedScrollingEnabled(false);
+        rcv_image_face.setHasFixedSize(true);
+        rcv_image_face.setLayoutManager(layoutManager);
+        rcv_image_face.setItemAnimator(new DefaultItemAnimator());
+        rcv_image_face.setAdapter(adapterImageUpFace);
+        adapterImageUpFace.notifyDataSetChanged();
+        adapterImageUpFace.setOnIListener(new ItemClickListener() {
+            @Override
+            public void onClickItem(int position, Object item) {
+                showDialog_Full_image(position);
+            }
+        });
+
+    }
+
+    Dialog dialog;
+    List<ImageRoomObj> mListAnh = new ArrayList<>();
+
+    public void showDialog_Full_image(int posision) {
+        dialog = new Dialog(ActivityRoomDetail.this, R.style.Theme_Dialog);
+        dialog.setCancelable(true);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_fullscreen_image);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT);
+        ViewPager viewPager = dialog.findViewById(R.id.viewpager_image);
+        ImageView ic_delete = dialog.findViewById(R.id.ic_delete);
+        AdapterImage_Zoom_Viewpage adapter = new AdapterImage_Zoom_Viewpage(this, mListAnh);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(posision);
+        ic_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
 
     }
 }

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_main">#4B6DB3</color>
+    <color name="app_main_light">#7E9DE0</color>
     <color name="border_item_home">#118C98</color>
     <color name="bg_app">#EDEEEE</color>
+    <color name="transperent">#00FFFFFF</color>
+    <color name="bg_status">#E9919494</color>
     <color name="bot_bar">#9B9E9F</color>
     <color name="colorPrimary">#008577</color>
     <color name="stroke">#118c98</color>

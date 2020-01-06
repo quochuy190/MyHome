@@ -5,7 +5,9 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.vn.myhome.apiservice_base.ApiServicePost;
 import com.vn.myhome.callback.CallbackData;
+import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
+import com.vn.myhome.models.ResponseApi.GetAlbumImageHomeResponse;
 import com.vn.myhome.models.ResponseApi.GetImageCoverResponse;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
 
@@ -150,6 +152,57 @@ public class RoomPresenter implements InterfaceRoom.Presenter {
 
     @Override
     public void api_get_album_image(String USERNAME, String GENLINK) {
+        String sService = "room/get_album_image";
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("USERNAME", USERNAME);
+        mMap.put("GENLINK", GENLINK);
 
+        mApiService.getApi_Token_Enable(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api("");
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    GetAlbumImageHomeResponse obj = new Gson().fromJson(objT, GetAlbumImageHomeResponse.class);
+                    mView.show_get_album_image(obj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    mView.show_error_api("");
+                }
+            }
+        }, sService, mMap);
+    }
+
+    @Override
+    public void api_check_lock(String USERNAME, String GENLINK) {
+        String sService = "book/check_lock";
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("USERNAME", USERNAME);
+        mMap.put("GENLINK", GENLINK);
+
+        mApiService.getApi_Token_Enable(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api("");
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    ObjErrorApi obj = new Gson().fromJson(objT, ObjErrorApi.class);
+                    mView.show_check_lock(obj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    mView.show_error_api("");
+                }
+            }
+        }, sService, mMap);
     }
 }

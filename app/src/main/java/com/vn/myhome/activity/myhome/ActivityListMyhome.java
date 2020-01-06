@@ -2,7 +2,6 @@ package com.vn.myhome.activity.myhome;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,10 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vn.myhome.R;
 import com.vn.myhome.adapter.AdapterMyRoom;
 import com.vn.myhome.base.BaseActivity;
-import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Constants;
+import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
+import com.vn.myhome.models.ResponseApi.ResponListImageHome;
+import com.vn.myhome.presenter.InterfaceMyHome;
+import com.vn.myhome.presenter.MyHomePresenter;
 import com.vn.myhome.untils.KeyboardUtil;
 import com.vn.myhome.untils.SharedPrefs;
 
@@ -90,15 +92,15 @@ public class ActivityListMyhome extends BaseActivity
         recycle_service.setLayoutManager(mLayoutManager);
         recycle_service.setItemAnimator(new DefaultItemAnimator());
         recycle_service.setAdapter(adapter);
-        adapter.setOnIListener(new ItemClickListener() {
+        /*adapter.setOnIListener(new ItemClickListener() {
             @Override
             public void onClickItem(int position, Object item) {
-              /*  Intent intent = new Intent(ActivityListMyhome.this, ActivityRoomDetail.class);
+                Intent intent = new Intent(ActivityListMyhome.this, Activity_calendar_booking.class);
                 ObjHomeStay obj = (ObjHomeStay) item;
-                intent.putExtra(Constants.KEY_SEND_ROOM_DETAIL, obj);
-                startActivity(intent);*/
+                intent.putExtra(Constants.KEY_SEND_ROOM_BOOKING, obj);
+                startActivity(intent);
             }
-        });
+        });*/
 
     }
 
@@ -140,6 +142,36 @@ public class ActivityListMyhome extends BaseActivity
         } else
             showAlertDialog("Thông báo", objRes.getRESULT());
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void show_room_detail(ObjHomeStay objRes) {
+
+    }
+
+    @Override
+    public void show_new_room(ObjErrorApi objError) {
+
+    }
+
+    @Override
+    public void show_edit_room(ObjErrorApi objError) {
+
+    }
+
+    @Override
+    public void show_delete_room(ObjErrorApi objError) {
+
+    }
+
+    @Override
+    public void show_update_state_room(ObjErrorApi objError) {
+
+    }
+
+    @Override
+    public void show_get_album_image(ResponListImageHome objRes) {
+
     }
 
 }

@@ -1,5 +1,6 @@
 package com.vn.myhome.activity.home;
 
+import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.GetAlbumImageHomeResponse;
 import com.vn.myhome.models.ResponseApi.GetImageCoverResponse;
@@ -25,6 +26,7 @@ public interface InterfaceRoom {
         void api_get_room_detail(String USERNAME, String GENLINK);
 
         void api_get_album_image(String USERNAME, String GENLINK);
+        void api_check_lock(String USERNAME, String GENLINK);
     }
 
     interface View {
@@ -39,5 +41,6 @@ public interface InterfaceRoom {
         void show_get_room_detail(ObjHomeStay objRoom);
 
         void show_get_album_image(GetAlbumImageHomeResponse objRes);
+        void show_check_lock(ObjErrorApi objRes);
     }
 }

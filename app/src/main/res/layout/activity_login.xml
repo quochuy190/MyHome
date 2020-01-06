@@ -12,7 +12,7 @@
         android:layout_marginTop="@dimen/dp20"
         android:layout_marginBottom="8dp"
         android:padding="@dimen/dp10"
-        android:src="@drawable/logo_color"
+        android:src="@drawable/logo_app"
         app:layout_constraintBottom_toTopOf="@+id/ll_user"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"

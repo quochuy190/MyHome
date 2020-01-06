@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp20"
+    android:background="@drawable/spr_dialog_background"
+    android:paddingBottom="@dimen/dp30"
+    android:paddingLeft="@dimen/dp30"
+    android:paddingRight="@dimen/dp30"
+    android:paddingTop="@dimen/dp30">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/img_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/logo_app"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_logo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:textColorHint="@color/Silver"
+            android:background="@drawable/spr_spinner"
+            android:hint="- Mật khẩu cũ"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="0.8"
+            android:imeOptions="actionDone"
+            android:inputType="numberPassword"
+            android:fontFamily="@font/helve"
+            android:layout_marginTop="@dimen/dp15"
+            android:id="@+id/edt_pass_old"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:textCursorDrawable="@color/app_main"
+            android:textColor="@color/app_main"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+        <EditText
+            android:textColorHint="@color/Silver"
+            android:background="@drawable/spr_spinner"
+            android:hint="- Mật khẩu mới"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="0.8"
+            android:imeOptions="actionDone"
+            android:inputType="numberPassword"
+            android:fontFamily="@font/helve"
+            android:layout_marginTop="@dimen/dp15"
+            android:id="@+id/edt_pass_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:textCursorDrawable="@color/app_main"
+            android:textColor="@color/app_main"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+
+        <EditText
+            android:textColorHint="@color/Silver"
+            android:background="@drawable/spr_spinner"
+            android:hint="- Xác nhận mật khẩu"
+            android:gravity="center"
+            app:layout_constraintWidth_percent="0.8"
+            android:imeOptions="actionDone"
+            android:inputType="numberPassword"
+            android:fontFamily="@font/helve"
+            android:layout_marginTop="@dimen/dp15"
+            android:id="@+id/edt_pass_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:textCursorDrawable="@color/app_main"
+            android:textColor="@color/app_main"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
+
+
+
+        <Button
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp15"
+            android:textAllCaps="false"
+            android:textSize="@dimen/txt_15sp"
+            android:textColor="@color/White"
+            android:text="Xác nhận"
+            android:background="@drawable/spr_btn_login"
+            app:layout_constraintWidth_percent="0.45"
+            app:layout_constraintDimensionRatio="3:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edt_pass"
+            android:id="@+id/btn_update"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_btn_30" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

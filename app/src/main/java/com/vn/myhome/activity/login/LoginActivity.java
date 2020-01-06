@@ -34,7 +34,8 @@ import butterknife.BindView;
  * Time: 10:41
  * Version: 1.0
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener, InterfaceLogin.View {
+public class LoginActivity extends BaseActivity implements
+        View.OnClickListener, InterfaceLogin.View {
     @BindView(R.id.btn_login)
     Button btn_login;
     @BindView(R.id.txt_register)
