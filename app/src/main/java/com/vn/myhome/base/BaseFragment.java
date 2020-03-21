@@ -23,7 +23,7 @@ import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class BaseFragment extends Fragment {
 
-   // protected static String TAG = BaseFragment.class.getSimpleName();
+    // protected static String TAG = BaseFragment.class.getSimpleName();
     /**
      * when activity is recycled by system, isFirstTimeStartFlag will be reset to default true,
      * when activity is recreated because a configuration change for example screen rotate, isFirstTimeStartFlag will stay false
@@ -42,7 +42,8 @@ public class BaseFragment extends Fragment {
             dialog.dismiss();
         }
     }
-    public void hideDialogLoadingDelay(){
+
+    public void hideDialogLoadingDelay() {
         StopDialogLoadingHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -76,7 +77,9 @@ public class BaseFragment extends Fragment {
             dialog.show();
         }
     }
+
     Dialog dialog_call;
+
     public void showDialog_CallPhone(ClickDialog clickDialog) {
         dialog_call = new Dialog(getContext(), R.style.Theme_Dialog);
         // dialog.setCancelable(false);
@@ -105,6 +108,7 @@ public class BaseFragment extends Fragment {
         dialog_call.show();
 
     }
+
     public void showDialogLoadingtime(int time) {
         StopDialogLoadingHandler.postDelayed(new Runnable() {
             @Override
@@ -245,4 +249,47 @@ public class BaseFragment extends Fragment {
 
     }
 
+    public void showDialogComfirm(String title, String message, String btn_yes, String btn_no, boolean is_show_cancel,
+                                  final ClickDialog clickDialog) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+        } else
+            builder = new AlertDialog.Builder(getContext());
+        if (is_show_cancel) {
+            builder.setTitle(title)
+                    .setCancelable(false)
+                    .setMessage(Html.fromHtml(message))
+                    .setPositiveButton(btn_yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            clickDialog.onClickYesDialog();
+                        }
+                    })
+                    .setNegativeButton(btn_no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            clickDialog.onClickNoDialog();
+                        }
+                    })
+                    .show();
+        } else {
+            builder.setTitle(title)
+                    .setCancelable(false)
+                    .setMessage(message)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            clickDialog.onClickYesDialog();
+                        }
+                    })
+                    /*  .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+
+                          }
+                      })*/
+                    .show();
+        }
+
+    }
 }

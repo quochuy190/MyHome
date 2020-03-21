@@ -27,6 +27,7 @@ import com.vn.myhome.activity.book_room.ActivityThongtinChuyenkhoan;
 import com.vn.myhome.activity.notifycation.ActivityListNotify;
 import com.vn.myhome.adapter.AdapterViewpager;
 import com.vn.myhome.base.BaseFragment;
+import com.vn.myhome.callback.ClickDialog;
 import com.vn.myhome.config.Constants;
 import com.vn.myhome.fragment.lich_datphong.FragmentDateDatphong;
 import com.vn.myhome.fragment.lich_datphong.FragmentDatphongChitiet;
@@ -42,7 +43,9 @@ import com.vn.myhome.models.ResponseApi.ResponListImageHome;
 import com.vn.myhome.models.ResponseApi.ResponseListBookingService;
 import com.vn.myhome.presenter.BookingPresenter;
 import com.vn.myhome.presenter.InterfaceBooking;
+import com.vn.myhome.presenter.InterfaceKindofPaid;
 import com.vn.myhome.presenter.InterfaceMyHome;
+import com.vn.myhome.presenter.KindofPairPresenter;
 import com.vn.myhome.presenter.MyHomePresenter;
 import com.vn.myhome.untils.KeyboardUtil;
 import com.vn.myhome.untils.SharedPrefs;
@@ -69,7 +72,8 @@ import butterknife.ButterKnife;
  * Time: 10:30
  * Version: 1.0
  */
-public class FragmentDatphong extends BaseFragment implements View.OnClickListener, InterfaceMyHome.View, InterfaceBooking.View {
+public class FragmentDatphong extends BaseFragment implements View.OnClickListener,
+        InterfaceMyHome.View, InterfaceBooking.View, InterfaceKindofPaid.View {
     private static final String TAG = "FragmentSetup";
     public static FragmentDatphong fragment;
     @BindView(R.id.spinner_home)
@@ -104,6 +108,7 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
     TextView txt_title;
     @BindView(R.id.txt_badger_notify)
     TextView txt_badger_notify;
+    KindofPairPresenter mPresenterKindokPair;
 
     public static FragmentDatphong getInstance() {
         if (fragment == null) {
@@ -152,8 +157,6 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
         edt_date_end.setText(sdf.format(myCalendar_end.getTime()));
     }
 
-    String sDateStart = "", sDateEnd = "";
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lichdatphong, container, false);
@@ -161,6 +164,7 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
         Log.e(TAG, "onCreateView: Setup");
         mPresenterHome = new MyHomePresenter(this);
         mPresenterBooking = new BookingPresenter(this);
+        mPresenterKindokPair = new KindofPairPresenter(this);
         data_Home = new ArrayList<>();
         mListHome = new ArrayList<>();
         mListBooking = new ArrayList<>();
@@ -236,9 +240,7 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
 
     public void get_time() {
         myCalendar_start = Calendar.getInstance();
-        ;
         myCalendar_end = Calendar.getInstance();
-        ;
         int dayOfMonth_start = myCalendar_start.get(Calendar.DAY_OF_MONTH);
         myCalendar_start.add(Calendar.DAY_OF_MONTH, -(dayOfMonth_start - 1));
         update_start_date();
@@ -302,7 +304,7 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
             String sUser = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
             ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
             if (objLogin.getUSER_TYPE().equals(Constants.UserType.CTV)
-                    ||objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
+                    || objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
                 data_Home.add("Tất cả");
                 set_data_spinner();
                 get_api_list_booking();
@@ -311,7 +313,7 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
                     mPresenterHome.api_get_mylist_room(sUser, "");
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -469,8 +471,21 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
     public void show_lock_room(ObjErrorApi objError) {
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
-            Toast.makeText(getContext(), "Khóa nhà thành công", Toast.LENGTH_SHORT).show();
             get_api_list_booking();
+            showDialogComfirm("Thông báo",
+                    "Khóa nhà thành công,bạn có muốn đặt dịch vụ dọn dẹp không?",
+                    true,
+                    new ClickDialog() {
+                        @Override
+                        public void onClickYesDialog() {
+                            get_api_book_service(mGetLink, mStartDay, mEndDay, objError.getID_BOOKROOM());
+                        }
+
+                        @Override
+                        public void onClickNoDialog() {
+
+                        }
+                    });
         } else {
             showAlertDialog("Thông báo", objError.getRESULT());
         }
@@ -519,11 +534,30 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
     public void show_booking_services(ObjErrorApi objError) {
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
+            String sUsername = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
             Toast.makeText(getContext(), "Đặt dọn phòng thành công", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getContext(), ActivityThongtinChuyenkhoan.class);
-            intent.putExtra(Constants.KEY_SEND_PRICE_THANHTOAN, objError.getPRICE());
-            intent.putExtra(Constants.KEY_SEND_CONTENT_THANHTOAN, objError.getCONTENT());
-            startActivityForResult(intent, Constants.RequestCode.GET_BOOKING);
+            showDialogComfirm("Thông báo",
+                    "Đặt dịch vụ dọn dẹp thành công, mời bạn chọn hình thức thanh toán.",
+                    "Thanh toán trước",
+                    "Thanh toán trả sau",
+                    true,
+                    new ClickDialog() {
+                        @Override
+                        public void onClickYesDialog() {
+                            Intent intent = new Intent(getContext(), ActivityThongtinChuyenkhoan.class);
+                            intent.putExtra(Constants.KEY_SEND_PRICE_THANHTOAN, objError.getPRICE());
+                            intent.putExtra(Constants.KEY_SEND_CONTENT_THANHTOAN, objError.getCONTENT());
+                            intent.putExtra(Constants.KEY_SEND_ID_BOOKSERVICE_THANHTOAN, objError.getID_BOOK_SERVICE());
+                            startActivityForResult(intent, Constants.RequestCode.GET_BOOKING);
+                            mPresenterKindokPair.api_change_kind_of_paid(sUsername, objError.getID_BOOK_SERVICE(),
+                                    "0");
+                        }
+
+                        @Override
+                        public void onClickNoDialog() {
+                            mPresenterKindokPair.api_change_kind_of_paid(sUsername, objError.getID_BOOK_SERVICE(), "1");
+                        }
+                    });
             get_api_list_booking();
 
         } else {
@@ -546,6 +580,8 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
 
     }
 
+    public static String mStartDay = "", mEndDay = "", mGetLink = "";
+
     public static void get_api_lock_room(String sGetlink, String sStartDay, String sEndDay) {
         if (objHome != null && objHome.getGENLINK() != null) {
             String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
@@ -553,6 +589,10 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
                     TimeUtils.convent_date(sStartDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy"),
                     TimeUtils.convent_date(sEndDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy")
             );
+            mStartDay = TimeUtils.convent_date(sStartDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy");
+            mEndDay = TimeUtils.convent_date(sEndDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy");
+            mGetLink = objHome.getGENLINK();
+            // get_api_book_service(sGetlink, sStartDay, sEndDay, "");
         }
     }
 
@@ -612,6 +652,16 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
 
     @Override
     public void show_get_album_image(ResponListImageHome objRes) {
+
+    }
+
+    @Override
+    public void show_error_api(ObjErrorApi sService) {
+
+    }
+
+    @Override
+    public void show_change_kind_of_paid(ObjErrorApi sService) {
 
     }
 }

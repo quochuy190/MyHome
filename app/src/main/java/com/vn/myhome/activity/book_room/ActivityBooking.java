@@ -86,6 +86,14 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
     TextView txt_minus;
     @BindView(R.id.btn_next)
     TextView btn_next;
+    @BindView(R.id.txt_title_price_ngaythuong_discount)
+    TextView txt_title_price_ngaythuong_discount;
+    @BindView(R.id.txt_price_ngaythuong_discount)
+    TextView txt_price_ngaythuong_discount;
+    @BindView(R.id.txt_title_price_cuoituan_discount)
+    TextView txt_title_price_cuoituan_discount;
+    @BindView(R.id.txt_price_cuoituan_discount)
+    TextView txt_price_cuoituan_discount;
     @BindView(R.id.edt_fulname)
     EditText edt_fulname;
     @BindView(R.id.edt_email)
@@ -117,6 +125,7 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
         initData();
         initEvent();
     }
+
     private void initAppbar() {
         ImageView img_back = findViewById(R.id.btn_back);
         TextView txt_title = findViewById(R.id.txt_title);
@@ -129,6 +138,7 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
         });
         txt_title.setText("ĐẶT PHÒNG");
     }
+
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener to_date = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -321,28 +331,58 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
             if (lisDate.size() > 0) {
                 txt_total_date.setText(lisDate.size() + " Ngày " + (lisDate.size() - 1) + " Đêm");
                 int iWeekend = 0;
+                int iWeekend_discount = 0;
+                int iDay_discount = 0;
                 int iNoWeekend = 0;
                 for (int i = 0; i < lisDate.size() - 1; i++) {
                     if (TimeUtils.check_weekend(lisDate.get(i))) {
-                        iWeekend++;
-                    } else
-                        iNoWeekend++;
+                        if (TimeUtils.check_discount(lisDate.get(i), TimeUtils.convent_date(objHomeStay.getPROMO_ST_TIME(),
+                                "yyyy-MM-dd'T'HH:mm:ss.'000Z'", "EEEE dd-MMM-yyyy"),
+                                TimeUtils.convent_date(objHomeStay.getPROMO_ED_TIME(), "yyyy-MM-dd'T'HH:mm:ss.'000Z'", "EEEE dd-MMM-yyyy"))) {
+                            iWeekend_discount++;
+                        } else
+                            iWeekend++;
+                    } else {
+                        if (TimeUtils.check_discount(lisDate.get(i), TimeUtils.convent_date(objHomeStay.getPROMO_ST_TIME(),
+                                "yyyy-MM-dd'T'HH:mm:ss.'000Z'", "EEEE dd-MMM-yyyy"),
+                                TimeUtils.convent_date(objHomeStay.getPROMO_ED_TIME(), "yyyy-MM-dd'T'HH:mm:ss.'000Z'", "EEEE dd-MMM-yyyy"))) {
+                            iDay_discount++;
+                        } else
+                            iNoWeekend++;
+                    }
                 }
 
                 if (iWeekend > 0) {
                     iPrice_special = iWeekend * (Long.parseLong(objHomeStay.getPRICE_SPECIAL()));
                 }
                 if (iNoWeekend > 0) {
-                    iPrice_special = iNoWeekend * (Long.parseLong(objHomeStay.getPRICE_SPECIAL()));
+                    price_thuong = iNoWeekend * (Long.parseLong(objHomeStay.getPRICE()));
                 }
+                if (iWeekend_discount > 0) {
+                    long price = Long.parseLong(objHomeStay.getPRICE_SPECIAL()) -
+                            (Integer.parseInt(objHomeStay.getPERCENT()) * Long.parseLong(objHomeStay.getPRICE_SPECIAL()) / 100);
+                    iPrice_special = iPrice_special + (iWeekend_discount * price);
+                    txt_title_price_cuoituan_discount.setVisibility(View.VISIBLE);
+                    txt_price_cuoituan_discount.setText(iWeekend_discount + " * " + StringUtil.conventMonney_Long(price + ""));
+                } else {
+                    txt_title_price_cuoituan_discount.setVisibility(View.GONE);
+                }
+                if (iDay_discount > 0) {
+                    long price = Long.parseLong(objHomeStay.getPRICE()) -
+                            Long.parseLong(objHomeStay.getDISCOUNT());
+                    txt_title_price_ngaythuong_discount.setVisibility(View.VISIBLE);
+                    price_thuong = price_thuong+(iNoWeekend * price);
+                    txt_price_ngaythuong_discount.setText(iDay_discount + " * " + StringUtil.conventMonney_Long(price + ""));
+                } else
+                    txt_title_price_ngaythuong_discount.setVisibility(View.GONE);
                 price_room = iPrice_special + price_thuong;
                 txt_title_price.setText("Giá phòng (" + (lisDate.size() - 1) + ") đêm");
                 txt_total_price.setText(StringUtil.conventMonney_Long("" + (iPrice_special + price_thuong)));
                 txt_total_price_cuoituan.setText(iWeekend + " * " + StringUtil.conventMonney_Long(objHomeStay.getPRICE_SPECIAL()));
                 txt_total_price_ngaythuong.setText(iNoWeekend + " * " + StringUtil.conventMonney_Long(objHomeStay.getPRICE()));
-                price_clear = (iWeekend + iNoWeekend) * Long.parseLong(objHomeStay.getCLEAN_ROOM());
+                price_clear = (iWeekend + iNoWeekend+iDay_discount+iWeekend_discount) * Long.parseLong(objHomeStay.getCLEAN_ROOM());
                 txt_phikhac.setText(StringUtil.conventMonney_Long(price_clear + ""));
-                txt_price_clearroom.setText((iNoWeekend + iWeekend) + " * " + StringUtil.conventMonney_Long(objHomeStay.getCLEAN_ROOM()));
+                txt_price_clearroom.setText((iNoWeekend + iWeekend+iDay_discount+iWeekend_discount) + " * " + StringUtil.conventMonney_Long(objHomeStay.getCLEAN_ROOM()));
                 int iGuest = Integer.parseInt(objHomeStay.getMAX_GUEST());
                 int maxGuest = Integer.parseInt(edt_num_guest.getText().toString());
                 if (maxGuest > iGuest) {

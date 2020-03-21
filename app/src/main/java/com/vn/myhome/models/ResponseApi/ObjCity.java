@@ -20,10 +20,25 @@ public class ObjCity implements Serializable {
     String TYPE;
     @SerializedName("OD")
     String OD;
+    @SerializedName("ID_PROVINCE")
+    String ID_PROVINCE;
+    @SerializedName("CITY_NAME")
+    String CITY_NAME;
+    @SerializedName("URL_IMAGE")
+    String URL_IMAGE;
+    @SerializedName("TONG")
+    String TONG;
 
     public ObjCity(String MATP, String NAME) {
         this.MATP = MATP;
         this.NAME = NAME;
+    }
+
+    public ObjCity(String ID_PROVINCE, String CITY_NAME, String URL_IMAGE, String TONG) {
+        this.ID_PROVINCE = ID_PROVINCE;
+        this.CITY_NAME = CITY_NAME;
+        this.URL_IMAGE = URL_IMAGE;
+        this.TONG = TONG;
     }
 
     public ObjCity() {

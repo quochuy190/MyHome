@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <include layout="@layout/appbar_all_activity"/>
+
+    <TextView
+       android:layout_marginLeft="@dimen/dp7"
+       android:layout_marginTop="@dimen/dp7"
+        android:text="Thời gian giảm giá"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+       android:padding="@dimen/dp7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintWidth_percent="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_date_start"
+            android:background="@drawable/spr_bg_detail_room"
+            android:padding="@dimen/dp5">
+
+            <EditText
+                android:focusable="false"
+                android:id="@+id/edt_date_start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_search_date_start_homestay"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/dp3"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_date_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_date_start"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/ic_date"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_date_start"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_date_start" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintWidth_percent="0.49"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_date_end"
+            android:background="@drawable/spr_bg_detail_room"
+            android:padding="@dimen/dp5">
+
+            <EditText
+                android:focusable="false"
+                android:id="@+id/edt_date_end"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_search_date_end_homestay"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/dp3"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_date_end"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_date_end"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/ic_date"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_date_end"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_date_end" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_marginTop="@dimen/dp7"
+        android:layout_marginLeft="@dimen/dp7"
+        android:text="Phần trăm giảm giá"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:background="@drawable/spr_edt_booking"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/txt_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|right"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20"
+        android:paddingBottom="@dimen/dp5"
+        android:paddingTop="@dimen/dp5"
+        android:singleLine="true"
+        android:text="10%"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_price_thu_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:min="10"
+        android:max="50"
+        android:thumbTint="@color/app_main"
+        android:progressBackgroundTint="@color/app_main"
+        android:layout_marginTop="@dimen/dp5"
+        android:id="@+id/seekbar_percent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txt_price_start"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical|left"
+            android:padding="@dimen/dp2"
+            android:singleLine="true"
+            android:text="10%"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_price_thu_title"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txt_price_end"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical|right"
+            android:padding="@dimen/dp2"
+            android:singleLine="true"
+            android:text="50%"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_price_thu_title"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_update_discount"
+        android:layout_marginTop="@dimen/dp5"
+        android:textColor="@color/White"
+        android:background="@drawable/spr_btn_login"
+        android:paddingLeft="@dimen/height_appbar"
+        android:paddingRight="@dimen/height_appbar"
+        android:text="Cập nhật"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_btn_35" />
+
+</LinearLayout>

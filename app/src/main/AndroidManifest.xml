@@ -40,6 +40,11 @@
 
         </activity>
         <activity
+            android:name=".activity.book_room.ActivityUpdateDiscountMyhome"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".activity.book_room.Activity_calendar_booking"
             android:screenOrientation="portrait">
 
@@ -90,7 +95,7 @@
 
         </activity>
         <activity
-            android:name=".activity.home.ActivityListHomeStay"
+            android:name=".activity.home.ActivityListHomeStaySearch"
             android:screenOrientation="portrait">
 
         </activity>

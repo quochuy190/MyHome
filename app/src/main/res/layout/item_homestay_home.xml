@@ -6,6 +6,7 @@
     android:layout_marginLeft="@dimen/dp10"
     android:layout_marginTop="@dimen/dp10"
     android:layout_marginRight="@dimen/dp10"
+    android:paddingBottom="@dimen/dp10"
     android:background="@drawable/spr_item_homestay"
     android:orientation="vertical">
 
@@ -43,7 +44,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:padding="@dimen/dp2"
-        android:textColor="@color/Black"
+        android:textColor="@color/Gray"
         android:textSize="@dimen/txt_15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_name_homestay" />
@@ -61,6 +62,42 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_address" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/txt_price_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
+        android:ellipsize="end"
+        android:padding="@dimen/dp2"
+        android:singleLine="true"
+        android:textColor="@color/Silver"
+        android:textSize="@dimen/txt_13sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_price"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_price"
+        app:layout_constraintTop_toTopOf="@id/txt_price" />
+
+    <View
+        android:id="@+id/view_discount"
+        android:background="@color/Gray"
+        app:layout_constraintStart_toStartOf="@+id/txt_price_discount"
+        app:layout_constraintEnd_toEndOf="@+id/txt_price_discount"
+        app:layout_constraintTop_toTopOf="@+id/txt_price_discount"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_price_discount"
+        android:layout_width="0dp"
+        android:layout_height="1dp"/>
+    <TextView
+        android:id="@+id/txt_promotion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
+        android:ellipsize="end"
+        android:padding="@dimen/dp2"
+        android:singleLine="true"
+        android:textColor="@color/OrangeRed"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_price" />
 
     <TextView
         android:id="@+id/txt_status"
@@ -75,5 +112,17 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_address" />
-
+    <TextView
+        android:background="@drawable/spr_price_promotion_ptram"
+        android:id="@+id/txt_commission_phantram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp7"
+        android:layout_marginRight="@dimen/dp7"
+        android:text="-0%"
+        android:textColor="@color/White"
+        android:textSize="@dimen/txt_13sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/img_homestay"
+        app:layout_constraintTop_toTopOf="@+id/img_homestay" />
 </androidx.constraintlayout.widget.ConstraintLayout>

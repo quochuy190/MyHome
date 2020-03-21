@@ -4,7 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -41,6 +41,7 @@ import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.callback.OnItemClickListennerTwoBtn;
 import com.vn.myhome.config.Config;
 import com.vn.myhome.config.Constants;
+import com.vn.myhome.models.MessageEvent;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ObjImageHome;
@@ -51,10 +52,16 @@ import com.vn.myhome.presenter.InterfaceMyHome;
 import com.vn.myhome.presenter.MyHomePresenter;
 import com.vn.myhome.untils.KeyboardUtil;
 import com.vn.myhome.untils.SharedPrefs;
+import com.vn.myhome.untils.StringUtil;
 import com.vn.myhome.upload_media.InterfaceUploadImage;
 import com.vn.myhome.upload_media.PresenterUploadImage;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -127,6 +134,25 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
         return fragment;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.message.equals(Constants.EventBus.KEY_UPDATE_MYHOME)) {
+            get_api();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -285,6 +311,7 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
                 break;
             case R.id.btn_add_room:
                 get_api_edit_myhome();
+                EventBus.getDefault().post(new MessageEvent(Constants.EventBus.KEY_UPDATE_MYHOME, 1, 0));
                 break;
         }
     }
@@ -294,43 +321,31 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
             showAlertDialog("Thông báo", "Mời bạn nhập vào tên nhà của bạn.");
             KeyboardUtil.requestKeyboard(edt_name_myhome);
             return;
-        } else {
-            sName = edt_name_myhome.getText().toString();
         }
         if (edt_address.getText().toString().length() == 0) {
             showAlertDialog("Thông báo", "Mời bạn nhập vào địa chỉ");
             KeyboardUtil.requestKeyboard(edt_address);
             return;
-        } else {
-            sAddress = edt_address.getText().toString();
         }
         if (edt_sort_description.getText().toString().length() == 0) {
             showAlertDialog("Thông báo", "Mời bạn nhập vào mô tả nhà.");
             KeyboardUtil.requestKeyboard(edt_sort_description);
             return;
-        } else {
-            sDesCription = edt_sort_description.getText().toString();
         }
         if (edt_full_des.getText().toString().length() == 0) {
             showAlertDialog("Thông báo", "Mời bạn nhập vào mô tả đầy đủ nhà của bạn");
             KeyboardUtil.requestKeyboard(edt_full_des);
             return;
-        } else {
-            sInformation = edt_full_des.getText().toString();
         }
         if (edt_number_room.getText().toString().length() == 0) {
             showAlertDialog("Thông báo", "Mời bạn nhập vào số phòng.");
             KeyboardUtil.requestKeyboard(edt_number_room);
             return;
-        } else {
-            sMaxRoom = edt_number_room.getText().toString();
         }
         if (edt_number_bed.getText().toString().length() == 0) {
             showAlertDialog("Thông báo", "Mời bạn nhập vào số giường.");
             KeyboardUtil.requestKeyboard(edt_number_bed);
             return;
-        } else {
-            sMaxBed = edt_number_bed.getText().toString();
         }
         if (objCity != null && objCity.getMATP() != null) {
             sProvinceId = objCity.getMATP();
@@ -348,8 +363,6 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
             showDialogLoading();
             get_api();
         }
-
-
     }
 
     public static String sUser;
@@ -360,7 +373,22 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
             sGetlink = "", sProvinceId = "", sLocationId = "", sCover = "", sMaxGuest_Exst = "";
 
     private void get_api() {
+      /*  new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 1000);*/
         sUsername = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+        sName = edt_name_myhome.getText().toString();
+        sAddress = edt_address.getText().toString();
+        sDesCription = edt_sort_description.getText().toString();
+        sInformation = edt_full_des.getText().toString();
+        sMaxRoom = edt_number_room.getText().toString();
+        sMaxBed = edt_number_bed.getText().toString();
+        if (objCity != null && objCity.getMATP() != null) {
+            sProvinceId = objCity.getMATP();
+        }
         mPresenter.api_edit_room(sUsername, sName, sAddress, sPrice, sPriceSpecial, sPriceExtra, sMaxGuest,
                 sMaxRoom, sMaxBed, sClean_Room, sDesCription, sInformation, sPolicy_cancle, sGetlink,
                 sProvinceId, sLocationId, sCover, sMaxGuest_Exst);
@@ -384,7 +412,6 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
                     sOption = "2";
                     checkPermissionsAndOpenFilePicker();
                 }
-
             }
         });
         adapterImage.setClick_delete(new OnItemClickListennerTwoBtn() {
@@ -413,7 +440,6 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
             }
         });
         adapterImage.notifyDataSetChanged();
-
     }
 
     private void checkPermissionsAndOpenFilePicker() {
@@ -495,8 +521,16 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
                     IMAGE_PATH = mediaFiles.get(0).getPath();
                     File imgFile = new File(IMAGE_PATH);
                     if (imgFile.exists()) {
-                        Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                        img_cover.setImageBitmap(myBitmap);
+                        //   Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                        Bitmap myBitmap =
+                                null;
+                        try {
+                            myBitmap = StringUtil.decodeSampledBitmapFromUri(getContext(),
+                                    Uri.fromFile(new File(imgFile.getAbsolutePath())), 500, 500);
+                            img_cover.setImageBitmap(myBitmap);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -552,10 +586,7 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
     public void show_edit_room(ObjErrorApi objError) {
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
-            Toast.makeText(getActivity(), "Cập nhật nhà thành công.", Toast.LENGTH_SHORT).show();
-            ActivityNewRoom.isUpdate = true;
-            getActivity().setResult(RESULT_OK, new Intent());
-            getActivity().finish();
+            //Toast.makeText(getActivity(), "Cập nhật nhà thành công.", Toast.LENGTH_SHORT).show();
         } else showAlertDialog("Lỗi", objError.getRESULT());
     }
 

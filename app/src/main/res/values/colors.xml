@@ -6,6 +6,7 @@
     <color name="bg_app">#EDEEEE</color>
     <color name="transperent">#00FFFFFF</color>
     <color name="bg_status">#E9919494</color>
+    <color name="bg_card_city">#20161616</color>
     <color name="bot_bar">#9B9E9F</color>
     <color name="colorPrimary">#008577</color>
     <color name="stroke">#118c98</color>
@@ -113,7 +114,7 @@
     <color name="SkyBlue">#87CEEB</color>
     <color name="Gray">#808080</color>
     <color name="Olive">#808000</color>
-    <color name="Purple">#800080</color>
+    <color name="Purple">#A56AA5</color>
     <color name="Maroon">#800000</color>
     <color name="Aquamarine">#7FFFD4</color>
     <color name="Chartreuse">#7FFF00</color>

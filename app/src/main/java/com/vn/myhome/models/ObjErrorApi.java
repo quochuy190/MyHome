@@ -28,6 +28,9 @@ public class ObjErrorApi {
     String STATUS;
     @SerializedName("PRICE")
     String PRICE;
+    @SerializedName("ID_BOOKROOM")
+    String ID_BOOKROOM;    @SerializedName("ID_BOOK_SERVICE")
+    String ID_BOOK_SERVICE;
 
     public String getPRICE() {
         return PRICE;
@@ -99,5 +102,21 @@ public class ObjErrorApi {
 
     public void setCODE_ACTIVE(String CODE_ACTIVE) {
         this.CODE_ACTIVE = CODE_ACTIVE;
+    }
+
+    public String getID_BOOKROOM() {
+        return ID_BOOKROOM;
+    }
+
+    public void setID_BOOKROOM(String ID_BOOKROOM) {
+        this.ID_BOOKROOM = ID_BOOKROOM;
+    }
+
+    public String getID_BOOK_SERVICE() {
+        return ID_BOOK_SERVICE;
+    }
+
+    public void setID_BOOK_SERVICE(String ID_BOOK_SERVICE) {
+        this.ID_BOOK_SERVICE = ID_BOOK_SERVICE;
     }
 }

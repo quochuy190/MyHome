@@ -173,6 +173,7 @@ public class Adapter_Item_Day_Custom extends RecyclerView.Adapter<Adapter_Item_D
                         }
                     }
                 }
+                // Kiểm tra trước ngày hiện tại
                 if (TimeUtils.CompareDates(todayAsString, objService.getsDay()).equals("2")) {
                     holder.item_day.setBackgroundColor(context.getResources().getColor(R.color.White));
                     holder.img_line_cheo.setVisibility(View.VISIBLE);
@@ -202,22 +203,31 @@ public class Adapter_Item_Day_Custom extends RecyclerView.Adapter<Adapter_Item_D
                         //holder.txt_day.setTypeface(Typeface.NORMAL);
                         break;
                 }*/
-                if (objService.isWeekend()) {
-                    holder.txt_price_day.setText(StringUtil.formatNumber(objService.getsPriceWeekend()
-                            .substring(0, objService.getsPriceWeekend().length() - 3)) + "K");
-                    holder.txt_price_day.setTextColor(context.getResources().getColor(R.color.Brown));
-                } else {
-                    holder.txt_price_day.setText(StringUtil.formatNumber(objService.getsPrice()
-                            .substring(0, objService.getsPrice().length() - 3)) + "K");
-                    holder.txt_price_day.setTextColor(context.getResources().getColor(R.color.Black));
-                }
 
                 holder.txt_day.setText("" + objService.getiDayofMonth());
                 //    holder.txt_price_day.setVisibility(View.VISIBLE);
-
+                if (objService.getDISCOUNT() != null && (Integer.parseInt(objService.getDISCOUNT()) > 0)) {
+                    if (TimeUtils.CompareDates(objService.getsDay(), objService.getPROMO_ST_TIME()).equals("2") &&
+                            TimeUtils.CompareDates(objService.getsDay(), objService.getPROMO_ED_TIME()).equals("3")) {
+                        holder.txt_price_day_discount.setVisibility(View.VISIBLE);
+                        set_price_discount(objService, holder.txt_price_day, holder.txt_price_day_discount);
+                    } else {
+                        holder.txt_price_day_discount.setVisibility(View.GONE);
+                        setprice(objService, holder.txt_price_day, holder.txt_price_day_discount);
+                    }
+                    if (TimeUtils.CompareDates(objService.getsDay(), objService.getPROMO_ST_TIME()).equals("1") ||
+                            TimeUtils.CompareDates(objService.getsDay(), objService.getPROMO_ED_TIME()).equals("1")) {
+                        holder.txt_price_day_discount.setVisibility(View.VISIBLE);
+                        set_price_discount(objService, holder.txt_price_day, holder.txt_price_day_discount);
+                    }
+                } else {
+                    setprice(objService, holder.txt_price_day, holder.txt_price_day_discount);
+                    holder.txt_price_day_discount.setVisibility(View.GONE);
+                }
 
             }
         } else {
+            holder.txt_price_day_discount.setVisibility(View.GONE);
             holder.view_curren_day.setVisibility(View.GONE);
             holder.view_click.setVisibility(View.GONE);
             holder.txt_day.setText("");
@@ -227,6 +237,45 @@ public class Adapter_Item_Day_Custom extends RecyclerView.Adapter<Adapter_Item_D
         }
 
 
+    }
+
+    private void setprice(ObjDayCustom objService, TextView txt_price_day, TextView txt_price_day_discount) {
+        long price = 0;
+        if (objService.isWeekend()) {
+            txt_price_day.setText(StringUtil.formatNumber(objService.getsPriceWeekend()
+                    .substring(0, objService.getsPriceWeekend().length() - 3)) + "K");
+            txt_price_day.setTextColor(context.getResources().getColor(R.color.Brown));
+        } else {
+            txt_price_day.setText(StringUtil.formatNumber(objService.getsPrice()
+                    .substring(0, objService.getsPrice().length() - 3)) + "K");
+            txt_price_day.setTextColor(context.getResources().getColor(R.color.Black));
+        }
+    }
+
+    private void set_price_discount(ObjDayCustom objService, TextView txt_price_day, TextView txt_price_day_discount) {
+
+        long price = 0;
+        if (objService.isWeekend()) {
+            price = Long.parseLong(objService.getsPriceWeekend())
+                    - (Integer.parseInt(objService.getPERCENT()) * Long.parseLong(objService.getsPriceWeekend()) / 100);
+            String sPrice = price + "";
+            txt_price_day_discount.setText(StringUtil.formatNumber(objService.getsPriceWeekend()
+                    .substring(0, objService.getsPriceWeekend().length() - 3)) + "K");
+            txt_price_day.setText(StringUtil.formatNumber(sPrice
+                    .substring(0, sPrice.length() - 3)) + "K");
+            txt_price_day.setTextColor(context.getResources().getColor(R.color.Brown));
+        } else {
+            txt_price_day.setText(StringUtil.formatNumber(objService.getsPrice()
+                    .substring(0, objService.getsPrice().length() - 3)) + "K");
+            price = Long.parseLong(objService.getsPrice())
+                    - (Integer.parseInt(objService.getPERCENT()) * Long.parseLong(objService.getsPrice()) / 100);
+            String sPrice = price + "";
+            txt_price_day_discount.setText(StringUtil.formatNumber(objService.getsPrice()
+                    .substring(0, objService.getsPrice().length() - 3)) + "K");
+            txt_price_day.setText(StringUtil.formatNumber(sPrice
+                    .substring(0, sPrice.length() - 3)) + "K");
+            txt_price_day.setTextColor(context.getResources().getColor(R.color.Black));
+        }
     }
 
     @Override
@@ -250,7 +299,8 @@ public class Adapter_Item_Day_Custom extends RecyclerView.Adapter<Adapter_Item_D
         View view_curren_day;
         @BindView(R.id.view_click)
         View view_click;
-
+        @BindView(R.id.txt_price_day_discount)
+        TextView txt_price_day_discount;
 
         public CustomDayViewHolder(View itemView) {
             super(itemView);

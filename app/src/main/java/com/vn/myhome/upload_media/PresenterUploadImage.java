@@ -80,6 +80,12 @@ public class PresenterUploadImage implements InterfaceUploadImage.Presenter {
 
             @Override
             public void onGetDataSuccess(String objT) {
+                if (objT == null) {
+                    for (ObjImageHome objImage : mList) {
+                        objT = objT + objImage.getIMG() + ",";
+                    }
+                    objT = objT.substring(0, (objT.length() - 1));
+                }
                 String sService = "room/update_image";
                 Map<String, String> mMap = new LinkedHashMap<>();
                 mMap.put("USERNAME", USERNAME);
@@ -97,7 +103,7 @@ public class PresenterUploadImage implements InterfaceUploadImage.Presenter {
 
                         }
                     }, sService, mMap);
-                   // mView.show_upload_image_multil(objT);
+                    // mView.show_upload_image_multil(objT);
                 } catch (Exception e) {
                     e.printStackTrace();
                     mView.show_error_api_uploadimage();

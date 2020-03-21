@@ -165,6 +165,9 @@ public class ActivityListTowers extends BaseActivity
         mLisCity.add(new TowerObj("Sunrise", "1"));
         mLisCity.add(new TowerObj("Greenbay Premium", "2"));
         mLisCity.add(new TowerObj("Greenbay Garden", "3"));
+        mLisCity.add(new TowerObj("Greenbay Village", "4"));
+        mLisCity.add(new TowerObj("Royal Lotus", "5"));
+        mLisCity.add(new TowerObj("Tòa nhà khác", "0"));
         temp.addAll(mLisCity);
         adapterService.notifyDataSetChanged();
     }

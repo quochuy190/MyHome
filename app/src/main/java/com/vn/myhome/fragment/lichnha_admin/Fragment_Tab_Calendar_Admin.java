@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -26,7 +27,6 @@ import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.callback.ClickDialog;
 import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Constants;
-import com.vn.myhome.fragment.FragmentDatphong;
 import com.vn.myhome.fragment.FragmentLichnhaAdmin;
 import com.vn.myhome.models.ObjBooking;
 import com.vn.myhome.models.ObjCalendar;
@@ -38,6 +38,8 @@ import com.vn.myhome.models.ResponseApi.ListBookingResponse;
 import com.vn.myhome.models.ResponseApi.ResponseListBookingService;
 import com.vn.myhome.presenter.BookingPresenter;
 import com.vn.myhome.presenter.InterfaceBooking;
+import com.vn.myhome.presenter.InterfaceKindofPaid;
+import com.vn.myhome.presenter.KindofPairPresenter;
 import com.vn.myhome.untils.SharedPrefs;
 import com.vn.myhome.untils.TimeUtils;
 
@@ -59,7 +61,7 @@ import butterknife.ButterKnife;
  * Time: 10:30
  * Version: 1.0
  */
-public class Fragment_Tab_Calendar_Admin extends BaseFragment implements InterfaceBooking.View, View.OnClickListener {
+public class Fragment_Tab_Calendar_Admin extends BaseFragment implements InterfaceBooking.View, View.OnClickListener, InterfaceKindofPaid.View {
     private static final String TAG = "FragmentSetup";
     public static Fragment_Tab_Calendar_Admin fragment;
 
@@ -80,6 +82,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
     Calendar myCalendar_start = Calendar.getInstance();
     Calendar myCalendar_end = Calendar.getInstance();
     List<ObjBooking> mListBooking;
+    int iMonth_start, iMonth_end, iYear_start, iYear_end, iDuration;
     DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -139,6 +142,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
         mListBooking = new ArrayList<>();
         mLisCalendar = new ArrayList<>();
         mPresenterBooking = new BookingPresenter(this);
+        mPresenterKindokPair = new KindofPairPresenter(this);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,6 +170,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
         int dayOfMonth = myCalendar_end.get(Calendar.DAY_OF_MONTH);
         myCalendar_end.add(Calendar.MONTH, +4);
         update_end_date();
+
     }
 
     boolean isClick = false;
@@ -253,45 +258,19 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
                 "", startDate, endDate, "", "", sGetLink);
     }
 
-    @Override
-    public void show_error_api(String sService) {
 
-    }
-
-    @Override
-    public void show_lock_room(ObjErrorApi objError) {
-
-    }
-
-    @Override
-    public void show_list_bookroom(ListBookingResponse objRes) {
-        hideDialogLoading();
-        mListBooking.clear();
-        if (objRes != null && objRes.getERROR().equals("0000")) {
-            if (objRes.getINFO() != null)
-                mListBooking.addAll(objRes.getINFO());
-        }
-        init_get_list_calendar();
-    }
-
-    @Override
-    public void show_api_get_list_day(ListBookingResponse objRes) {
-
-    }
-
-    @Override
-    public void show_booking(ObjErrorApi objError) {
-
-    }
-
-    @Override
-    public void show_change_booking(ObjErrorApi objError) {
-
-    }
-
+    KindofPairPresenter mPresenterKindokPair;
     @Override
     public void show_booking_services(ObjErrorApi objError) {
-
+        hideDialogLoading();
+        if (objError != null && objError.getERROR().equals("0000")) {
+            String sUsername = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+            mPresenterKindokPair.api_change_kind_of_paid(sUsername, objError.getID_BOOK_SERVICE(), "1");
+            get_api_list_booking();
+            Toast.makeText(getContext(), "Khóa phòng và đặt dọn phòng thành công", Toast.LENGTH_SHORT).show();
+        } else {
+            showAlertDialog("Thông báo", objError.getRESULT());
+        }
     }
 
     @Override
@@ -322,12 +301,16 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
             @Override
             public void onClickItem(int position, Object item) {
                 ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
-                if (objLogin != null && objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+                if (objLogin == null)
+                    return;
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)
+                        || objLogin.getUSER_TYPE().equals(Constants.UserType.ADMIN)
+                ) {
                     ObjDayCustom obj = (ObjDayCustom) item;
                     if (!obj.isBooked()) {
                         if (sStartBookingDay.length() == 0) {
                             sStartBookingDay = obj.getsDay();
-                            for (int i = 0; i < 5; i++) {
+                            for (int i = 0; i < iDuration; i++) {
                                 for (int j = 0; j < mLisCalendar.get(i).getmLisday().size(); j++) {
                                     ObjDayCustom objDay = mLisCalendar.get(i).getmLisday().get(j);
                                     if (objDay != null)
@@ -342,7 +325,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
                                     reload_all_click();
                                     return;
                                 }
-                                for (int i = 0; i < 5; i++) {
+                                for (int i = 0; i < iDuration; i++) {
                                     for (int j = 0; j < mLisCalendar.get(i).getmLisday().size(); j++) {
                                         ObjDayCustom objDay = mLisCalendar.get(i).getmLisday().get(j);
                                         if (objDay != null)
@@ -368,8 +351,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
                                                 true, new ClickDialog() {
                                                     @Override
                                                     public void onClickYesDialog() {
-                                                        FragmentDatphong.
-                                                                get_api_lock_room(obj.getGENLINK(),
+                                                        get_api_lock_room(sGetLink,
                                                                         sStartBookingDay, sEndBookingDay);
                                                         reload_all_click();
                                                     }
@@ -425,9 +407,13 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
     private void init_get_list_calendar() {
         mLisCalendar.clear();
         Calendar c = Calendar.getInstance();
-        iYear = c.get(Calendar.YEAR);
-        iMonth = c.get(Calendar.MONTH) + 1;
-        for (int i = 0; i < 5; i++) {
+        iYear = myCalendar_start.get(Calendar.YEAR);
+        iMonth = myCalendar_start.get(Calendar.MONTH) + 1;
+
+        iYear_end = myCalendar_end.get(Calendar.YEAR);
+        iMonth_end = myCalendar_end.get(Calendar.MONTH) + 1;
+        iDuration = get_duration_month(iYear, iYear_end, iMonth, iMonth_end);
+        for (int i = 0; i < iDuration; i++) {
             mLisCalendar.add(new ObjCalendar("" + iMonth, "" + iYear,
                     getWeeksOfMonth(iMonth, iYear)));
             iMonth++;
@@ -441,36 +427,50 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
             String sWeekDay = objCal.getmLisday().get(0).getsWeekDay();
             switch (sWeekDay) {
                 case "monday":
-                    for (int i = 0; i < 6; i++) {
-                        mLisCalendar.get(j).getmLisday().add(0, null);
-                    }
-                    break;
-                case "tuesday":
                     mLisCalendar.get(j).getmLisday().add(0, null);
                     break;
-                case "wednesday":
+                case "tuesday":
                     for (int i = 0; i < 2; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;
-                case "thursday":
+                case "wednesday":
                     for (int i = 0; i < 3; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;
-                case "friday":
+                case "thursday":
                     for (int i = 0; i < 4; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;
-                case "saturday":
+                case "friday":
                     for (int i = 0; i < 5; i++) {
+                        mLisCalendar.get(j).getmLisday().add(0, null);
+                    }
+                    break;
+                case "saturday":
+                    for (int i = 0; i < 6; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;
             }
         }
         adapter.notifyDataSetChanged();
+    }
+
+    private int get_duration_month(int year_start, int year_end, int month_start, int month_end) {
+        if (year_end == year_start) {
+            if (month_end > month_start)
+                return month_end - month_start + 1;
+            else return 1;
+        } else {
+            if (month_end > month_start)
+                return month_end - month_start + 1;
+            else {
+                return month_end + 12 - month_start + 1;
+            }
+        }
     }
 
     public List<ObjDayCustom> getWeeksOfMonth(int month, int year) {
@@ -521,5 +521,71 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
             cal.add(Calendar.DATE, 1);
         }
         return mListDay;
+    }
+
+    public static String mStartDay = "", mEndDay = "", mGetLink = "";
+    public  void get_api_lock_room(String sGetlink, String sStartDay, String sEndDay) {
+        String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+        mPresenterBooking.api_lock_room(sUserName, sGetlink,
+                TimeUtils.convent_date(sStartDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy"),
+                TimeUtils.convent_date(sEndDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy")
+        );
+        mStartDay = TimeUtils.convent_date(sStartDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy");
+        mEndDay = TimeUtils.convent_date(sEndDay, "EEEE dd-MMM-yyyy", "dd/MM/yyyy");
+        mGetLink = sGetlink;
+        // get_api_book_service(sGetlink, sStartDay, sEndDay, "");
+    }
+    public  void get_api_book_service(String sGetLink, String CHECKIN, String CHECKOUT, String ID_BOOKROOM) {
+        String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+        mPresenterBooking.api_booking_services2(sUserName, sGetLink, CHECKIN, CHECKOUT, ID_BOOKROOM);
+    }
+
+    @Override
+    public void show_error_api(ObjErrorApi sService) {
+
+    }
+
+    @Override
+    public void show_change_kind_of_paid(ObjErrorApi sService) {
+
+    }
+    @Override
+    public void show_error_api(String sService) {
+
+    }
+
+    @Override
+    public void show_lock_room(ObjErrorApi objError) {
+        if (objError != null && objError.getERROR().equals("0000")) {
+            get_api_book_service(mGetLink, mStartDay, mEndDay, objError.getID_BOOKROOM());
+        } else {
+            showAlertDialog("Thông báo", objError.getRESULT());
+        }
+    }
+
+    @Override
+    public void show_list_bookroom(ListBookingResponse objRes) {
+        hideDialogLoading();
+        mListBooking.clear();
+        if (objRes != null && objRes.getERROR().equals("0000")) {
+            if (objRes.getINFO() != null)
+                mListBooking.addAll(objRes.getINFO());
+        }
+        init_get_list_calendar();
+    }
+
+    @Override
+    public void show_api_get_list_day(ListBookingResponse objRes) {
+
+    }
+
+    @Override
+    public void show_booking(ObjErrorApi objError) {
+
+    }
+
+    @Override
+    public void show_change_booking(ObjErrorApi objError) {
+
     }
 }

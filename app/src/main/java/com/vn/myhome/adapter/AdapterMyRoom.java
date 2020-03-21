@@ -147,7 +147,8 @@ public class AdapterMyRoom extends RecyclerView.Adapter<AdapterMyRoom.ViewHoderI
                 }
             }
         } else {
-            holder.btn_duyetphong.setVisibility(View.GONE);
+            holder.btn_duyetphong.setText("Giảm giá");
+            holder.btn_duyetphong.setVisibility(View.VISIBLE);
         }
         holder.txt_hostname.setOnClickListener(new View.OnClickListener() {
             @Override

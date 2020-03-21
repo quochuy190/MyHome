@@ -2,7 +2,7 @@ package com.vn.myhome.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +17,10 @@ import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.callback.OnItemClickListennerTwoBtn;
 import com.vn.myhome.config.Config;
 import com.vn.myhome.models.ObjImageHome;
+import com.vn.myhome.untils.StringUtil;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -84,7 +86,10 @@ public class AdapterImagePath extends RecyclerView.Adapter<AdapterImagePath.View
                 if (obj.getsPath() != null) {
                     File imgFile = new File(mList.get(position).getsPath());
                     if (imgFile.exists()) {
-                        Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                      //  Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                        Bitmap myBitmap =
+                        StringUtil.decodeSampledBitmapFromUri(context,
+                                Uri.fromFile(new File(  imgFile.getAbsolutePath()))  , 500, 500);
                         holder.img_path.setImageBitmap(myBitmap);
                     }
                 } else {
@@ -101,6 +106,8 @@ public class AdapterImagePath extends RecyclerView.Adapter<AdapterImagePath.View
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 

@@ -141,30 +141,30 @@ public class FragmentLichdatphong extends BaseFragment {
             String sWeekDay = objCal.getmLisday().get(0).getsWeekDay();
             switch (sWeekDay) {
                 case "monday":
-                    for (int i = 0; i < 6; i++) {
-                        mLisCalendar.get(j).getmLisday().add(0, null);
-                    }
-                    break;
-                case "tuesday":
                     mLisCalendar.get(j).getmLisday().add(0, null);
                     break;
-                case "wednesday":
+                case "tuesday":
                     for (int i = 0; i < 2; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;
-                case "thursday":
+                case "wednesday":
                     for (int i = 0; i < 3; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;
-                case "friday":
+                case "thursday":
                     for (int i = 0; i < 4; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;
-                case "saturday":
+                case "friday":
                     for (int i = 0; i < 5; i++) {
+                        mLisCalendar.get(j).getmLisday().add(0, null);
+                    }
+                    break;
+                case "saturday":
+                    for (int i = 0; i < 6; i++) {
                         mLisCalendar.get(j).getmLisday().add(0, null);
                     }
                     break;

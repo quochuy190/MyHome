@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
@@ -15,6 +17,9 @@ import androidx.core.app.ActivityCompat;
 
 import com.vn.myhome.config.Constants;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.Normalizer;
 import java.text.NumberFormat;
@@ -37,6 +42,61 @@ public class StringUtil {
      *
      * @return
      */
+    public static Bitmap decodeSampledBitmapFromUri(Context context, Uri imageUri, int reqWidth, int reqHeight)
+            throws FileNotFoundException {
+        Bitmap bitmap = null;
+        try {
+            // Get input stream of the image
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            InputStream iStream = context.getContentResolver().openInputStream(imageUri);
+
+            // First decode with inJustDecodeBounds=true to check dimensions
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(iStream, null, options);
+            if (iStream != null) {
+                iStream.close();
+            }
+            iStream = context.getContentResolver().openInputStream(imageUri);
+
+            // Calculate inSampleSize
+            options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+            // Decode bitmap with inSampleSize set
+            options.inJustDecodeBounds = false;
+            bitmap = BitmapFactory.decodeStream(iStream, null, options);
+            if (iStream != null) {
+                iStream.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+    private static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
     public static void start_ch_play(Context mContext) {
         final String appPackageName = "com.evn.evncpcmobile";
         try {
@@ -204,7 +264,7 @@ public class StringUtil {
                 long iNumber = Long.parseLong(number);
                 DecimalFormat formatter = new DecimalFormat("###,###,###,###");
                 sMonney = (formatter.format(iNumber) + "" +
-                        "VND");
+                        " VND");
             } else {
                 sMonney = "";
             }

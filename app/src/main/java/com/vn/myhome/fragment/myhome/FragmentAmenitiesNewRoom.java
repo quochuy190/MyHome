@@ -1,6 +1,5 @@
 package com.vn.myhome.fragment.myhome;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,19 +19,22 @@ import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.AmenitiesObj;
+import com.vn.myhome.models.MessageEvent;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ResponseApi.AmentiniesResponse;
 import com.vn.myhome.presenter.AmentiniesPresenter;
 import com.vn.myhome.presenter.InterfaceAmenities;
 import com.vn.myhome.untils.SharedPrefs;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -84,7 +86,25 @@ public class FragmentAmenitiesNewRoom extends BaseFragment implements InterfaceA
         return view;
 
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().register(this);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.message.equals(Constants.EventBus.KEY_UPDATE_MYHOME)) {
+            get_api_update();
+        }
+    }
     String sUsername = "";
 
     private void initData() {
@@ -142,7 +162,9 @@ public class FragmentAmenitiesNewRoom extends BaseFragment implements InterfaceA
         btn_update_amenities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showDialogLoading();
                 get_api_update();
+                EventBus.getDefault().post(new MessageEvent(Constants.EventBus.KEY_UPDATE_MYHOME, 1, 0));
             }
         });
     }
@@ -150,7 +172,6 @@ public class FragmentAmenitiesNewRoom extends BaseFragment implements InterfaceA
     String arrayAmenities = "";
 
     private void get_api_update() {
-        showDialogLoading();
         for (AmenitiesObj obj : mList) {
             if (obj.isChecked())
                 arrayAmenities = arrayAmenities + obj.getID() + ",";
@@ -193,11 +214,6 @@ public class FragmentAmenitiesNewRoom extends BaseFragment implements InterfaceA
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
             Toast.makeText(getContext(), "Cập nhật tiện ích thành công", Toast.LENGTH_SHORT).show();
-            if (ActivityNewRoom.isUpdate) {
-                getActivity().setResult(RESULT_OK, new Intent());
-                getActivity().finish();
-            }
-
         } else
             showAlertDialog("Thông báo", objError.getRESULT());
     }

@@ -10,6 +10,8 @@
         android:id="@+id/include"
         layout="@layout/appbar_all_activity" />
 
+
+
     <androidx.core.widget.NestedScrollView
         android:paddingBottom="@dimen/dp10"
         app:layout_constraintStart_toStartOf="parent"
@@ -557,6 +559,50 @@
                     app:layout_constraintWidth_percent="0.5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="@dimen/dp5"
+                    android:id="@+id/txt_title_price_ngaythuong_discount"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/Orange"
+                    android:text="Ngày thường giảm giá"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_price_cuoituan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/txt_price_ngaythuong_discount"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/Orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_title_price_ngaythuong_discount"
+                    app:layout_constraintTop_toTopOf="@+id/txt_title_price_ngaythuong_discount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:layout_marginTop="@dimen/dp5"
+                    android:id="@+id/txt_title_price_cuoituan_discount"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/Orange"
+                    android:text="Cuối tuần (Ngày lễ) giảm giá"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_price_ngaythuong_discount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/txt_price_cuoituan_discount"
+                    android:textSize="@dimen/txt_16sp"
+                    android:textColor="@color/Orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_title_price_cuoituan_discount"
+                    app:layout_constraintTop_toTopOf="@+id/txt_title_price_cuoituan_discount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
 
                 <View
                     android:id="@+id/view_2"
@@ -564,7 +610,7 @@
                     android:layout_marginTop="@dimen/dp10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_total_price_cuoituan"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_price_cuoituan_discount"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"/>
                 <TextView

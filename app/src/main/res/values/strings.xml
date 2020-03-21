@@ -8,7 +8,7 @@
     <string name="error_network_message">Lỗi kết nối, vui lòng kiểm tra mạng và thử lại</string>
 
     <string name="txt_taianh">Chọn ảnh đại diện</string>
-    <string name="hide_register_user">Tên đăng nhập *</string>
+    <string name="hide_register_user">Số điện thoại *</string>
     <string name="hide_register_fullname">Họ và tên *</string>
     <string name="hide_register_phone">Số điện thoại *</string>
     <string name="hide_birthday">Ngày sinh *</string>
@@ -31,7 +31,7 @@
     <string name="title_service">Dịch vụ</string>
     <string name="title_setup">Cài đặt</string>
     <string name="test_text_showmore">Sáng 12/8, báo cáo về những nội dung còn nhiều ý kiến khác nhau giữa cơ quan thẩm tra và cơ quan soạn thảo dự thảo luật, Chủ nhiệm UB Tài chính - Ngân sách Nguyễn Đức Hải đề cập vấn đề bổ sung quyền truy cập dữ liệu điện tử, phần mềm ứng dụng của cơ quan được kiểm toán. Ông Hải cho biết, qua thảo luận tại kỳ họp thứ 7 của Quốc hội, có ý kiến tán thành bổ sung quyền này nhưng đề nghị quy định chặt chẽ để bảo đảm bí mật của đơn vị được kiểm toán. Có ý kiến đề nghị quy định cụ thể về thẩm quyền, trách nhiệm, điều kiện về trình độ và phân quyền truy cập phù hợp với từng cấp độ kiểm toán viên, ý kiến khác đề nghị không nên giao quyền truy cập cho kiểm toán vì liên quan đến an ninh, tài liệu mật, tối mật.</string>
-    <string name="hide_search_name_homestay">Tên thành phố hoặc homestay</string>
+    <string name="hide_search_name_homestay">Tên Homestay</string>
     <string name="hide_search_quantity_homestay">Số khách</string>
     <string name="hide_search_date_start_homestay">Ngày bắt đầu</string>
     <string name="hide_search_date_end_homestay">Ngày kết thúc</string>
@@ -47,6 +47,7 @@
     <string name="txt_title_chiphi_tong">Chi phí tổng\n(VND)</string>
     <string name="txt_title_loinhuan">Lợi nhuận\n(VND)</string>
     <string name="tab_lichdatphong">Lịch đặt nhà</string>
-    <string name="tab_lichdonnha">Lịch dọn nhà</string>
+    <string name="tab_lichdonnha">Lịch dọn dẹp</string>
     <string name="tab_calendar">Calendar</string>
+    <string name="tab_bookdondep">Book dọn dẹp</string>
 </resources>

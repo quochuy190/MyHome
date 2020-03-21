@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo_setup">
+        app:layout_constraintTop_toBottomOf="@+id/txt_version_app">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -71,13 +71,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="@dimen/dp5"
+        android:padding="@dimen/dp2"
         android:text="Version "
         android:textColor="@color/txt_app"
-        android:textSize="@dimen/txt_15sp"
-
-        app:layout_constraintBottom_toBottomOf="@id/img_logo_setup"
-        app:layout_constraintStart_toEndOf="@+id/img_logo_setup" />
+        android:textSize="@dimen/txt_13sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_logo_setup"
+        app:layout_constraintTop_toBottomOf="@id/img_logo_setup"
+        app:layout_constraintStart_toStartOf="@+id/img_logo_setup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

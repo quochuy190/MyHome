@@ -1,4 +1,4 @@
-package com.vn.myhome.fragment;
+package com.vn.myhome.fragment.qldondep;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.vn.myhome.App;
 import com.vn.myhome.R;
 import com.vn.myhome.activity.user_manager.Activity_Info_User;
 import com.vn.myhome.adapter.AdapterItemLichdonphongAdmin;
@@ -31,7 +30,6 @@ import com.vn.myhome.callback.ClickDialog;
 import com.vn.myhome.callback.OnItemClickListennerTwoBtn;
 import com.vn.myhome.callback.setOnItemClickListener;
 import com.vn.myhome.config.Constants;
-import com.vn.myhome.models.MessageEvent;
 import com.vn.myhome.models.ObjBookingService;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
@@ -40,10 +38,6 @@ import com.vn.myhome.models.ResponseApi.ResponseListBookingService;
 import com.vn.myhome.presenter.BookingPresenter;
 import com.vn.myhome.presenter.InterfaceBooking;
 import com.vn.myhome.untils.SharedPrefs;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -99,12 +93,12 @@ public class Fragment_Tab_Lichdonnha_Dichvu extends BaseFragment implements View
     RecyclerView rcv_day_list;
     RecyclerView.LayoutManager mLayoutManager;
     BookingPresenter mPresenter;
-    @BindView(R.id.btn_back)
+    /*@BindView(R.id.btn_back)
     ImageView img_back;
     @BindView(R.id.txt_title)
-    TextView txt_title;
-    @BindView(R.id.txt_badger_notify)
-    TextView txt_badger_notify;
+    TextView txt_title;*/
+ /*   @BindView(R.id.txt_badger_notify)
+    TextView txt_badger_notify;*/
     DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -156,8 +150,8 @@ public class Fragment_Tab_Lichdonnha_Dichvu extends BaseFragment implements View
 
             }
         });
-        initAppbar();
-        check_title_notify();
+      //  initAppbar();
+      //  check_title_notify();
         init();
         get_time();
         initEvent();
@@ -166,15 +160,15 @@ public class Fragment_Tab_Lichdonnha_Dichvu extends BaseFragment implements View
         return view;
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+  /*  @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event.message.equals(Constants.EventBus.RELOAD_NOTIFY)) {
             Log.e(TAG, "onMessageEvent: " + App.sTotalNotify);
             check_title_notify();
         }
-    }
+    }*/
 
-    private void check_title_notify() {
+  /*  private void check_title_notify() {
         if (App.sTotalNotify.length() > 0) {
             if (!App.sTotalNotify.equals("0")) {
                 txt_badger_notify.setText(App.sTotalNotify);
@@ -184,25 +178,25 @@ public class Fragment_Tab_Lichdonnha_Dichvu extends BaseFragment implements View
         } else {
             txt_badger_notify.setVisibility(View.GONE);
         }
-    }
+    }*/
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
+      //  EventBus.getDefault().register(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+       // EventBus.getDefault().unregister(this);
     }
 
-    private void initAppbar() {
+    /*private void initAppbar() {
         img_back.setVisibility(View.VISIBLE);
         img_back.setImageResource(R.drawable.ic_notify);
         txt_title.setText("LỊCH DỌN NHÀ");
-    }
+    }*/
 
     private void initEvent() {
         ll_date_start.setOnClickListener(this);
