@@ -130,6 +130,7 @@ public class RegisterActivity extends BaseActivity implements InterfaceLogin.Vie
             return;
         } else {
             sUsername = edt_username.getText().toString().trim();
+            sMobile = edt_username.getText().toString().trim();
         }
         if (edt_fullname.getText().toString().length() == 0) {
             showDialogNotify("Thông báo", "Mời bạn nhập vào họ và tên.");
@@ -138,19 +139,24 @@ public class RegisterActivity extends BaseActivity implements InterfaceLogin.Vie
         } else {
             sFulName = edt_fullname.getText().toString().trim();
         }
-        if (edt_phone.getText().toString().length() == 0) {
+     /*   if (edt_phone.getText().toString().length() == 0) {
             showDialogNotify("Thông báo", "Mời bạn nhập vào số điện thoại.");
             KeyboardUtil.requestKeyboard(edt_phone);
             return;
         } else {
             sMobile = edt_phone.getText().toString().trim();
-        }
+        }*/
         if (edt_email.getText().toString().length() == 0) {
             showDialogNotify("Thông báo", "Mời bạn nhập vào email của bạn.");
             KeyboardUtil.requestKeyboard(edt_email);
             return;
         } else {
             sEmail = edt_email.getText().toString().trim();
+            String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+            if (!sEmail.matches(emailPattern)) {
+                showDialogNotify("Thông báo", "Email bạn nhập vào không đúng định dạng");
+                return;
+            }
         }
         if (sProvince.length() == 0) {
             showDialogNotify("Thông báo", "Bạn chưa chọn tỉnh thành phố.");

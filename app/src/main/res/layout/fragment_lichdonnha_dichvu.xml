@@ -5,7 +5,6 @@
     android:background="@color/bg_app"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <include layout="@layout/appbar_all_activity"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:paddingBottom="@dimen/dp5"

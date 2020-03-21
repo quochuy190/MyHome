@@ -94,8 +94,11 @@ public class ApiServicePostImage {
                     parts.add(MultipartBody.Part.createFormData("image", file.getName(), requestFile));
                 }
             }
-            if (parts.size() == 0)
+            if (parts.size() == 0){
+                callbackData.onGetDataSuccess("");
                 return;
+            }
+
         }
         Call<ResponseBody> getApiservice = apiUpdateImageMultilPath.uploadImagesMultil(parts);
         getApiservice.enqueue(new Callback<ResponseBody>() {

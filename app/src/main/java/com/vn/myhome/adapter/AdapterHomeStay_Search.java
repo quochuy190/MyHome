@@ -76,6 +76,7 @@ public class AdapterHomeStay_Search extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holderAll, int position) {
         try {
             ObjHomeStay obj = mList.get(position);
+            long price = 0;
             if (obj == null) {
                 ((LoadingViewHolder) holderAll).progressBar.setVisibility(View.VISIBLE);
             } else {
@@ -83,8 +84,30 @@ public class AdapterHomeStay_Search extends RecyclerView.Adapter<RecyclerView.Vi
                 if (obj != null) {
                     if (obj != null && obj.getNAME().length() > 0)
                         holder.txt_name.setText(obj.getNAME());
-                    if (obj != null && obj.getPRICE().length() > 0)
-                        holder.txt_price.setText(StringUtil.conventMonney_Long(obj.getPRICE()));
+
+                    if (obj != null && obj.getPRICE().length() > 0) {
+                        if (obj.getDISCOUNT() != null && obj.getDISCOUNT().length() > 0) {
+                            if (Integer.parseInt(obj.getDISCOUNT()) > 0) {
+                                price = Long.parseLong(obj.getPRICE()) - Long.parseLong(obj.getDISCOUNT());
+                                holder.txt_commission_phantram.setVisibility(View.VISIBLE);
+                                holder.txt_price_discount.setVisibility(View.VISIBLE);
+                                holder.txt_price_discount.setText(StringUtil.conventMonney_Long(obj.getPRICE()));
+                                if (obj.getPERCENT() != null && obj.getPERCENT().length() > 0)
+                                    holder.txt_commission_phantram.setText("- "+obj.getPERCENT() + "%");
+
+                            } else {
+                                price = Long.parseLong(obj.getPRICE());
+                                holder.txt_commission_phantram.setVisibility(View.GONE);
+                                holder.txt_price_discount.setVisibility(View.GONE);
+                            }
+                        } else {
+                            price = Long.parseLong(obj.getPRICE());
+                            holder.txt_commission_phantram.setVisibility(View.GONE);
+                            holder.txt_price_discount.setVisibility(View.GONE);
+                        }
+                    }
+                    holder.txt_promotion.setText("Hoa hồng: "+StringUtil.conventMonney_Long((price*15/100)+""));
+                    holder.txt_price.setText(StringUtil.conventMonney_Long(price+""));
                     if (obj != null && obj.getADDRESS().length() > 0)
                         holder.txt_address.setText(obj.getADDRESS());
                     if (obj.getCOVER() != null) {
@@ -143,6 +166,12 @@ public class AdapterHomeStay_Search extends RecyclerView.Adapter<RecyclerView.Vi
         TextView txt_price;
         @BindView(R.id.txt_status)
         TextView txt_status;
+        @BindView(R.id.txt_promotion)
+        TextView txt_promotion;
+        @BindView(R.id.txt_price_discount)
+        TextView txt_price_discount;
+        @BindView(R.id.txt_commission_phantram)
+        TextView txt_commission_phantram;
         @BindView(R.id.img_homestay)
         ImageView img_homestay;
 

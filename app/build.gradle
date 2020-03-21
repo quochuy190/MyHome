@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+// Add the Fabric plugin.
+apply plugin: 'io.fabric'
 android {
     signingConfigs {
         release {
@@ -14,8 +15,9 @@ android {
         applicationId "com.vn.myhome"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 10
-        versionName "1.7"
+        versionCode 17
+        versionName "1.8.6"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -61,7 +63,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-core:17.2.1'
     implementation 'com.google.firebase:firebase-messaging:19.0.1'
     //get file
     implementation 'com.github.jaiselrahman:FilePicker:1.2.2'
@@ -76,6 +78,14 @@ dependencies {
     implementation 'com.github.jaiselrahman:FilePicker:1.2.2'
     implementation 'com.whiteelephant:monthandyearpicker:1.3.0'
     implementation 'com.github.hsmnzaydn:imagezoom:1.2.1'
+    // (Recommended) Add the Google Analytics dependency.
+    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    // Add the Firebase Crashlytics dependency.
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

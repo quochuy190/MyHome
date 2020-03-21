@@ -34,6 +34,7 @@ public class Constants {
         public static final String TAB_LICH = "TAB_LICH";
         public static final String RELOAD_NOTIFY = "RELOAD_NOTIFY";
         public static final String KEY_SEND_NOTIFY = "KEY_SEND_NOTIFY";
+        public static final String KEY_UPDATE_MYHOME = "KEY_UPDATE_MYHOME";
     }
     public class STATE_BOOKING_SERVICE{
         public static final String CHO_XAC_NHAN = "0";
@@ -64,4 +65,9 @@ public class Constants {
     public static final String KEY_SEND_NOTIFY_DETAIL = "KEY_SEND_NOTIFY_DETAIL";
     public static final String KEY_IS_REGISTER_ADMIN = "KEY_IS_REGISTER_ADMIN";
     public static final String KEY_IS_UPDATE_MYHOME= "KEY_IS_UPDATE_MYHOME";
+    public static final String KEY_SEND_ID_BOOKSERVICE_THANHTOAN = "KEY_SEND_CONTENT_THANHTOAN";
+    public static final String DIEM_DEN_YEU_THICH = "ĐIỂM ĐIẾN YÊU THÍCH";
+    public static final String TOP_NHA_NOI_BAT = "TOP NHÀ NỔI BẬT";
+    public static final String KEY_SEND_ID_PROVINCE = "KEY_SEND_ID_PROVINCE";
+    public static final String KEY_SEND_NAME_PROVINCE = "KEY_SEND_NAME_PROVINCE";
 }

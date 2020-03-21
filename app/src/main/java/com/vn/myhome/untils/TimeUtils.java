@@ -55,6 +55,8 @@ public class TimeUtils {
         String strDateTime = "";
         DateFormat inputFormatter = new SimpleDateFormat(fomatDateinput);
         Date da = null;
+        if (sDateinput==null||sDateinput.length()==0)
+            return strDateTime;
         try {
             inputFormatter.setTimeZone(TimeZone.getTimeZone("GMT"));
             da = (Date) inputFormatter.parse(sDateinput);
@@ -89,6 +91,30 @@ public class TimeUtils {
             e1.printStackTrace();
         }
         return isTrue;
+    }
+
+    public static boolean check_discount(Date date_current, String date_start, String date_end) {
+        boolean iCheck = false;
+        try {
+            String pattern = "EEEE dd-MMM-yyyy";
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            Date Date1_start = formatter.parse(date_start);
+            Date Date2_end = formatter.parse(date_end);
+            if (date_current != null && Date1_start != null && Date2_end != null) {
+                if (date_current.equals(Date1_start)) {
+                    return true;
+                }
+                if (date_current.equals(Date2_end)) {
+                    return true;
+                }
+                if (Date1_start.before(date_current) && date_current.before(Date2_end)) {
+                    return true;
+                }
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return iCheck;
     }
 
     public static String CompareDates_Two(String date1, String date2) {
@@ -303,12 +329,15 @@ public class TimeUtils {
     public static boolean compare_two_date(String inputDate, String outputDate,
                                            String inputDateFormat, String outputDateFormat) {
         try {
+            Date current = Calendar.getInstance().getTime();
             SimpleDateFormat sdf = new SimpleDateFormat(inputDateFormat);
             Date date_1 = sdf.parse(inputDate);
             // convent date 2
             SimpleDateFormat sdf2 = new SimpleDateFormat(outputDateFormat);
             Date date_2 = sdf2.parse(outputDate);
             //long_date2 = System.currentTimeMillis();
+            if (current.getTime() >= date_1.getTime())
+                return false;
             if (date_2.getTime() >= date_1.getTime()) {
                 return true;
             }

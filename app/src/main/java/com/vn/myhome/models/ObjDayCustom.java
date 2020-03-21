@@ -41,7 +41,10 @@ public class ObjDayCustom {
     String ID_BOOK_SERVICES;
     String IS_BOOK_SERVICES;
     String USER_TYPE;
-
+    String DISCOUNT;
+    String PERCENT;
+    String PROMO_ST_TIME;
+    String PROMO_ED_TIME;
     public ObjDayCustom(String sDay, int iDayofMonth, boolean isWeekend, String sPrice, String sPriceWeekend) {
         this.sDay = sDay;
         this.iDayofMonth = iDayofMonth;
@@ -59,6 +62,53 @@ public class ObjDayCustom {
         this.sPriceWeekend = sPriceWeekend;
         this.sWeekDay = sWeekDay;
         mListBooking = new ArrayList<>();
+    }
+
+    public ObjDayCustom(String sDay, int iDayofMonth, boolean isWeekend, String sPrice, String sPriceWeekend,
+                        String sWeekDay, String DISCOUNT, String PERCENT, String PROMO_ST_TIME, String PROMO_ED_TIME) {
+        this.sDay = sDay;
+        this.iDayofMonth = iDayofMonth;
+        this.isWeekend = isWeekend;
+        this.sPrice = sPrice;
+        this.sPriceWeekend = sPriceWeekend;
+        this.sWeekDay = sWeekDay;
+        this.DISCOUNT = DISCOUNT;
+        this.PERCENT = PERCENT;
+        this.PROMO_ST_TIME = PROMO_ST_TIME;
+        this.PROMO_ED_TIME = PROMO_ED_TIME;
+        mListBooking = new ArrayList<>();
+    }
+
+    public String getDISCOUNT() {
+        return DISCOUNT;
+    }
+
+    public void setDISCOUNT(String DISCOUNT) {
+        this.DISCOUNT = DISCOUNT;
+    }
+
+    public String getPERCENT() {
+        return PERCENT;
+    }
+
+    public void setPERCENT(String PERCENT) {
+        this.PERCENT = PERCENT;
+    }
+
+    public String getPROMO_ST_TIME() {
+        return PROMO_ST_TIME;
+    }
+
+    public void setPROMO_ST_TIME(String PROMO_ST_TIME) {
+        this.PROMO_ST_TIME = PROMO_ST_TIME;
+    }
+
+    public String getPROMO_ED_TIME() {
+        return PROMO_ED_TIME;
+    }
+
+    public void setPROMO_ED_TIME(String PROMO_ED_TIME) {
+        this.PROMO_ED_TIME = PROMO_ED_TIME;
     }
 
     public String getBOOK_STATUS_NAME() {

@@ -173,6 +173,7 @@ public class FragmentDatphongChitiet extends BaseFragment implements InterfaceBo
                                     Intent intent = new Intent(getContext(), ActivityThongtinChuyenkhoan.class);
                                     intent.putExtra(Constants.KEY_SEND_PRICE_THANHTOAN, "" + objBooking.getBOOKING_PRICE());
                                     intent.putExtra(Constants.KEY_SEND_CONTENT_THANHTOAN, objBooking.getCONTENT());
+                                    intent.putExtra(Constants.KEY_SEND_ID_BOOKSERVICE_THANHTOAN, objBooking.getID_BOOK_SERVICES());
                                     startActivityForResult(intent, Constants.RequestCode.GET_BOOKING);
                                 }
 
@@ -192,6 +193,7 @@ public class FragmentDatphongChitiet extends BaseFragment implements InterfaceBo
                                         Intent intent = new Intent(getContext(), ActivityThongtinChuyenkhoan.class);
                                         intent.putExtra(Constants.KEY_SEND_PRICE_THANHTOAN, "" + objBooking.getMONEY_SERVICES());
                                         intent.putExtra(Constants.KEY_SEND_CONTENT_THANHTOAN, objBooking.getCONTENT_SERVICES());
+                                        intent.putExtra(Constants.KEY_SEND_ID_BOOKSERVICE_THANHTOAN, objBooking.getID_BOOK_SERVICES());
                                         startActivityForResult(intent, Constants.RequestCode.GET_BOOKING);
                                     }
 

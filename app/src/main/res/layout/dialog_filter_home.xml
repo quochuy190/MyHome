@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp20"
+    android:background="@drawable/spr_dialog_background"
+    android:paddingBottom="@dimen/dp30"
+    android:paddingLeft="@dimen/dp30"
+    android:paddingRight="@dimen/dp30"
+    android:paddingTop="@dimen/dp30">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spr_bg_detail_room"
+            android:padding="@dimen/dp7">
+
+            <EditText
+                android:id="@+id/edt_name_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_register_city"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/dp7"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_dowwn"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/ic_location"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_name_city"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_name_city" />
+
+            <ImageView
+                android:id="@+id/img_dowwn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/ic_down_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_name_city"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_name_city" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spr_bg_detail_room"
+            android:padding="@dimen/dp7">
+
+            <EditText
+                android:id="@+id/edt_name_homestay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_search_name_homestay"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:padding="@dimen/dp7"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_home"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_home"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/ic_home_selected"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_name_homestay"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_name_homestay" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/spr_bg_detail_room"
+            android:padding="@dimen/dp7">
+
+            <EditText
+                android:id="@+id/edt_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/White"
+                android:gravity="center_vertical"
+                android:hint="@string/hide_search_quantity_homestay"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:padding="@dimen/dp7"
+                android:singleLine="true"
+                android:textColor="@color/app_main"
+                android:textColorHint="@color/Silver"
+                android:textCursorDrawable="@color/app_main"
+                android:textSize="@dimen/txt_14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView_2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView_2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp2"
+                android:src="@drawable/icon_group"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_quantity"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_quantity" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintWidth_percent="0.49"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_date_start"
+                android:background="@drawable/spr_bg_detail_room"
+                android:padding="@dimen/dp7">
+
+                <EditText
+                    android:focusable="false"
+                    android:id="@+id/edt_date_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_search_date_start_homestay"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/dp7"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_date_start"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_date_start"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp2"
+                    android:src="@drawable/ic_date"
+                    app:layout_constraintBottom_toBottomOf="@+id/edt_date_start"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/edt_date_start" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintWidth_percent="0.49"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_date_end"
+                android:background="@drawable/spr_bg_detail_room"
+                android:padding="@dimen/dp7">
+
+                <EditText
+                    android:focusable="false"
+                    android:id="@+id/edt_date_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/White"
+                    android:gravity="center_vertical"
+                    android:hint="@string/hide_search_date_end_homestay"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/dp7"
+                    android:singleLine="true"
+                    android:textColor="@color/app_main"
+                    android:textColorHint="@color/Silver"
+                    android:textCursorDrawable="@color/app_main"
+                    android:textSize="@dimen/txt_13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_date_end"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_date_end"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp2"
+                    android:src="@drawable/ic_date"
+                    app:layout_constraintBottom_toBottomOf="@+id/edt_date_end"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHeight_percent="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/edt_date_end" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+
+            android:id="@+id/txt_name_roomdetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp5"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="@dimen/dp2"
+            android:text="Chọn khoảng mức giá"
+            android:textColor="@color/app_main"
+            android:textSize="@dimen/txt_18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_room_avata" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txt_price_start"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|left"
+                android:padding="@dimen/dp2"
+                android:singleLine="true"
+                android:text="0 VND"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/txt_15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_price_thu_title"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/txt_price_end"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical|right"
+                android:padding="@dimen/dp2"
+                android:singleLine="true"
+                android:text="15.000.000 VND"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/txt_15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_price_thu_title"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <com.github.guilhe.views.SeekBarRangedView
+            app:min="0"
+            app:max="150"
+            android:id="@+id/seekbar_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:textSize="@dimen/txt_14sp"
+            android:id="@+id/btn_search"
+            android:layout_marginTop="@dimen/dp10"
+            android:textColor="@color/White"
+            android:background="@drawable/spr_btn_login"
+            android:paddingLeft="@dimen/height_appbar"
+            android:paddingRight="@dimen/height_appbar"
+            android:text="Tìm kiếm"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:textSize="@dimen/txt_14sp"
+            android:id="@+id/btn_exit"
+            android:layout_marginTop="@dimen/dp10"
+            android:textColor="@color/White"
+            android:background="@drawable/spr_btn_red"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:text="Đóng"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_btn_30" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.vn.myhome.App;
 import com.vn.myhome.R;
+import com.vn.myhome.activity.book_room.ActivityUpdateDiscountMyhome;
 import com.vn.myhome.activity.myhome.ActivityNewRoom;
 import com.vn.myhome.activity.notifycation.ActivityListNotify;
 import com.vn.myhome.activity.user_manager.Activity_Info_User;
@@ -30,6 +34,7 @@ import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.MessageEvent;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
+import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
 import com.vn.myhome.models.ResponseApi.ResponGetListNotify;
 import com.vn.myhome.models.ResponseApi.ResponListImageHome;
@@ -64,6 +69,7 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
     private static final String TAG = "FragmentMyHome";
     public static FragmentMyHome fragment;
     private List<ObjHomeStay> mLisHomeStay;
+    private List<ObjHomeStay> mLisHomeTemp;
     private AdapterMyRoom adapter;
     @BindView(R.id.recycle_list_service)
     RecyclerView recycle_service;
@@ -74,6 +80,9 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
     NotifyPresenter mPresenterNotify;
     @BindView(R.id.txt_badger_notify)
     TextView txt_badger_notify;
+    @BindView(R.id.spinner_home)
+    Spinner spinner_home;
+    List<String> data_Home;
 
     public static FragmentMyHome getInstance() {
         if (fragment == null) {
@@ -105,11 +114,19 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
         TextView txt_title = view.findViewById(R.id.txt_title);
         img_back.setVisibility(View.VISIBLE);
         img_back.setImageResource(R.drawable.ic_notify);
-        txt_title.setText("DANH SÁCH NHÀ CỦA TÔI");
-        img_home.setVisibility(View.VISIBLE);
-        img_home.setImageDrawable(getResources().getDrawable(R.drawable.ic_add));
+        ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+        if (objLogin != null && objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+            txt_title.setText("DANH SÁCH NHÀ CỦA TÔI");
+            img_home.setVisibility(View.VISIBLE);
+            img_home.setImageDrawable(getResources().getDrawable(R.drawable.ic_add));
+        } else {
+            txt_title.setText("DANH SÁCH NHÀ");
+            img_home.setVisibility(View.INVISIBLE);
+        }
+
         initPulltoRefesh();
         init();
+        set_data_spinner();
         initEvent();
         initData();
         img_back.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +139,41 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
         check_title_notify();
 
         return view;
+    }
+
+    private void set_data_spinner() {
+        data_Home = new ArrayList<>();
+        data_Home.add("- Tất cả - ");
+        data_Home.add("Chờ duyệt");
+        data_Home.add("Đã duyệt");
+        ArrayAdapter adapterSpinner = new ArrayAdapter(getContext(), R.layout.item_spinner, data_Home);
+        adapterSpinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner_home.setAdapter(adapterSpinner);
+        spinner_home.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mLisHomeStay.clear();
+                String sStatus = "";
+                if (position == 0) {
+                    mLisHomeStay.addAll(mLisHomeTemp);
+                } else if (position == 1) {
+                    sStatus = "6";
+                } else if (position == 2) {
+                    sStatus = "7";
+                }
+                for (ObjHomeStay obj : mLisHomeTemp) {
+                    if (obj.getSTATE().equals(sStatus))
+                        mLisHomeStay.add(obj);
+                }
+                adapter.notifyDataSetChanged();
+                recycle_service.scrollToPosition(0);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void check_title_notify() {
@@ -175,6 +227,7 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
 
     private void init() {
         mLisHomeStay = new ArrayList<>();
+        mLisHomeTemp = new ArrayList<>();
         adapter = new AdapterMyRoom(mLisHomeStay, getContext());
         mLayoutManager = new GridLayoutManager(getContext(), 1);
         recycle_service.setNestedScrollingEnabled(false);
@@ -208,7 +261,16 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
               /*  Intent intent = new Intent(getContext(), Activity_calendar_booking.class);
                 intent.putExtra(Constants.KEY_SEND_ROOM_BOOKING, mLisHomeStay.get(position));
                 startActivity(intent);*/
-                change_state_myhome(mLisHomeStay.get(position));
+                ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.ADMIN)) {
+                    change_state_myhome(mLisHomeStay.get(position));
+                } else {
+                    Intent intent = new Intent(getContext(), ActivityUpdateDiscountMyhome.class);
+                    intent.putExtra(Constants.KEY_SEND_MYHOME, mLisHomeStay.get(position));
+                    //startActivity(intent);
+                    startActivityForResult(intent, Constants.RequestCode.GET_MY_HOME);
+                }
+
             }
         });
         adapter.setClick_namehost(new ItemClickListener() {
@@ -273,9 +335,11 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
     public void show_get_mylist_room(GetRoomResponse objRes) {
         hideDialogLoading();
         mLisHomeStay.clear();
+        mLisHomeTemp.clear();
         if (objRes != null && objRes.getERROR().equals("0000")) {
             if (objRes.getINFO() != null) {
                 mLisHomeStay.addAll(objRes.getINFO());
+                mLisHomeTemp.addAll(objRes.getINFO());
             }
         } else
             showAlertDialog("Thông báo", objRes.getRESULT());
@@ -305,7 +369,7 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
     @Override
     public void show_update_state_room(ObjErrorApi objError) {
         hideDialogLoading();
-        if (objError!=null&&objError.getERROR().equals("0000")){
+        if (objError != null && objError.getERROR().equals("0000")) {
             Toast.makeText(getContext(), "Cập nhật trạng thái nhà thành công", Toast.LENGTH_SHORT).show();
             initData();
         }

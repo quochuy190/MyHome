@@ -90,6 +90,60 @@ public class ObjHomeStay implements Serializable {
     String NAME_HOST;
     @SerializedName("MAX_GUEST_EXIST")
     String MAX_GUEST_EXIST;
+    @SerializedName("DISCOUNT")
+    String DISCOUNT;
+    @SerializedName("PERCENT")
+    String PERCENT;
+    @SerializedName("PROMO_ST_TIME")
+    String PROMO_ST_TIME;
+    @SerializedName("PROMO_ED_TIME")
+    String PROMO_ED_TIME;
+    @SerializedName("CITY_NAME")
+    String CITY_NAME;
+    @SerializedName("URL_IMAGE")
+    String URL_IMAGE;
+    @SerializedName("TONG")
+    String TONG;
+
+    public String getCITY_NAME() {
+        return CITY_NAME;
+    }
+
+    public void setCITY_NAME(String CITY_NAME) {
+        this.CITY_NAME = CITY_NAME;
+    }
+
+    public String getURL_IMAGE() {
+        return URL_IMAGE;
+    }
+
+    public void setURL_IMAGE(String URL_IMAGE) {
+        this.URL_IMAGE = URL_IMAGE;
+    }
+
+    public String getTONG() {
+        return TONG;
+    }
+
+    public void setTONG(String TONG) {
+        this.TONG = TONG;
+    }
+
+    public String getPROMO_ST_TIME() {
+        return PROMO_ST_TIME;
+    }
+
+    public void setPROMO_ST_TIME(String PROMO_ST_TIME) {
+        this.PROMO_ST_TIME = PROMO_ST_TIME;
+    }
+
+    public String getPROMO_ED_TIME() {
+        return PROMO_ED_TIME;
+    }
+
+    public void setPROMO_ED_TIME(String PROMO_ED_TIME) {
+        this.PROMO_ED_TIME = PROMO_ED_TIME;
+    }
 
     public String getNAME_HOST() {
         return NAME_HOST;
@@ -102,6 +156,22 @@ public class ObjHomeStay implements Serializable {
     public ObjHomeStay(String NAME, String GENLINK) {
         this.NAME = NAME;
         this.GENLINK = GENLINK;
+    }
+
+    public String getDISCOUNT() {
+        return DISCOUNT;
+    }
+
+    public void setDISCOUNT(String DISCOUNT) {
+        this.DISCOUNT = DISCOUNT;
+    }
+
+    public String getPERCENT() {
+        return PERCENT;
+    }
+
+    public void setPERCENT(String PERCENT) {
+        this.PERCENT = PERCENT;
     }
 
     public String getMAX_GUEST_EXIST() {

@@ -23,8 +23,8 @@ import com.vn.myhome.fragment.FragmentLichnhaAdmin;
 import com.vn.myhome.fragment.FragmentMyHome;
 import com.vn.myhome.fragment.FragmentSetup;
 import com.vn.myhome.fragment.FragmentThongke;
-import com.vn.myhome.fragment.Fragment_Tab_Lichdonnha_Dichvu;
 import com.vn.myhome.fragment.lichnha_admin.Fragment_Tab_Lichdonnha_Admin;
+import com.vn.myhome.fragment.qldondep.FragmentHomeQldondep;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ObjVersion;
@@ -87,7 +87,11 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             } else if (sTab != null && sTab.equals("4")) {
                 bottom_bar.setSelectedItemId(R.id.tab_setup);
             } else {
-                loadFragmentHome();
+                ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+                    bottom_bar.setSelectedItemId(R.id.tab_myhome);
+                } else
+                    loadFragmentHome();
             }
             // loadFragmentHome();
             if (sUserName != null && sPass != null & sUserName.length() > 0 && sPass.length() > 0) {
@@ -116,7 +120,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
             MenuItem selectedItem = bottom_bar.getMenu().findItem(R.id.tab_myhome);
-            selectedItem.setTitle("Lịch dọn phòng");
+            selectedItem.setTitle("Ql dọn dẹp");
         }
 
         // init_badger();
@@ -125,7 +129,6 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
@@ -162,7 +165,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
     FragmentSetup fragmentSetup;
     FragmentMyHome fragmentMyhome;
     FragmentLichnhaAdmin fragmentLichnhaAdmin;
-    Fragment_Tab_Lichdonnha_Dichvu fragmentLichdonnha_home;
+    FragmentHomeQldondep fragmentLichdonnha_home;
 
     private void loadFragmentHome() {
         check_user_type();
@@ -245,7 +248,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         if (!fragmentSetup.isAdded()) {
             transaction.add(R.id.frame_home_fragment, fragmentSetup, FragmentSetup.class.getName());
         }
-        if (!objLogin.getUSER_TYPE().equals(Constants.UserType.CTV)){
+        if (!objLogin.getUSER_TYPE().equals(Constants.UserType.CTV)) {
             if (!fragmentMyhome.isAdded()) {
                 transaction.add(R.id.frame_home_fragment, fragmentMyhome, FragmentMyHome.class.getName());
             }
@@ -402,15 +405,15 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
 
     private void loadFragment_Lichdonnha_DV() {
         //   objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);
-        fragmentLichdonnha_home = (Fragment_Tab_Lichdonnha_Dichvu) getSupportFragmentManager().
-                findFragmentByTag(Fragment_Tab_Lichdonnha_Dichvu.class.getName());
+        fragmentLichdonnha_home = (FragmentHomeQldondep) getSupportFragmentManager().
+                findFragmentByTag(FragmentHomeQldondep.class.getName());
         if (fragmentLichdonnha_home == null) {
-            fragmentLichdonnha_home = Fragment_Tab_Lichdonnha_Dichvu.getInstance();
+            fragmentLichdonnha_home = FragmentHomeQldondep.getInstance();
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (!fragmentLichdonnha_home.isAdded()) {
             transaction.add(R.id.frame_home_fragment, fragmentLichdonnha_home,
-                    Fragment_Tab_Lichdonnha_Dichvu.class.getName());
+                    FragmentHomeQldondep.class.getName());
         } else {
             //  transaction.hide(fragmentCurrent);
             if (fragmentHome != null && fragmentHome.isAdded()) {
@@ -547,7 +550,10 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             } else if (sTab != null && sTab.equals("4")) {
                 bottom_bar.setSelectedItemId(R.id.tab_setup);
             } else {
-                loadFragmentHome();
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+                    bottom_bar.setSelectedItemId(R.id.tab_myhome);
+                } else
+                    loadFragmentHome();
             }
             String sTokenKey = SharedPrefs.getInstance().get(Constants.KEY_TOKEN, String.class);
             if (sTokenKey == null)

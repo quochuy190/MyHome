@@ -38,6 +38,7 @@ import com.vn.myhome.models.ResponseApi.GetImageCoverResponse;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
 import com.vn.myhome.untils.SharedPrefs;
 import com.vn.myhome.untils.StringUtil;
+import com.vn.myhome.untils.TimeUtils;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -99,6 +100,16 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
     TextView txt_view_all_image;
     @BindView(R.id.txt_max_guest_exit)
     TextView txt_max_guest_exit;
+    @BindView(R.id.txt_guild_discount)
+    TextView txt_guild_discount;
+    @BindView(R.id.txt_commission_phantram)
+    TextView txt_commission_phantram;
+    @BindView(R.id.txt_price_thu_discount)
+    TextView txt_price_thu_discount;
+    @BindView(R.id.txt_price_week_discount)
+    TextView txt_price_week_discount;
+    @BindView(R.id.txt_price_total_discount)
+    TextView txt_price_total_discount;
     private ObjHomeStay objRoom;
     private RoomPresenter mPresenter;
     String sUsername;
@@ -206,6 +217,7 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
 
     private void set_info_room(ObjHomeStay objRoomDetail) {
         objRoom = objRoomDetail;
+
         if (objRoomDetail.getNAME() != null)
             txt_name_homestay.setText(objRoomDetail.getNAME());
         if (objRoomDetail.getADDRESS() != null)
@@ -225,15 +237,64 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
         if (objRoomDetail.getMAX_GUEST_EXIST() != null)
             txt_max_guest_exit.setText(objRoomDetail.getMAX_GUEST_EXIST());
 
+      /*  holder.txt_promotion.setText("Hoa hồng: "+StringUtil.conventMonney_Long((price*15/100)+""));
+        holder.txt_price.setText(StringUtil.conventMonney_Long(price+""));*/
+        long price = 0;
+        long price_cuoituan = 0;
         if (objRoomDetail.getPRICE() != null) {
-            txt_price_thu.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE()));
-            txt_price_total.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE()));
+            if (objRoomDetail.getDISCOUNT() != null && objRoomDetail.getDISCOUNT().length() > 0) {
+                if (Integer.parseInt(objRoomDetail.getDISCOUNT()) > 0) {
+                    price = Long.parseLong(objRoomDetail.getPRICE()) - Long.parseLong(objRoomDetail.getDISCOUNT());
+                    if (objRoomDetail.getPRICE_SPECIAL() != null && objRoomDetail.getPERCENT() != null)
+                        price_cuoituan = Long.parseLong(objRoomDetail.getPRICE_SPECIAL()) -
+                                (Integer.parseInt(objRoomDetail.getPERCENT()) * Long.parseLong(objRoomDetail.getPRICE_SPECIAL()) / 100);
+                    txt_commission_phantram.setVisibility(View.VISIBLE);
+                    txt_guild_discount.setVisibility(View.VISIBLE);
+                    txt_price_thu_discount.setVisibility(View.VISIBLE);
+                    txt_price_week_discount.setVisibility(View.VISIBLE);
+                    txt_price_total_discount.setVisibility(View.VISIBLE);
+                    // txt_price_discount.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE()));
+                    if (objRoomDetail.getPERCENT() != null && objRoomDetail.getPERCENT().length() > 0)
+                        txt_commission_phantram.setText("- " + objRoomDetail.getPERCENT() + "%");
+                    txt_guild_discount.setText("Giảm " + objRoomDetail.getPERCENT() + "% cho các đơn đặt phòng có checkin - checkout" +
+                            " từ " + TimeUtils.convent_date(objRoomDetail.getPROMO_ST_TIME(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                            "dd/MM/yyyy")
+                            + " đến "
+                            + TimeUtils.convent_date(objRoomDetail.getPROMO_ED_TIME(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                            "dd/MM/yyyy"));
+
+                } else {
+                    if (objRoomDetail.getPRICE_SPECIAL() != null)
+                        price_cuoituan = Long.parseLong(objRoomDetail.getPRICE_SPECIAL());
+                    price = Long.parseLong(objRoomDetail.getPRICE());
+                    txt_commission_phantram.setVisibility(View.GONE);
+                    txt_guild_discount.setVisibility(View.GONE);
+                    txt_price_thu_discount.setVisibility(View.GONE);
+                    txt_price_week_discount.setVisibility(View.GONE);
+                    txt_price_total_discount.setVisibility(View.GONE);
+                }
+            } else {
+                if (objRoomDetail.getPRICE_SPECIAL() != null)
+                    price_cuoituan = Long.parseLong(objRoomDetail.getPRICE_SPECIAL());
+                price = Long.parseLong(objRoomDetail.getPRICE());
+                txt_commission_phantram.setVisibility(View.GONE);
+                txt_guild_discount.setVisibility(View.GONE);
+                txt_price_thu_discount.setVisibility(View.GONE);
+                txt_price_week_discount.setVisibility(View.GONE);
+                txt_price_total_discount.setVisibility(View.GONE);
+            }
+            txt_price_thu.setText(StringUtil.conventMonney_Long(price + ""));
+            txt_price_total.setText(StringUtil.conventMonney_Long(price + ""));
+            txt_price_weeked.setText(StringUtil.conventMonney_Long(price_cuoituan + ""));
+            txt_price_thu_discount.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE()));
+            txt_price_total_discount.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE()));
+            txt_price_week_discount.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE_SPECIAL()));
         }
 
         if (objRoomDetail.getPRICE_SPECIAL() != null)
-            txt_price_weeked.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE_SPECIAL()));
-        if (objRoomDetail.getCLEAN_ROOM() != null)
-            txt_price_dondep.setText(StringUtil.conventMonney_Long(objRoomDetail.getCLEAN_ROOM()));
+
+            if (objRoomDetail.getCLEAN_ROOM() != null)
+                txt_price_dondep.setText(StringUtil.conventMonney_Long(objRoomDetail.getCLEAN_ROOM()));
         if (objRoomDetail.getPRICE_EXTRA() != null)
             txt_price_add_guest.setText(StringUtil.conventMonney_Long(objRoomDetail.getPRICE_EXTRA()));
         if (objRoomDetail.getDESCRIPTION() != null)

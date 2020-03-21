@@ -1,21 +1,8 @@
 package com.vn.myhome;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.savvi.rangedatepicker.CalendarPickerView;
 import com.vn.myhome.base.BaseActivity;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
-import butterknife.BindView;
 
 /**
  * Created by: Neo Company.
@@ -25,21 +12,18 @@ import butterknife.BindView;
  * Version: 1.0
  */
 public class Activity_Test_Calender extends BaseActivity {
-    @BindView(R.id.btn_click)
-    Button button;
-    @BindView(R.id.calendar_view)
-    CalendarPickerView calendar;
+
 
     @Override
     public int setContentViewId() {
-        return R.layout.activity_test_calender;
+        return R.layout.fragment_home_search_ctv;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Calendar nextYear = Calendar.getInstance();
+      /*  final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 10);
 
         final Calendar lastYear = Calendar.getInstance();
@@ -75,7 +59,7 @@ public class Activity_Test_Calender extends BaseActivity {
                 Toast.makeText(Activity_Test_Calender.this, "list "
                         + calendar.getSelectedDates().toString(), Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
     }
 
 }

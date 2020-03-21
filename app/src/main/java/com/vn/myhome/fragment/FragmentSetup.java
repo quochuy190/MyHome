@@ -183,7 +183,7 @@ public class FragmentSetup extends BaseFragment implements InterfaceUser.View {
 
         txt_title.setText("CÀI ĐẶT");
         sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
-        txt_version_app.setText("Version: " + BuildConfig.VERSION_NAME);
+        txt_version_app.setText("Phiên bản hiện tại: " + BuildConfig.VERSION_NAME);
     }
 
     private void init() {

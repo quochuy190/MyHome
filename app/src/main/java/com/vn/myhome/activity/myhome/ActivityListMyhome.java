@@ -65,6 +65,7 @@ public class ActivityListMyhome extends BaseActivity
                 finish();
             }
         });
+
         txt_title.setText("DANH SÁCH NHÀ");
     }
 

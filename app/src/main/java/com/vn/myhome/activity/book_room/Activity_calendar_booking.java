@@ -330,15 +330,33 @@ public class Activity_calendar_booking extends BaseActivity implements Interface
             if (sWeekDay.equals("friday")) {  //or sunday
                 // System.out.println("WEEKEND PRICE");
                 mListDay.add(new ObjDayCustom(day, iday, true, objHomeStay.getPRICE(),
-                        objHomeStay.getPRICE_SPECIAL(), sWeekDay));
-            } else if (sWeekDay.equals("saturday")) {  //or sunday
+                        objHomeStay.getPRICE_SPECIAL(), sWeekDay, objHomeStay.getDISCOUNT(),objHomeStay.getPERCENT(),
+                        TimeUtils.convent_date(objHomeStay.getPROMO_ST_TIME(),
+                                "yyyy-MM-dd'T'HH:mm:ss.'000Z'",
+                                "EEEE dd-MMM-yyyy")
+                        ,  TimeUtils.convent_date(objHomeStay.getPROMO_ED_TIME(),
+                        "yyyy-MM-dd'T'HH:mm:ss.'000Z'",
+                        "EEEE dd-MMM-yyyy")));
+            } else if (sWeekDay.equals("saturday")) {     //or sunday
                 // System.out.println("WEEKEND PRICE");
                 mListDay.add(new ObjDayCustom(day, iday, true, objHomeStay.getPRICE(),
-                        objHomeStay.getPRICE_SPECIAL(), sWeekDay));
+                        objHomeStay.getPRICE_SPECIAL(), sWeekDay, objHomeStay.getDISCOUNT(),objHomeStay.getPERCENT(),
+                        TimeUtils.convent_date(objHomeStay.getPROMO_ST_TIME(),
+                                "yyyy-MM-dd'T'HH:mm:ss.'000Z'",
+                                "EEEE dd-MMM-yyyy")
+                        ,  TimeUtils.convent_date(objHomeStay.getPROMO_ED_TIME(),
+                        "yyyy-MM-dd'T'HH:mm:ss.'000Z'",
+                        "EEEE dd-MMM-yyyy")));
             } else {
                 // System.out.println("WEEKDAY");
                 mListDay.add(new ObjDayCustom(day, iday, false, objHomeStay.getPRICE(),
-                        objHomeStay.getPRICE_SPECIAL(), sWeekDay));
+                        objHomeStay.getPRICE_SPECIAL(), sWeekDay,objHomeStay.getDISCOUNT(),objHomeStay.getPERCENT(),
+                        TimeUtils.convent_date(objHomeStay.getPROMO_ST_TIME(),
+                                "yyyy-MM-dd'T'HH:mm:ss.'000Z'",
+                                "EEEE dd-MMM-yyyy")
+                        ,  TimeUtils.convent_date(objHomeStay.getPROMO_ED_TIME(),
+                        "yyyy-MM-dd'T'HH:mm:ss.'000Z'",
+                        "EEEE dd-MMM-yyyy")));
             }
 
             //mListDay.add(new ObjDayCustom(day, iday));

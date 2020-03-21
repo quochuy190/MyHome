@@ -41,11 +41,62 @@
             android:textSize="@dimen/txt_16sp" />
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/txt_title_chonnha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp2"
+        android:padding="@dimen/dp1"
+        android:text="Trạng thái duyệt nhà"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/txt_14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar" />
+
+    <Spinner
+        android:id="@+id/spinner_home"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_spinner"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:background="@drawable/spr_spinner"
+        android:dropDownVerticalOffset="@dimen/height_spinner"
+        android:singleLine="true"
+        android:spinnerMode="dropdown"
+        android:textSize="20sp"
+        android:theme="@style/Spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_chonnha">
+    </Spinner>
+
+    <ImageView
+        android:id="@+id/img_down"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/dp7"
+        android:src="@drawable/ic_down_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_home"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_home"
+        app:layout_constraintTop_toTopOf="@+id/spinner_home" />
+
+    <View
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginBottom="@dimen/dp5"
+        android:background="@color/app_main"
+        app:layout_constraintTop_toTopOf="@+id/img_down"
+        app:layout_constraintBottom_toBottomOf="@+id/img_down"
+        app:layout_constraintStart_toStartOf="@+id/img_down"
+        android:layout_width="1dp"
+        android:layout_height="0dp"/>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_marginTop="@dimen/dp5"
         android:id="@+id/swipeRefresh"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_bar"
+        app:layout_constraintTop_toBottomOf="@id/spinner_home"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <androidx.recyclerview.widget.RecyclerView

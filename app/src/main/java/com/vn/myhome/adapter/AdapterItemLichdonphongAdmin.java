@@ -144,7 +144,7 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                     holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
                     //   holder.txt_status_room.setText("Trạng thái phòng: Đã khóa");
                 } else {
-                    holder.btn_trangthainha.setVisibility(View.GONE);
+                    holder.btn_trangthainha.setVisibility(View.VISIBLE);
                     String styledText = "Trạng thái thanh toán: <font color='#FF3300'><b>Chưa thanh toán</b></font>.";
                     holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
                     //holder.txt_status_room.setText("Trạng thái phòng: Đang trống");
