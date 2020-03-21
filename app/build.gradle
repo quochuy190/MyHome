@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    //Tesst
     signingConfigs {
         release {
             storeFile file('G:\\2019\\MyHome\\Build\\myhome_keystore.jks')
