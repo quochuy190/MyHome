@@ -34,13 +34,11 @@ import retrofit2.Retrofit;
 public class HomePresenterNew {
     private static final String TAG = "HomePresenterNew";
     FragmentHome fragmentHome;
-    private CompositeDisposable mCompositeDisposable;
     Retrofit retrofit;
     RequestApiInterface mApi;
 
     public HomePresenterNew(FragmentHome fragmentHome) {
         this.fragmentHome = fragmentHome;
-        mCompositeDisposable = new CompositeDisposable();
         retrofit = RetrofitClient.getInstance();
         mApi = retrofit.create(RequestApiInterface.class);
     }

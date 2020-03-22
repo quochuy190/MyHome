@@ -50,4 +50,7 @@
     <string name="tab_lichdonnha">Lịch dọn dẹp</string>
     <string name="tab_calendar">Calendar</string>
     <string name="tab_bookdondep">Book dọn dẹp</string>
+    <string name="tab_thongke">Thống kê</string>
+    <string name="tab_list_myhome">Danh sách nhà của tôi</string>
+
 </resources>

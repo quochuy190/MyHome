@@ -32,6 +32,11 @@ public interface RequestApiInterface {
     @FormUrlEncoded
     @Headers("content-type: application/x-www-form-urlencoded")
     @POST("/room/search_home2")
-    Observable<GetRoomResponse> get_search_home2(
-            @FieldMap Map<String, String> data);
+    Observable<GetRoomResponse> get_search_home2(@FieldMap Map<String, String> data);
+
+
+    @FormUrlEncoded
+    @Headers("content-type: application/x-www-form-urlencoded")
+    @POST("/room/get_mylist_room")
+    Observable<GetRoomResponse> get_list_myhome(@FieldMap Map<String, String> data);
 }

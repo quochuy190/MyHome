@@ -18,11 +18,12 @@ import androidx.fragment.app.Fragment;
 
 import com.vn.myhome.R;
 import com.vn.myhome.callback.ClickDialog;
+import com.vn.myhome.fragment.myhome.FragmentInfoNewRoom;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class BaseFragment extends Fragment {
-
+    Fragment fragment;
     // protected static String TAG = BaseFragment.class.getSimpleName();
     /**
      * when activity is recycled by system, isFirstTimeStartFlag will be reset to default true,

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.multidex.BuildConfig;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vn.myhome.activity.login.InterfaceLogin;
@@ -23,6 +24,7 @@ import com.vn.myhome.fragment.FragmentLichnhaAdmin;
 import com.vn.myhome.fragment.FragmentMyHome;
 import com.vn.myhome.fragment.FragmentSetup;
 import com.vn.myhome.fragment.FragmentThongke;
+import com.vn.myhome.fragment.bottom_bar.FragmentHostBottombar;
 import com.vn.myhome.fragment.lichnha_admin.Fragment_Tab_Lichdonnha_Admin;
 import com.vn.myhome.fragment.qldondep.FragmentHomeQldondep;
 import com.vn.myhome.models.ObjErrorApi;
@@ -152,6 +154,8 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 case R.id.tab_myhome:
                     if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
                         loadFragment_Lichdonnha_DV();
+                    } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+                        loadFragmentHost();
                     } else
                         loadFragmentMyHome();
                     return true;
@@ -164,6 +168,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
     FragmentThongke fragmentThongke;
     FragmentSetup fragmentSetup;
     FragmentMyHome fragmentMyhome;
+    FragmentHostBottombar fragmentHost;
     FragmentLichnhaAdmin fragmentLichnhaAdmin;
     FragmentHomeQldondep fragmentLichdonnha_home;
 
@@ -292,6 +297,41 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 transaction.hide(fragmentLichdonnha_home);
             }
             transaction.show(fragmentMyhome);
+        }
+        //   fragmentCurrent = fragmentHome;
+        transaction.commit();
+    }
+
+    private void loadFragmentHost() {
+        //   objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);
+        fragmentHost = (FragmentHostBottombar) getSupportFragmentManager().findFragmentByTag(FragmentHostBottombar.class.getName());
+        if (fragmentHost == null) {
+            fragmentHost = FragmentHostBottombar.getInstance();
+        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!fragmentHost.isAdded()) {
+            transaction.add(R.id.frame_home_fragment, fragmentHost, FragmentHostBottombar.class.getName());
+        } else {
+            //  transaction.hide(fragmentCurrent);
+            if (fragmentDatphong != null && fragmentDatphong.isAdded()) {
+                transaction.hide(fragmentDatphong);
+            }
+            if (fragmentThongke != null && fragmentThongke.isAdded()) {
+                transaction.hide(fragmentThongke);
+            }
+            if (fragmentSetup != null && fragmentSetup.isAdded()) {
+                transaction.hide(fragmentSetup);
+            }
+            if (fragmentHome != null && fragmentHome.isAdded()) {
+                transaction.hide(fragmentHome);
+            }
+            if (fragmentLichnhaAdmin != null && fragmentLichnhaAdmin.isAdded()) {
+                transaction.hide(fragmentLichnhaAdmin);
+            }
+            if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
+                transaction.hide(fragmentLichdonnha_home);
+            }
+            transaction.show(fragmentHost);
         }
         //   fragmentCurrent = fragmentHome;
         transaction.commit();

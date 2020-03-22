@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="@dimen/dp7"
+        android:layout_marginEnd="@dimen/dp7"
+        android:id="@+id/ll_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_title_chonnha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp2"
+            android:padding="@dimen/dp1"
+            android:text="Chọn nhà"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar" />
+
+        <Spinner
+            android:id="@+id/spinner_home"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_spinner"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@drawable/spr_spinner"
+            android:dropDownVerticalOffset="@dimen/height_spinner"
+            android:singleLine="true"
+            android:spinnerMode="dropdown"
+            android:textSize="20sp"
+            android:theme="@style/Spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title_chonnha"></Spinner>
+
+        <ImageView
+            android:id="@+id/img_down"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp7"
+            android:src="@drawable/ic_down_blue"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_home"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_home"
+            app:layout_constraintTop_toTopOf="@+id/spinner_home" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp5"
+            android:background="@color/app_main"
+            app:layout_constraintBottom_toBottomOf="@+id/img_down"
+            app:layout_constraintStart_toStartOf="@+id/img_down"
+            app:layout_constraintTop_toTopOf="@+id/img_down" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp2"
+            android:padding="@dimen/dp1"
+            android:text="Chọn nhà"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_home" />
+
+
+        <TextView
+            android:id="@+id/txt_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp2"
+            android:padding="@dimen/dp1"
+            android:text="11/33"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_17sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+        <ImageView
+            android:id="@+id/ic_note"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp2"
+            android:src="@drawable/icon_money"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="@id/txt_content"
+            app:layout_constraintTop_toBottomOf="@+id/txt_content"
+            app:layout_constraintWidth_percent="0.05" />
+
+        <TextView
+            android:id="@+id/txt_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp2"
+            android:layout_marginTop="@dimen/dp2"
+            android:padding="@dimen/dp1"
+            android:text="Chọn nhà"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/txt_13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_note"
+            app:layout_constraintStart_toEndOf="@+id/ic_note"
+            app:layout_constraintTop_toTopOf="@id/ic_note" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_book"
+                app:cardElevation="@dimen/dp5"
+                android:layout_margin="@dimen/dp7"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:paddingTop="@dimen/dp7"
+                    android:paddingBottom="@dimen/dp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_spinner">
+
+
+                    <TextView
+                        android:id="@+id/txt_book_of_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="11/33"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ic_up_book"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:src="@drawable/icon_money"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="@id/txt_book_of_month"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_book_of_month"
+                        app:layout_constraintWidth_percent="0.05" />
+
+                    <TextView
+                        android:id="@+id/txt_book_last_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="Chọn nhà"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_up_book"
+                        app:layout_constraintStart_toEndOf="@+id/ic_up_book"
+                        app:layout_constraintTop_toTopOf="@id/ic_up_book" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_revenue"
+                app:cardElevation="@dimen/dp5"
+                android:layout_margin="@dimen/dp7"
+                app:layout_constraintTop_toBottomOf="@+id/card_book"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:paddingTop="@dimen/dp7"
+                    android:paddingBottom="@dimen/dp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_spinner">
+                    <TextView
+                        android:id="@+id/txt_title_revenue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="Chọn nhà"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_revenue_of_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="11/33"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_title_revenue" />
+
+                    <ImageView
+                        android:id="@+id/ic_revenue"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:src="@drawable/icon_money"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="@id/txt_revenue_of_month"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_revenue_of_month"
+                        app:layout_constraintWidth_percent="0.05" />
+
+                    <TextView
+                        android:id="@+id/txt_revenue_last_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="Chọn nhà"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_revenue"
+                        app:layout_constraintStart_toEndOf="@+id/ic_revenue"
+                        app:layout_constraintTop_toTopOf="@id/ic_revenue" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_cost"
+                app:cardElevation="@dimen/dp5"
+                android:layout_margin="@dimen/dp7"
+                app:layout_constraintTop_toBottomOf="@+id/card_revenue"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:paddingTop="@dimen/dp7"
+                    android:paddingBottom="@dimen/dp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_spinner">
+                    <TextView
+                        android:id="@+id/txt_title_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="Chọn nhà"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_cost_of_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="11/33"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_title_cost" />
+
+                    <ImageView
+                        android:id="@+id/ic_cost"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:src="@drawable/icon_money"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="@id/txt_cost_of_month"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_cost_of_month"
+                        app:layout_constraintWidth_percent="0.05" />
+
+                    <TextView
+                        android:id="@+id/txt_cost_last_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="Chọn nhà"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_cost"
+                        app:layout_constraintStart_toEndOf="@+id/ic_cost"
+                        app:layout_constraintTop_toTopOf="@id/ic_cost" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_duno"
+                app:cardElevation="@dimen/dp5"
+                android:layout_margin="@dimen/dp7"
+                app:layout_constraintTop_toBottomOf="@+id/card_cost"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:paddingTop="@dimen/dp7"
+                    android:paddingBottom="@dimen/dp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_spinner">
+
+
+                    <TextView
+                        android:id="@+id/txt_duno_of_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="11/33"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ic_duno"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:src="@drawable/icon_money"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="@id/txt_duno_of_month"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_duno_of_month"
+                        app:layout_constraintWidth_percent="0.05" />
+
+                    <TextView
+                        android:id="@+id/txt_duno_last_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="Chọn nhà"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_duno"
+                        app:layout_constraintStart_toEndOf="@+id/ic_duno"
+                        app:layout_constraintTop_toTopOf="@id/ic_duno" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_loinhuan"
+                app:cardElevation="@dimen/dp5"
+                android:layout_margin="@dimen/dp7"
+                app:layout_constraintTop_toBottomOf="@+id/card_duno"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:paddingTop="@dimen/dp7"
+                    android:paddingBottom="@dimen/dp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/White"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_spinner">
+
+
+                    <TextView
+                        android:id="@+id/txt_loinhuan_of_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="11/33"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ic_loinhuan"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:src="@drawable/icon_money"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="@id/txt_loinhuan_of_month"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_loinhuan_of_month"
+                        app:layout_constraintWidth_percent="0.05" />
+
+                    <TextView
+                        android:id="@+id/txt_loinhuan_last_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:padding="@dimen/dp1"
+                        android:text="Chọn nhà"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/txt_13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_loinhuan"
+                        app:layout_constraintStart_toEndOf="@+id/ic_loinhuan"
+                        app:layout_constraintTop_toTopOf="@id/ic_loinhuan" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
