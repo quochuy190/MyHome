@@ -29,6 +29,7 @@ public class App extends Application {
     public static TowerObj mTower;
     public static List<ObjCity> mListCity;
     public static List<ObjHomeStay> mListHomeStay;
+    public static ObjHomeStay mHomestay;
     public static String sTotalNotify="";
     @Override
     public void onCreate() {

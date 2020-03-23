@@ -1,26 +1,18 @@
 package com.vn.myhome.fragment.bottom_bar;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import com.vn.myhome.config.Constants;
-import com.vn.myhome.fragment.FragmentHome;
-import com.vn.myhome.models.ObjFragmentSearchHome;
+import com.vn.myhome.App;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
 import com.vn.myhome.network.RequestApiInterface;
 import com.vn.myhome.network.RetrofitClient;
-import com.vn.myhome.network.response.ResponGetBannerCity;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
@@ -38,13 +30,11 @@ public class PresenterHostBottombar {
 
     public void getListMyHome(String sUserName) {
         fragment.showDialogLoading();
-        Map<String, String> mMap = new LinkedHashMap<>();
-        mMap.put("USERNAME", sUserName);
         Map<String, String> mMap_get_room = new LinkedHashMap<>();
         mMap_get_room.put("USERNAME", sUserName);
         mMap_get_room.put("OPT", "");
 
-        Observable<GetRoomResponse> userObservable = mApi.get_listroom_idx(mMap_get_room)
+        Observable<GetRoomResponse> userObservable = mApi.get_list_myhome(mMap_get_room)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io());
         userObservable.subscribe(new Observer<GetRoomResponse>() {
@@ -55,18 +45,25 @@ public class PresenterHostBottombar {
 
             @Override
             public void onNext(GetRoomResponse getRoomResponse) {
+                if (getRoomResponse.getERROR().equals("0000")){
+                    if (getRoomResponse.getINFO()!=null){
+                        App.mListHomeStay.addAll(getRoomResponse.getINFO());
+                        fragment.update_viewpage();
+                    }
 
-                Log.e(TAG, "onNext: " );
+                }
+
             }
 
             @Override
             public void onError(Throwable e) {
+
             }
 
             @Override
             public void onComplete() {
-                fragment.hideDialogLoading();
                 Log.e(TAG, "onComplete: " );
+                fragment.hideDialogLoading();
             }
         });
     }

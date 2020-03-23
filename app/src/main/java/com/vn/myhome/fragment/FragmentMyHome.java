@@ -128,7 +128,6 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
         init();
         set_data_spinner();
         initEvent();
-        initData();
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,6 +192,14 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
         if (event.message.equals(Constants.EventBus.RELOAD_NOTIFY)) {
             Log.e(TAG, "onMessageEvent: " + App.sTotalNotify);
             check_title_notify();
+        }
+        if (event.message.equals(Constants.EventBus.KEY_UPDATE_API_LIST_MYHOME)) {
+            mLisHomeStay.clear();
+            mLisHomeTemp.clear();
+            if (App.mListHomeStay != null && App.mListHomeStay.size() > 0) {
+                mLisHomeStay.addAll(App.mListHomeStay);
+                mLisHomeTemp.addAll(mLisHomeStay);
+            }
         }
     }
 
@@ -288,7 +295,7 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
     }
 
     private void change_state_myhome(ObjHomeStay objHomeStay) {
-        showDialogLoading();
+        //   showDialogLoading();
         String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         if (objHomeStay != null && objHomeStay.getSTATE().equals("6")) {
             //Đang chờ duyệt

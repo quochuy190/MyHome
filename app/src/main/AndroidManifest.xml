@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.vn.myhome">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -21,85 +22,108 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
         </activity>
         <activity
             android:name=".activity.report.ActivityReportDetail"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.user_manager.ActivityListUser"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
+            android:name=".activity.login.ActivityListHomestay"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.notifycation.ActivityListNotify"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.book_room.ActivityUpdateDiscountMyhome"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.book_room.Activity_calendar_booking"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.book_room.ActivityBooking"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.contacts.ActivityListContact"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.user_manager.Activity_Info_User"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.login.ActivityListTowers"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".Activity_Test_Calender"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.login.ActivityListCity"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.login.RegisterActivity"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.login.LoginActivity"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.myhome.ActivityListMyhome"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.home.ActivityListHomeStaySearch"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.home.ActivityRoomDetail"
             android:screenOrientation="portrait">
 

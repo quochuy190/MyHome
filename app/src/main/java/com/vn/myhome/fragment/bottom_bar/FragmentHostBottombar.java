@@ -20,26 +20,15 @@ import com.vn.myhome.adapter.AdapterSetupMain;
 import com.vn.myhome.adapter.AdapterViewpager;
 import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.config.Constants;
-import com.vn.myhome.fragment.FragmentLichnhaAdmin;
 import com.vn.myhome.fragment.FragmentMyHome;
-import com.vn.myhome.fragment.lichnha_admin.Fragment_TabLichdatnha_Admin;
-import com.vn.myhome.fragment.lichnha_admin.Fragment_Tab_Calendar_Admin;
-import com.vn.myhome.fragment.lichnha_admin.Fragment_Tab_Lichdonnha_Admin;
-import com.vn.myhome.fragment.myhome.FragmentInfoNewRoom;
 import com.vn.myhome.models.MessageEvent;
-import com.vn.myhome.models.ObjErrorApi;
-import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ObjSetupMain;
-import com.vn.myhome.models.ResponseApi.GetRoomResponse;
-import com.vn.myhome.models.ResponseApi.ResponListImageHome;
-import com.vn.myhome.presenter.MyHomePresenter;
 import com.vn.myhome.untils.SharedPrefs;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -169,14 +158,15 @@ public class FragmentHostBottombar extends BaseFragment {
     }
 
     private void initData() {
-        showDialogLoading();
         String sUser = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         mPresenter.getListMyHome(sUser);
 
     }
 
     private void init() {
-
+    }
+    public void update_viewpage() {
+        EventBus.getDefault().post(new MessageEvent(Constants.EventBus.KEY_UPDATE_API_LIST_MYHOME, 1, 0));
     }
 
     @BindView(R.id.viewpager_host_bottombar)
@@ -184,7 +174,7 @@ public class FragmentHostBottombar extends BaseFragment {
 
     public AdapterViewpager adapterViewpager;
 
-    private void initViewpager() {
+    public void initViewpager() {
         adapterViewpager = new AdapterViewpager(getChildFragmentManager());
         adapterViewpager.addFragment(new FragmentReportHost(), "");
         adapterViewpager.addFragment(new FragmentMyHome(), "");

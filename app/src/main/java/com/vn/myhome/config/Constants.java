@@ -21,6 +21,7 @@ public class Constants {
         public static final int GET_NOTIFY = 1009;
         public static final int PERMISSION_CALL_PHONE = 1010;
         public static final int START_REGISTER_ADMIN = 1010;
+        public static final int GET_LIST_MYHOME = 1011;
     }
 
     public class UserType {
@@ -35,6 +36,7 @@ public class Constants {
         public static final String RELOAD_NOTIFY = "RELOAD_NOTIFY";
         public static final String KEY_SEND_NOTIFY = "KEY_SEND_NOTIFY";
         public static final String KEY_UPDATE_MYHOME = "KEY_UPDATE_MYHOME";
+        public static final String KEY_UPDATE_API_LIST_MYHOME = "KEY_UPDATE_API_LIST_MYHOME";
     }
     public class STATE_BOOKING_SERVICE{
         public static final String CHO_XAC_NHAN = "0";

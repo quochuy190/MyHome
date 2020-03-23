@@ -1,5 +1,6 @@
 package com.vn.myhome.presenter;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.vn.myhome.config.Constants;
@@ -18,7 +19,6 @@ import java.util.Map;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
@@ -43,6 +43,7 @@ public class HomePresenterNew {
         mApi = retrofit.create(RequestApiInterface.class);
     }
 
+    @SuppressLint("CheckResult")
     public void getBannerCity(String sUserName) {
         fragmentHome.showDialogLoading();
         Map<String, String> mMap = new LinkedHashMap<>();
@@ -58,45 +59,54 @@ public class HomePresenterNew {
         Observable<GetRoomResponse> userObservable2 = mApi.get_listroom_idx(mMap_get_room)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io());
+
         Observable.zip(userObservable1, userObservable2,
                 new BiFunction<ResponGetBannerCity, GetRoomResponse, Object>() {
                     @Override
-                    public Object apply(ResponGetBannerCity responGetBannerCity,
-                                        GetRoomResponse getRoomResponse) throws Exception {
-                        List<ObjFragmentSearchHome> mList = new ArrayList<>();
-                        mList.add(new ObjFragmentSearchHome(Constants.DIEM_DEN_YEU_THICH, responGetBannerCity.getINFO()));
-                        mList.add(new ObjFragmentSearchHome(Constants.TOP_NHA_NOI_BAT, getRoomResponse.getINFO()));
+                    public Object apply(ResponGetBannerCity responGetBannerCity, GetRoomResponse getRoomResponse) throws Exception {
+                        return null;
+                    }
+                }).subscribe();
+
+                Observable.zip(userObservable1, userObservable2,
+                        new BiFunction<ResponGetBannerCity, GetRoomResponse, Object>() {
+                            @Override
+                            public Object apply(ResponGetBannerCity responGetBannerCity,
+                                                GetRoomResponse getRoomResponse) throws Exception {
+                                List<ObjFragmentSearchHome> mList = new ArrayList<>();
+                                mList.add(new ObjFragmentSearchHome(Constants.DIEM_DEN_YEU_THICH, responGetBannerCity.getINFO()));
+                                mList.add(new ObjFragmentSearchHome(Constants.TOP_NHA_NOI_BAT, getRoomResponse.getINFO()));
                        /* ObjFragmentSearchHome objFragmentSearchHome = new ObjFragmentSearchHome();
                         objFragmentSearchHome.setmListHomeStay(getRoomResponse.getINFO());*/
-                        return mList;
-                    }
-                }).observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Object>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        Log.e(TAG, "onSubscribe: ");
-                    }
+                                return mList;
+                            }
+                        }).observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(new Observer<Object>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+                                Log.e(TAG, "onSubscribe: ");
+                            }
 
-                    @Override
-                    public void onNext(Object o) {
-                        List<ObjFragmentSearchHome> obj = (List<ObjFragmentSearchHome>) o;
-                        fragmentHome.init(obj);
-                        Log.e(TAG, "onNext: ");
-                    }
+                            @Override
+                            public void onNext(Object o) {
+                                List<ObjFragmentSearchHome> obj = (List<ObjFragmentSearchHome>) o;
+                                fragmentHome.init(obj);
+                                Log.e(TAG, "onNext: ");
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e(TAG, "onError: ");
-                        handleError(e);
-                    }
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.e(TAG, "onError: ");
+                                handleError(e);
+                            }
 
-                    @Override
-                    public void onComplete() {
-                        fragmentHome.hideDialogLoading();
-                        Log.e(TAG, "onComplete: ");
-                    }
-                });
+                            @Override
+                            public void onComplete() {
+                                fragmentHome.hideDialogLoading();
+                                Log.e(TAG, "onComplete: ");
+                            }
+                        });
     }
 
 
