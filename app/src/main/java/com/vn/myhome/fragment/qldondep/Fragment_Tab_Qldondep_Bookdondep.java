@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vn.myhome.App;
 import com.vn.myhome.R;
 import com.vn.myhome.adapter.AdapterListTabLich;
 import com.vn.myhome.base.BaseFragment;
@@ -219,7 +221,7 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
 
     List<String> data_Home;
     @BindView(R.id.spinner_home)
-    Spinner spinner_home;
+    TextView spinner_home;
     String sGetLink = "";
     List<ObjHomeStay> mListHome;
     MyHomePresenter mPresenterLítHome;
@@ -234,7 +236,7 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
                     }
                 }
             }
-            ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item_spinner, data_Home);
+        /*    ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item_spinner, data_Home);
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
             spinner_home.setAdapter(adapter);
             spinner_home.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -254,7 +256,7 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
                 public void onNothingSelected(AdapterView<?> parent) {
 
                 }
-            });
+            });*/
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -573,9 +575,14 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
         hideDialogLoading();
         if (objRes != null && objRes.getERROR().equals("0000")) {
             mListMyhome.clear();
-            if (objRes.getINFO() != null)
+            if (objRes.getINFO() != null){
                 mListMyhome.addAll(objRes.getINFO());
-            set_data_spinner();
+                App.mListHomeStay.clear();
+                App.mListHomeStay.addAll(mListHome);
+            }
+            spinner_home.setText(mListHome.get(0).getNAME());
+            sGetLink = mListHome.get(0).getGENLINK();
+
         } else
             showAlertDialog("Thông báo", objRes.getRESULT());
     }

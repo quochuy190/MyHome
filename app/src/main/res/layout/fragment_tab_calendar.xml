@@ -41,7 +41,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Spinner
+                <TextView
                     android:id="@+id/spinner_home"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_spinner"
@@ -57,7 +57,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_lable_chonnha">
 
-                </Spinner>
+                </TextView>
 
                 <ImageView
                     android:id="@+id/img_down_sp_home"

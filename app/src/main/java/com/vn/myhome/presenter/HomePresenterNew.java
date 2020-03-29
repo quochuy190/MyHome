@@ -59,15 +59,6 @@ public class HomePresenterNew {
         Observable<GetRoomResponse> userObservable2 = mApi.get_listroom_idx(mMap_get_room)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io());
-
-        Observable.zip(userObservable1, userObservable2,
-                new BiFunction<ResponGetBannerCity, GetRoomResponse, Object>() {
-                    @Override
-                    public Object apply(ResponGetBannerCity responGetBannerCity, GetRoomResponse getRoomResponse) throws Exception {
-                        return null;
-                    }
-                }).subscribe();
-
                 Observable.zip(userObservable1, userObservable2,
                         new BiFunction<ResponGetBannerCity, GetRoomResponse, Object>() {
                             @Override
@@ -97,8 +88,8 @@ public class HomePresenterNew {
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.e(TAG, "onError: ");
                                 handleError(e);
+                                Log.e(TAG, "onError: " );
                             }
 
                             @Override
@@ -116,5 +107,6 @@ public class HomePresenterNew {
 
     private void handleError(Throwable t) {
         Log.e(TAG, "handleError: ");
+        fragmentHome.show_error_api(t.getMessage());
     }
 }

@@ -200,6 +200,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
                 transaction.hide(fragmentLichdonnha_home);
             }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
+            }
             transaction.show(fragmentHome);
         }
         //   fragmentCurrent = fragmentHome;
@@ -229,7 +232,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         }
 
     }
-
+/*
     private void show_all_fragment() {
         ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         fragmentMyhome = (FragmentMyHome) getSupportFragmentManager().findFragmentByTag(FragmentMyHome.class.getName());
@@ -263,7 +266,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             transaction.add(R.id.frame_home_fragment, fragmentLichdonnha_home, Fragment_Tab_Lichdonnha_Admin.class.getName());
         }
         transaction.commit();
-    }
+    }*/
 
     private void loadFragmentMyHome() {
         //   objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);

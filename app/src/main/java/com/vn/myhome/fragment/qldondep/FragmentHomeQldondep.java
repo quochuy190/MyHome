@@ -168,8 +168,8 @@ public class FragmentHomeQldondep extends BaseFragment implements InterfaceMyHom
     }
 
     private void initData() {
-        showDialogLoading();
-        String sUser = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+       /* showDialogLoading();
+        String sUser = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);*/
     }
 
     private void init() {

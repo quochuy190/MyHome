@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -66,6 +67,8 @@ public class FragmentHostBottombar extends BaseFragment {
     TextView txt_title;
     @BindView(R.id.txt_badger_notify)
     TextView txt_badger_notify;
+    @BindView(R.id.ll_layout)
+    LinearLayout ll_layout;
     PresenterHostBottombar mPresenter;
 
     @Override
@@ -139,7 +142,6 @@ public class FragmentHostBottombar extends BaseFragment {
     private void initAppbar() {
         img_back.setVisibility(View.VISIBLE);
         img_back.setImageResource(R.drawable.ic_notify);
-        txt_title.setText("LỊCH NHÀ");
     }
 
     private void select_thongke() {
@@ -208,9 +210,15 @@ public class FragmentHostBottombar extends BaseFragment {
         ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
             adapterViewpager.addFragment(new FragmentReportHost(), "");
+
+            ll_layout.setVisibility(View.VISIBLE);
+        } else {
+            ll_layout.setVisibility(View.GONE);
         }
+        check_add_myhome(false);
         adapterViewpager.addFragment(new FragmentMyHome(), "");
-   //     viewPager.setOffscreenPageLimit(3);
+
+        //     viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapterViewpager);
         // tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

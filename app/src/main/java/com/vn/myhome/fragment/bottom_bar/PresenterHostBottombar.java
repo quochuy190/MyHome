@@ -57,7 +57,7 @@ public class PresenterHostBottombar {
 
             @Override
             public void onError(Throwable e) {
-
+                Log.e(TAG, "onError: " );
             }
 
             @Override
