@@ -21,7 +21,7 @@
     <item
         android:id="@+id/tab_thongke"
         android:icon="@drawable/ic_lichdat_selected"
-        android:title="@string/title_thongke" />
+        android:title="@string/title_services" />
 
     <item
         android:id="@+id/tab_setup"

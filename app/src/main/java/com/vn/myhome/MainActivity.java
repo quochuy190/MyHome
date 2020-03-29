@@ -22,8 +22,8 @@ import com.vn.myhome.fragment.FragmentMyHome;
 import com.vn.myhome.fragment.FragmentSetup;
 import com.vn.myhome.fragment.FragmentThongke;
 import com.vn.myhome.fragment.bottom_bar.FragmentHostBottombar;
-import com.vn.myhome.fragment.lichnha_admin.Fragment_Tab_Lichdonnha_Admin;
 import com.vn.myhome.fragment.qldondep.FragmentHomeQldondep;
+import com.vn.myhome.fragment.services.FragmentServicesAll;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ObjVersion;
@@ -144,7 +144,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                         loadFragmentDatphong();
                     return true;
                 case R.id.tab_thongke:
-                    loadFragmentThongke();
+                    loadFragmentServiceAll();
                     return true;
                 case R.id.tab_setup:
                     loadFragmentSetup();
@@ -169,6 +169,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
     FragmentHostBottombar fragmentHost;
     FragmentLichnhaAdmin fragmentLichnhaAdmin;
     FragmentHomeQldondep fragmentLichdonnha_home;
+    FragmentServicesAll fragmentServicesAll;
 
     private void loadFragmentHome() {
         check_user_type();
@@ -367,7 +368,50 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
                 transaction.hide(fragmentLichdonnha_home);
             }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
+            }
             transaction.show(fragmentThongke);
+        }
+        //   fragmentCurrent = fragmentHome;
+        transaction.commit();
+    }
+    private void loadFragmentServiceAll() {
+        //   objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);
+        fragmentServicesAll = (FragmentServicesAll) getSupportFragmentManager().findFragmentByTag(FragmentServicesAll.class.getName());
+        if (fragmentServicesAll == null) {
+            fragmentServicesAll = FragmentServicesAll.getInstance();
+        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!fragmentServicesAll.isAdded()) {
+            transaction.add(R.id.frame_home_fragment, fragmentServicesAll, FragmentServicesAll.class.getName());
+        } else {
+            //  transaction.hide(fragmentCurrent);
+            if (fragmentHome != null && fragmentHome.isAdded()) {
+                transaction.hide(fragmentHome);
+            }
+            if (fragmentDatphong != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
+            }
+            if (fragmentSetup != null && fragmentSetup.isAdded()) {
+                transaction.hide(fragmentSetup);
+            }
+            if (fragmentMyhome != null && fragmentMyhome.isAdded()) {
+                transaction.hide(fragmentMyhome);
+            }
+            if (fragmentLichnhaAdmin != null && fragmentLichnhaAdmin.isAdded()) {
+                transaction.hide(fragmentLichnhaAdmin);
+            }
+            if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
+                transaction.hide(fragmentLichdonnha_home);
+            }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
+            }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
+            }
+            transaction.show(fragmentServicesAll);
         }
         //   fragmentCurrent = fragmentHome;
         transaction.commit();
@@ -405,6 +449,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
                 transaction.hide(fragmentLichdonnha_home);
             }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
+            }
             transaction.show(fragmentDatphong);
         }
         //   fragmentCurrent = fragmentHome;
@@ -437,6 +484,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             }
             if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
                 transaction.hide(fragmentLichdonnha_home);
+            }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
             }
             transaction.show(fragmentLichnhaAdmin);
         }
@@ -475,6 +525,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentLichnhaAdmin != null && fragmentLichnhaAdmin.isAdded()) {
                 transaction.hide(fragmentLichnhaAdmin);
             }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
+            }
             transaction.show(fragmentLichdonnha_home);
         }
         //   fragmentCurrent = fragmentHome;
@@ -509,6 +562,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             }
             if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
                 transaction.hide(fragmentLichdonnha_home);
+            }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
             }
             transaction.show(fragmentSetup);
         }

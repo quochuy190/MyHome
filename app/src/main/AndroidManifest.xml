@@ -40,6 +40,12 @@
         </activity>
         <activity
             tools:ignore="LockedOrientationActivity"
+            android:name=".fragment.services.ActivityBookOto"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.login.ActivityListHomestay"
             android:screenOrientation="portrait">
 
