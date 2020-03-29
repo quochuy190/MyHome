@@ -3,14 +3,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 android {
     //Tesst
-    signingConfigs {
+  /*  signingConfigs {
         release {
             storeFile file('G:\\2019\\MyHome\\Build\\myhome_keystore.jks')
             storePassword '123456'
             keyAlias = 'myhome'
             keyPassword '123456'
         }
-    }
+    }*/
 
 
 

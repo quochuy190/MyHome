@@ -42,6 +42,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:paddingStart="@dimen/dp7"
                     android:id="@+id/spinner_home"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_spinner"
@@ -51,7 +52,7 @@
                     android:dropDownVerticalOffset="@dimen/height_spinner"
                     android:singleLine="true"
                     android:spinnerMode="dropdown"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:theme="@style/Spinner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

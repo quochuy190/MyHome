@@ -1,6 +1,7 @@
 package com.vn.myhome.fragment.qldondep;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vn.myhome.App;
 import com.vn.myhome.R;
+import com.vn.myhome.activity.login.ActivityListHomestay;
 import com.vn.myhome.adapter.AdapterListTabLich;
 import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.callback.ClickDialog;
@@ -57,6 +60,8 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -175,6 +180,7 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
         ll_date_start.setOnClickListener(this);
         ll_date_end.setOnClickListener(this);
         btn_tracuu.setOnClickListener(this);
+        spinner_home.setOnClickListener(this);
     }
 
     public void get_time() {
@@ -202,6 +208,15 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
                         .get(Calendar.YEAR), myCalendar_end.get(Calendar.MONTH),
                         myCalendar_end.get(Calendar.DAY_OF_MONTH)).show();
                 break;
+            case R.id.spinner_home:
+                spinner_home.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent_city = new Intent(getActivity(), ActivityListHomestay.class);
+                        startActivityForResult(intent_city, Constants.RequestCode.GET_LIST_MYHOME);
+                    }
+                });
+                break;
             case R.id.btn_tracuu:
                 if (!isClick) {
                     isClick = true;
@@ -218,6 +233,20 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
 
         }
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case Constants.RequestCode.GET_LIST_MYHOME:
+                if (resultCode == RESULT_OK) {
+                    spinner_home.setText(App.mHomestay.getNAME());
+                    sGetLink= App.mHomestay.getGENLINK();
+                    get_api_list_booking();
+                }
+                break;
+        }
+    }
+
 
     List<String> data_Home;
     @BindView(R.id.spinner_home)
@@ -264,6 +293,7 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
     }
 
     private void get_api_list_booking() {
+        showDialogLoading();
         String sUser = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         String startDate = edt_date_start.getText().toString();
         String endDate = edt_date_end.getText().toString();
@@ -575,13 +605,14 @@ public class Fragment_Tab_Qldondep_Bookdondep extends BaseFragment
         hideDialogLoading();
         if (objRes != null && objRes.getERROR().equals("0000")) {
             mListMyhome.clear();
-            if (objRes.getINFO() != null){
+            App.mListHomeStay.clear();
+            if (objRes.getINFO() != null) {
                 mListMyhome.addAll(objRes.getINFO());
-                App.mListHomeStay.clear();
-                App.mListHomeStay.addAll(mListHome);
+                App.mListHomeStay.addAll(objRes.getINFO());
             }
-            spinner_home.setText(mListHome.get(0).getNAME());
+            spinner_home.setText(objRes.getINFO().get(0).getNAME());
             sGetLink = mListHome.get(0).getGENLINK();
+            get_api_list_booking();
 
         } else
             showAlertDialog("Thông báo", objRes.getRESULT());
