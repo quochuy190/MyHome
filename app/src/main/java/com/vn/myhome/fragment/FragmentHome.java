@@ -99,6 +99,7 @@ public class FragmentHome extends BaseFragment
     private void initEvent() {
         appbar_search.setOnClickListener(this);
         edt_search_home.setOnClickListener(this);
+
     }
 
 

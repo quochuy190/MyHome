@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.vn.myhome.App;
 import com.vn.myhome.R;
+import com.vn.myhome.activity.myhome.ActivityNewRoom;
 import com.vn.myhome.activity.notifycation.ActivityListNotify;
 import com.vn.myhome.adapter.AdapterSetupMain;
 import com.vn.myhome.adapter.AdapterViewpager;
@@ -22,6 +23,7 @@ import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.config.Constants;
 import com.vn.myhome.fragment.FragmentMyHome;
 import com.vn.myhome.models.MessageEvent;
+import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ObjSetupMain;
 import com.vn.myhome.untils.SharedPrefs;
 
@@ -65,6 +67,7 @@ public class FragmentHostBottombar extends BaseFragment {
     @BindView(R.id.txt_badger_notify)
     TextView txt_badger_notify;
     PresenterHostBottombar mPresenter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_host_bottombar, container, false);
@@ -83,6 +86,22 @@ public class FragmentHostBottombar extends BaseFragment {
         initData();
         check_title_notify();
         return view;
+    }
+
+    private void check_add_myhome(boolean isShow) {
+        ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+        if (objLogin != null && objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+            txt_title.setText("DANH SÁCH NHÀ CỦA TÔI");
+            if (isShow) {
+                img_home.setVisibility(View.VISIBLE);
+                img_home.setImageDrawable(getResources().getDrawable(R.drawable.ic_add));
+            } else {
+                img_home.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            txt_title.setText("DANH SÁCH NHÀ");
+            img_home.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void check_title_notify() {
@@ -135,6 +154,15 @@ public class FragmentHostBottombar extends BaseFragment {
     }
 
     private void initEvent() {
+        img_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ActivityNewRoom.class);
+                intent.putExtra(Constants.KEY_IS_UPDATE_MYHOME, false);
+                //startActivity(intent);
+                startActivityForResult(intent, Constants.RequestCode.GET_MY_HOME);
+            }
+        });
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,6 +193,7 @@ public class FragmentHostBottombar extends BaseFragment {
 
     private void init() {
     }
+
     public void update_viewpage() {
         EventBus.getDefault().post(new MessageEvent(Constants.EventBus.KEY_UPDATE_API_LIST_MYHOME, 1, 0));
     }
@@ -176,9 +205,12 @@ public class FragmentHostBottombar extends BaseFragment {
 
     public void initViewpager() {
         adapterViewpager = new AdapterViewpager(getChildFragmentManager());
-        adapterViewpager.addFragment(new FragmentReportHost(), "");
+        ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+        if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+            adapterViewpager.addFragment(new FragmentReportHost(), "");
+        }
         adapterViewpager.addFragment(new FragmentMyHome(), "");
-        viewPager.setOffscreenPageLimit(3);
+   //     viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapterViewpager);
         // tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -192,9 +224,11 @@ public class FragmentHostBottombar extends BaseFragment {
                 switch (position) {
                     case 0:
                         select_thongke();
+                        check_add_myhome(false);
                         break;
                     case 1:
                         select_list_myhome();
+                        check_add_myhome(true);
                         break;
 
                 }

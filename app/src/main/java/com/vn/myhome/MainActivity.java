@@ -1,7 +1,5 @@
 package com.vn.myhome;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
@@ -16,7 +14,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vn.myhome.activity.login.InterfaceLogin;
 import com.vn.myhome.activity.login.PresenterLogin;
 import com.vn.myhome.base.BaseActivity;
-import com.vn.myhome.callback.ClickDialog;
 import com.vn.myhome.config.Constants;
 import com.vn.myhome.fragment.FragmentDatphong;
 import com.vn.myhome.fragment.FragmentHome;
@@ -43,6 +40,7 @@ import com.vn.myhome.untils.SharedPrefs;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements InterfaceLogin.View, InterfaceAmenities.View, InterfaceUpdateVersion.View {
+    private static final String TAG = "MainActivity";
     @BindView(R.id.nav_bottom_bar)
     BottomNavigationView bottom_bar;
     PresenterLogin mPresenterLogin;
@@ -157,7 +155,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                     } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
                         loadFragmentHost();
                     } else
-                        loadFragmentMyHome();
+                        loadFragmentHost();
                     return true;
             }
             return false;
@@ -533,8 +531,10 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 }
 
             }
-            int version = Integer.parseInt(mVersion.getVERSION());
-            if (BuildConfig.VERSION_CODE < version) {
+          /*  int version = Integer.parseInt(mVersion.getVERSION());
+            int version_code = BuildConfig.VERSION_CODE;
+            Log.d(TAG, "show_get_version: "+BuildConfig.VERSION_CODE);
+            if (version_code < version) {
                 //  showDialogNotify("Thông báo","Hiện đang có phiên bản mới ");
                 showDialogComfirm("Thông báo",
                         "Đang có phiên bản cập nhật mới bạn có muốn cập nhật không?",
@@ -554,7 +554,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
 
                             }
                         });
-            }
+            }*/
         }
     }
 

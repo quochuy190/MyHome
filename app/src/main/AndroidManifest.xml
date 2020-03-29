@@ -129,21 +129,25 @@
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.myhome.ActivityNewRoom"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.contacts.ActivityContactDetail"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.notifycation.Activity_Notify_Detail"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
+            tools:ignore="LockedOrientationActivity"
             android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>

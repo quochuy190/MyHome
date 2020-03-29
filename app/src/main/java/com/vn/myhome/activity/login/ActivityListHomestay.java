@@ -21,7 +21,6 @@ import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
-import com.vn.myhome.models.ResponseApi.ObjCity;
 import com.vn.myhome.models.ResponseApi.ResponListImageHome;
 import com.vn.myhome.presenter.InterfaceMyHome;
 import com.vn.myhome.presenter.MyHomePresenter;
@@ -142,7 +141,7 @@ public class ActivityListHomestay extends BaseActivity
             @Override
             public void onClickItem(int position, Object item) {
                 setResult(RESULT_OK, new Intent());
-                App.mCity = (ObjCity) item;
+                App.mHomestay = (ObjHomeStay) item;
                 finish();
             }
         });
@@ -170,7 +169,7 @@ public class ActivityListHomestay extends BaseActivity
             @Override
             public void onClickItem(int position, Object item) {
                 setResult(RESULT_OK, new Intent());
-                App.mCity = (ObjCity) item;
+                App.mHomestay = (ObjHomeStay) item;
                 finish();
             }
         });

@@ -199,6 +199,7 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
             if (App.mListHomeStay != null && App.mListHomeStay.size() > 0) {
                 mLisHomeStay.addAll(App.mListHomeStay);
                 mLisHomeTemp.addAll(mLisHomeStay);
+                adapter.notifyDataSetChanged();
             }
         }
     }
