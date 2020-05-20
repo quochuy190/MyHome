@@ -1,5 +1,7 @@
 package com.vn.myhome.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by: Neo Company.
  * Developer: HuyNQ2
@@ -8,7 +10,9 @@ package com.vn.myhome.models;
  * Version: 1.0
  */
 public class TowerObj {
+    @SerializedName("LOCATION_NAME")
     String sName;
+    @SerializedName("LOCATION_ID")
     String sId;
 
     public TowerObj(String sName, String sId) {

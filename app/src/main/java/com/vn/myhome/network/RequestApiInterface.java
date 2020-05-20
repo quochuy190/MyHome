@@ -3,6 +3,7 @@ package com.vn.myhome.network;
 
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
 import com.vn.myhome.network.response.ResponGetBannerCity;
+import com.vn.myhome.network.response.ResponGetListBookCar;
 import com.vn.myhome.network.response.ResponReport;
 
 import java.util.Map;
@@ -60,4 +61,14 @@ public interface RequestApiInterface {
     @Headers("content-type: application/x-www-form-urlencoded")
     @POST("/report/rp_profit")
     Observable<ResponReport> rp_profit(@FieldMap Map<String, String> data);
+
+    @FormUrlEncoded
+    @Headers("content-type: application/x-www-form-urlencoded")
+    @POST("/bookcar/get_list_bookcar")
+    Observable<ResponGetListBookCar> get_list_bookcar(@FieldMap Map<String, String> data);
+
+    @FormUrlEncoded
+    @Headers("content-type: application/x-www-form-urlencoded")
+    @POST("/bookcar/get_list_bookcar_pre")
+    Observable<ResponGetListBookCar> get_list_bookcar_pre(@FieldMap Map<String, String> data);
 }

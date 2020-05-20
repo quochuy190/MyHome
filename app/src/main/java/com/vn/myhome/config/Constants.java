@@ -22,6 +22,8 @@ public class Constants {
         public static final int PERMISSION_CALL_PHONE = 1010;
         public static final int START_REGISTER_ADMIN = 1010;
         public static final int GET_LIST_MYHOME = 1011;
+        public static final int GET_LIST_ROUTE = 1012;
+        public static final int GET_LIST_CAR = 1013;
     }
 
     public class UserType {
@@ -72,4 +74,5 @@ public class Constants {
     public static final String TOP_NHA_NOI_BAT = "TOP NHÀ NỔI BẬT";
     public static final String KEY_SEND_ID_PROVINCE = "KEY_SEND_ID_PROVINCE";
     public static final String KEY_SEND_NAME_PROVINCE = "KEY_SEND_NAME_PROVINCE";
+    public static final String KEY_SEND_ID_BOOKCAR = "KEY_SEND_ID_BOOKCAR";
 }

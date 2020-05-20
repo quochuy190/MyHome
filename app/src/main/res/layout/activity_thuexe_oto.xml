@@ -1,288 +1,597 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <include
-
-        layout="@layout/appbar_all_activity"/>
+    android:orientation="vertical">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/dp3"
-                android:background="@drawable/spr_bg_blue"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
+                android:id="@+id/ll_get_route"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/spr_bg_blue"
+                android:padding="@dimen/dp3">
+
                 <ImageView
                     android:id="@+id/ic_hanhtrinh"
-                    android:tint="@color/app_main"
-                    android:padding="@dimen/dp10"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
                     android:src="@drawable/ic_search_appbar"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.1"
-                    app:layout_constraintDimensionRatio="1:1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"/>
+                    app:layout_constraintWidth_percent="0.1" />
+
                 <ImageView
                     android:id="@+id/ic_down_hanhtrinh"
-                    android:tint="@color/app_main"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:padding="@dimen/dp10"
                     android:src="@drawable/ic_down_blue"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.1"
-                    app:layout_constraintDimensionRatio="1:1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"/>
+                    app:layout_constraintWidth_percent="0.1" />
+
                 <TextView
+                    android:id="@+id/txt_get_route"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Chọn hành trình *"
+                    android:padding="@dimen/dp10"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ic_hanhtrinh"
                     app:layout_constraintEnd_toStartOf="@+id/ic_down_hanhtrinh"
                     app:layout_constraintStart_toEndOf="@+id/ic_hanhtrinh"
-                    android:textSize="@dimen/txt_15sp"
-                    android:hint="Chọn hành trình *"
-                    app:layout_constraintTop_toTopOf="@+id/ic_hanhtrinh"
-                app:layout_constraintBottom_toBottomOf="@+id/ic_hanhtrinh"
-                    android:padding="@dimen/dp10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toTopOf="@+id/ic_hanhtrinh" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="@dimen/dp3"
-            android:background="@drawable/spr_bg_blue"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/ic_chonxe"
-                android:tint="@color/app_main"
-                android:padding="@dimen/dp10"
-                android:src="@drawable/ic_car"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.1"
-                app:layout_constraintDimensionRatio="1:1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
-            <ImageView
-                android:id="@+id/ic_down_chonxe"
-                android:tint="@color/app_main"
-                android:padding="@dimen/dp10"
-                android:src="@drawable/ic_down_blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.1"
-                app:layout_constraintDimensionRatio="1:1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
-            <TextView
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toStartOf="@+id/ic_down_chonxe"
-                app:layout_constraintStart_toEndOf="@+id/ic_chonxe"
-                android:textSize="@dimen/txt_15sp"
-                android:hint="Chọn xe thuê *"
-                app:layout_constraintTop_toTopOf="@+id/ic_chonxe"
-                app:layout_constraintBottom_toBottomOf="@+id/ic_chonxe"
-                android:padding="@dimen/dp10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:id="@+id/ll_get_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/spr_bg_blue"
+                android:padding="@dimen/dp3">
+
+                <ImageView
+                    android:id="@+id/ic_chonxe"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/ic_car"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.1" />
+
+                <ImageView
+                    android:id="@+id/ic_down_chonxe"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp10"
+                    android:src="@drawable/ic_down_blue"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.1" />
+
+                <TextView
+                    android:id="@+id/txt_get_car"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Chọn xe thuê *"
+                    android:padding="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ic_chonxe"
+                    app:layout_constraintEnd_toStartOf="@+id/ic_down_chonxe"
+                    app:layout_constraintStart_toEndOf="@+id/ic_chonxe"
+                    app:layout_constraintTop_toTopOf="@+id/ic_chonxe" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/dp3"
-                android:background="@drawable/spr_bg_blue"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/spr_bg_blue"
+                android:padding="@dimen/dp3">
+
                 <ImageView
                     android:id="@+id/ic_name_customer"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:padding="@dimen/dp7"
                     android:src="@drawable/btn_avatar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.1"
-                    app:layout_constraintDimensionRatio="1:1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"/>
+                    app:layout_constraintWidth_percent="0.1" />
 
                 <EditText
+                    android:focusable="true"
+                    android:inputType="textCapWords"
+                    android:id="@+id/txt_name_customer"
+                    android:backgroundTint="@color/White"
+                    android:textCursorDrawable="@color/black"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Tên khách hàng *"
                     android:imeOptions="actionNext"
+                    android:padding="@dimen/dp10"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ic_name_customer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ic_name_customer"
-                    android:textSize="@dimen/txt_15sp"
-                    android:hint="Tên khách hàng *"
-                    app:layout_constraintTop_toTopOf="@+id/ic_name_customer"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_name_customer"
-                    android:padding="@dimen/dp10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toTopOf="@+id/ic_name_customer" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/dp3"
-                android:background="@drawable/spr_bg_blue"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/spr_bg_blue"
+                android:padding="@dimen/dp3">
+
                 <ImageView
                     android:id="@+id/ic_phone_customer"
-                    android:tint="@color/app_main"
-                    android:padding="@dimen/dp10"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
                     android:src="@drawable/icon_phone"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.1"
-                    app:layout_constraintDimensionRatio="1:1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"/>
+                    app:layout_constraintWidth_percent="0.1" />
 
                 <EditText
+                    android:inputType="number"
+                    android:focusable="auto"
+                    android:id="@+id/edt_phone_customer"
+                    android:backgroundTint="@color/White"
+                    android:textCursorDrawable="@color/black"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Số điện thoại *"
                     android:imeOptions="actionNext"
+                    android:padding="@dimen/dp10"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ic_phone_customer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ic_phone_customer"
-                    android:textSize="@dimen/txt_15sp"
-                    android:hint="Số điện thoại *"
-                    app:layout_constraintTop_toTopOf="@+id/ic_phone_customer"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_phone_customer"
-                    android:padding="@dimen/dp10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toTopOf="@+id/ic_phone_customer" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/dp3"
-                android:background="@drawable/spr_bg_blue"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp5"
+                    android:background="@drawable/spr_bg_blue"
+                    android:padding="@dimen/dp3"
+                    app:layout_constraintEnd_toStartOf="@+id/ll_gio"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ic_ngaydon"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp10"
+                        android:src="@drawable/ic_date"
+                        android:tint="@color/app_main"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <EditText
+                        android:focusable="false"
+                        android:backgroundTint="@color/White"
+                        android:textCursorDrawable="@color/app_main"
+                        android:id="@+id/edt_ngaydon"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Ngày đón*"
+                        android:imeOptions="actionNext"
+                        android:padding="@dimen/dp10"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_ngaydon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ic_ngaydon"
+                        app:layout_constraintTop_toTopOf="@+id/ic_ngaydon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_gio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:background="@drawable/spr_bg_blue"
+                    android:padding="@dimen/dp3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ll_date"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ic_gio"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp7"
+                        android:src="@drawable/ic_time"
+                        android:tint="@color/app_main"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <EditText
+                        android:focusable="false"
+                        android:backgroundTint="@color/White"
+                        android:textCursorDrawable="@color/app_main"
+                        android:id="@+id/edt_gio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Giờ đón*"
+                        android:imeOptions="actionNext"
+                        android:padding="@dimen/dp10"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_gio"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ic_gio"
+                        app:layout_constraintTop_toTopOf="@+id/ic_gio" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:textColor="@color/red_money"
+                android:textSize="@dimen/txt_11sp"
                 android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp10"
+                android:id="@+id/txt_note__"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="@string/txt_note_address_bookcar"
+                app:layout_constraintTop_toBottomOf="@+id/ll_tinhcuoc"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/spr_bg_blue"
+                android:padding="@dimen/dp3">
+
                 <ImageView
                     android:id="@+id/ic_address_customer"
-                    android:tint="@color/app_main"
-                    android:padding="@dimen/dp10"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
                     android:src="@drawable/ic_location"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.1"
-                    app:layout_constraintDimensionRatio="1:1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"/>
+                    app:layout_constraintWidth_percent="0.1" />
 
                 <EditText
+                    android:focusable="auto"
+                    android:inputType="textCapWords"
+                    android:backgroundTint="@color/White"
+                    android:textCursorDrawable="@color/black"
+                    android:id="@+id/edt_diachi_don"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Địa chỉ đón khách*"
                     android:imeOptions="actionNext"
+                    android:padding="@dimen/dp10"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ic_address_customer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ic_address_customer"
-                    android:textSize="@dimen/txt_15sp"
-                    android:hint="Địa chỉ *"
-                    app:layout_constraintTop_toTopOf="@+id/ic_address_customer"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_address_customer"
-                    android:padding="@dimen/dp10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toTopOf="@+id/ic_address_customer" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/dp3"
-                android:background="@drawable/spr_bg_blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/spr_bg_blue"
+                android:padding="@dimen/dp3">
+
+                <ImageView
+                    android:id="@+id/ic_diadiemden"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
+                    android:src="@drawable/ic_location"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.1" />
+
+                <EditText
+                    android:inputType="textCapWords"
+                    android:focusable="auto"
+                    android:backgroundTint="@color/White"
+                    android:textCursorDrawable="@color/black"
+                    android:id="@+id/edt_diadiemden"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Địa chỉ trả khách*"
+                    android:imeOptions="actionNext"
+                    android:padding="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/txt_15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ic_diadiemden"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ic_diadiemden"
+                    app:layout_constraintTop_toTopOf="@+id/ic_diadiemden" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ll_tinhcuoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_cuoctamtinh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp5"
+                    android:background="@drawable/spr_bg_blue"
+                    android:padding="@dimen/dp3"
+                    app:layout_constraintEnd_toStartOf="@+id/ll_cuoctinhthem"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ic_cuoctamtinh"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp7"
+                        android:src="@drawable/icon_money"
+                        android:tint="@color/app_main"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <TextView
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:id="@+id/txt_title_cuoc"
+                        android:textSize="@dimen/txt_12sp"
+                        android:textColor="@color/Silver"
+                        android:text="Cước tạm tính *"
+                        app:layout_constraintStart_toEndOf="@+id/ic_cuoctamtinh"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:focusable="false"
+                        android:backgroundTint="@color/White"
+                        android:textCursorDrawable="@color/app_main"
+                        android:id="@+id/edt_cuoctamtinh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:padding="@dimen/dp5"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ic_cuoctamtinh"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_title_cuoc" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_cuoctinhthem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp5"
+                    android:background="@drawable/spr_bg_blue"
+                    android:padding="@dimen/dp3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ll_cuoctamtinh"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ic_cuoctinhthem"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:padding="@dimen/dp7"
+                        android:src="@drawable/icon_money"
+                        android:tint="@color/app_main"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2" />
+                    <TextView
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:id="@+id/txt_title_cuoc_"
+                        android:textSize="@dimen/txt_12sp"
+                        android:textColor="@color/Silver"
+                        android:text="Cước thu chênh *"
+                        app:layout_constraintStart_toEndOf="@+id/ic_cuoctinhthem"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.vn.myhome.models.CurrencyEditText
+                        android:backgroundTint="@color/White"
+                        android:textCursorDrawable="@color/black"
+                        android:id="@+id/edt_cuoctinhthem"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Cước thu thêm"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:padding="@dimen/dp5"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/txt_15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ic_cuoctinhthem"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_title_cuoc_" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:textColor="@color/red_money"
+                android:textSize="@dimen/txt_11sp"
                 android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp10"
+                android:id="@+id/txt_note_"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="* Cước tính thêm là phí dịch vụ khách hàng phải trả khi đặt xe qua MyHome. Người đặt xe sẽ được hưởng cước tính thêm này"
+                app:layout_constraintTop_toBottomOf="@+id/ll_tinhcuoc"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@drawable/spr_bg_blue"
+                android:padding="@dimen/dp3">
+
                 <ImageView
                     android:id="@+id/ic_note_customer"
-                    android:tint="@color/app_main"
-                    android:padding="@dimen/dp10"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/dp7"
                     android:src="@drawable/ic_book_note"
+                    android:tint="@color/app_main"
+                    app:layout_constraintBottom_toBottomOf="@+id/edt_note_customer"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/edt_note_customer"
-                    app:layout_constraintBottom_toBottomOf="@+id/edt_note_customer"
-                    app:layout_constraintWidth_percent="0.1"
-                    app:layout_constraintDimensionRatio="1:1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"/>
+                    app:layout_constraintWidth_percent="0.1" />
 
                 <EditText
+
+                    android:focusable="auto"
+                    android:backgroundTint="@color/White"
+                    android:textCursorDrawable="@color/black"
                     android:id="@+id/edt_note_customer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Nội dung yêu cầu/ Ghi chú *"
                     android:imeOptions="actionNext"
                     android:inputType="textMultiLine"
-                    android:minLines="2"
                     android:maxLines="5"
+                    android:minLines="2"
+                    android:padding="@dimen/dp10"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/txt_15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ic_note_customer"
-                    android:textSize="@dimen/txt_15sp"
-                    android:hint="Nội dung yêu cầu/ Ghi chú *"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:padding="@dimen/dp10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="@dimen/dp3"
-                android:background="@drawable/spr_bg_blue"
+
+            <TextView
+                android:textSize="@dimen/txt_15sp"
+                android:textColor="@color/black"
                 android:layout_marginTop="@dimen/dp10"
+                android:text="Hình thức thanh toán"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioGroup
+                android:gravity="center_vertical"
                 android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp10"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/ic_monney"
-                    android:tint="@color/app_main"
-                    android:padding="@dimen/dp10"
-                    android:src="@drawable/icon_money"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.1"
-                    app:layout_constraintDimensionRatio="1:1"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"/>
-
-                <EditText
-                    android:imeOptions="actionDone"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/ic_monney"
-                    android:textSize="@dimen/txt_15sp"
-                    android:hint="Giá cước tạm tính *"
-                    app:layout_constraintTop_toTopOf="@+id/ic_monney"
-                    app:layout_constraintBottom_toBottomOf="@+id/ic_monney"
-                    android:padding="@dimen/dp10"
-                    android:layout_width="0dp"
+                <RadioButton
+                    android:id="@+id/radio_thuchenh"
+                    android:textSize="@dimen/txt_13sp"
+                    android:buttonTint="@color/app_main"
+                    android:text="Thanh toán trả sau"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/dp0_7"
                     android:layout_height="wrap_content"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/radio_thanhtoanchuyenkhoan"
+                    android:textSize="@dimen/txt_13sp"
+                    android:buttonTint="@color/app_main"
+                    android:text="Thanh toán chuyển khoản"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/dp0_7"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
 
             <Button
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/dp10"
-                android:paddingLeft="@dimen/height_60"
-                android:paddingRight="@dimen/height_60"
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_book_car"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_btn_35"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp20"
+                android:layout_marginBottom="@dimen/dp10"
                 android:background="@drawable/spr_btn_login"
+                android:paddingLeft="@dimen/height_60"
+                android:paddingRight="@dimen/height_60"
                 android:text="Đặt xe"
                 android:textColor="@color/White"
                 android:textSize="@dimen/txt_15sp"

@@ -195,8 +195,14 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
             public void onClick(View v) {
                 int guest = Integer.parseInt(edt_num_guest.getText().toString());
                 guest++;
-                edt_num_guest.setText("" + guest);
-                set_price_total();
+                int max = Integer.parseInt(objHomeStay.getMAX_GUEST_EXIST());
+                if (guest >max){
+                    showDialogNotify("Thông báo", "Đã đủ số khách tối đa.");
+                }else {
+                    edt_num_guest.setText("" + guest);
+                    set_price_total();
+                }
+
             }
         });
         txt_minus.setOnClickListener(new View.OnClickListener() {
@@ -334,6 +340,13 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
                 int iWeekend_discount = 0;
                 int iDay_discount = 0;
                 int iNoWeekend = 0;
+                price_thuong =0;
+                iPrice_special = 0;
+                price_room = 0;
+                price_clear=0;
+                price_max_guest=0;
+                price_phikhac=0;
+                price_total=0;
                 for (int i = 0; i < lisDate.size() - 1; i++) {
                     if (TimeUtils.check_weekend(lisDate.get(i))) {
                         if (TimeUtils.check_discount(lisDate.get(i), TimeUtils.convent_date(objHomeStay.getPROMO_ST_TIME(),
@@ -371,7 +384,7 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
                     long price = Long.parseLong(objHomeStay.getPRICE()) -
                             Long.parseLong(objHomeStay.getDISCOUNT());
                     txt_title_price_ngaythuong_discount.setVisibility(View.VISIBLE);
-                    price_thuong = price_thuong+(iNoWeekend * price);
+                    price_thuong = price_thuong+(iDay_discount * price);
                     txt_price_ngaythuong_discount.setText(iDay_discount + " * " + StringUtil.conventMonney_Long(price + ""));
                 } else
                     txt_title_price_ngaythuong_discount.setVisibility(View.GONE);

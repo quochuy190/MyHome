@@ -53,5 +53,6 @@
     <string name="tab_bookdondep">Book dọn dẹp</string>
     <string name="tab_thongke">Thống kê</string>
     <string name="tab_list_myhome">Danh sách nhà của tôi</string>
-
+    <string name="txt_note">Ghi chú</string>
+    <string name="txt_note_address_bookcar">*Vui lòng ghi chi tiết địa chỉ đón và trả khách</string>
 </resources>

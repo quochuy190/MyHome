@@ -219,7 +219,7 @@ public class FragmentReportHost extends BaseFragment {
             }
             txt_title_book.setText("Số ngày đặt phòng trong tháng " + objReport_current.getMONTH());
             txt_content_book.setText(objReport_current.getTOTALDAY() + "/" + objReport_current.getNUMBER_OF_DAYS() + " ngày");
-            txt_note_book.setText(revene+" ngày so với tháng trước");
+            txt_note_book.setText(revene + " ngày so với tháng trước");
 
             //txt_title_book_last_month.setText("Số đơn trong tháng so với tháng trước nữa");
 
@@ -254,8 +254,21 @@ public class FragmentReportHost extends BaseFragment {
         if (objReport.getERROR().equals("0000")) {
             ObjReport objCurrent = objReport.getINFO().get(0);
             txt_title_revenue.setText(Html.fromHtml("Doanh thu trọn đời"));
-            txt_loinhuan_of_month.setText(StringUtil.conventMonney_Long(objCurrent.getPROFIT()));
-            txt_duno_of_month.setText(StringUtil.conventMonney_Long(objCurrent.getBALANCE()));
+            long profit = Long.parseLong(objCurrent.getPROFIT());
+            if (profit>=0){
+                txt_loinhuan_of_month.setText(StringUtil.conventMonney_Long(objCurrent.getPROFIT()));
+            }else
+                txt_loinhuan_of_month.setText("-"+StringUtil.conventMonney_Long
+                        (objCurrent.getPROFIT().substring(1, objCurrent.getPROFIT().length())));
+
+
+            long balance = Long.parseLong(objCurrent.getBALANCE());
+            if (balance >= 0) {
+                txt_duno_of_month.setText(StringUtil.conventMonney_Long
+                        (objCurrent.getBALANCE()));
+            } else
+                txt_duno_of_month.setText("-" + StringUtil.conventMonney_Long
+                        (objCurrent.getBALANCE().substring(1, objCurrent.getBALANCE().length())));
         }
     }
 }

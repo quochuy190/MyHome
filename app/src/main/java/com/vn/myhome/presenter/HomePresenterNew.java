@@ -1,6 +1,5 @@
 package com.vn.myhome.presenter;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.vn.myhome.config.Constants;
@@ -43,7 +42,7 @@ public class HomePresenterNew {
         mApi = retrofit.create(RequestApiInterface.class);
     }
 
-    @SuppressLint("CheckResult")
+
     public void getBannerCity(String sUserName) {
         fragmentHome.showDialogLoading();
         Map<String, String> mMap = new LinkedHashMap<>();
@@ -51,7 +50,7 @@ public class HomePresenterNew {
         Map<String, String> mMap_get_room = new LinkedHashMap<>();
         mMap_get_room.put("USERNAME", sUserName);
         mMap_get_room.put("PAGE", "1");
-        mMap_get_room.put("NUMOFPAGE", "20");
+        mMap_get_room.put("NUMOFPAGE", "1000");
 
         Observable<ResponGetBannerCity> userObservable1 = mApi.get_banner_city(mMap)
                 .subscribeOn(Schedulers.newThread())

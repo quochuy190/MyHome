@@ -27,9 +27,10 @@ public interface InterfaceBooking {
 
         void api_change_booking(String USERNAME, String ID_BOOKROOM, String BOOKING_STATUS);
 
-        void api_get_booking_services(String USERNAME, String GENLINK, String CHECKIN, String CHECKOUT);
+        void api_get_booking_services(String USERNAME, String GENLINK, String CHECKIN,
+                                      String CHECKOUT,String BOOKING_STATUS, String BILLING_STATUS );
 
-        void api_booking_services2(String USERNAME, String GENLINK, String CHECKIN, String CHECKOUT, String ID_BOOKROOM);
+        void api_booking_services2(String USERNAME, String GENLINK, String CHECKIN, String CHECKOUT, String ID_BOOKROOM, String NOTES);
 
         void api_change_booking_services(String USERNAME, String ID_BOOK, String STATE, String BILLING_STATUS);
 

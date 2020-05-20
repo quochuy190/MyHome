@@ -150,6 +150,8 @@ public class Fragment_Tab_Lichdonnha_Admin extends BaseFragment implements View.
         init();
         get_time();
         set_data_spinner();
+        set_data_spinner_thanhtoan_donnha();
+        set_data_spinner_trangthai_don();
         initEvent();
         get_list_donphong();
         return view;
@@ -159,6 +161,77 @@ public class Fragment_Tab_Lichdonnha_Admin extends BaseFragment implements View.
         ll_date_start.setOnClickListener(this);
         ll_date_end.setOnClickListener(this);
         btn_tracuu.setOnClickListener(this);
+    }
+    List<String> data_trangthai_thanhtoan;
+    @BindView(R.id.spinner_trangthai_thanhtoan_donnha)
+    Spinner spinner_trangthai_thanhtoan;
+    String BILLING_STATUS = "";// 0: chua tt ;1: da tt
+    private void set_data_spinner_thanhtoan_donnha() {
+        data_trangthai_thanhtoan = new ArrayList<>();
+        // add trạng thái thanh toán
+        data_trangthai_thanhtoan.add("- Tất cả - ");
+        data_trangthai_thanhtoan.add("Chưa thanh toán");
+        data_trangthai_thanhtoan.add("Đã thanh toán");
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item_spinner, data_trangthai_thanhtoan);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner_trangthai_thanhtoan.setAdapter(adapter);
+        spinner_trangthai_thanhtoan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    BILLING_STATUS = "";
+                } else
+                    BILLING_STATUS = "" + (position - 1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+    List<String> data_trangthai_bookphong;
+    @BindView(R.id.spinner_trangthai_don)
+    Spinner spinner_trangthai_bookphong;
+    String BOOKING_STATUS = "";//1: duyet ok ;2 :lock ;3 huy
+    private void set_data_spinner_trangthai_don() {
+        data_trangthai_bookphong = new ArrayList<>();
+        data_trangthai_bookphong.add("- Tất cả - ");
+        data_trangthai_bookphong.add("Đang chờ");
+        data_trangthai_bookphong.add("Check-In");
+        data_trangthai_bookphong.add("Check-Out");
+        data_trangthai_bookphong.add("Hoàn thành");
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item_spinner, data_trangthai_bookphong);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner_trangthai_bookphong.setAdapter(adapter);
+        spinner_trangthai_bookphong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // sStatusBook = "" + position;
+               switch (position){
+                   case 0:
+                       BOOKING_STATUS = "";
+                       break;
+                   case 1:
+                       BOOKING_STATUS = "0";
+                       break;
+                   case 2:
+                       BOOKING_STATUS = "1";
+                       break;
+                   case 3:
+                       BOOKING_STATUS = "2";
+                       break;
+                   case 4:
+                       BOOKING_STATUS = "4";
+                       break;
+               }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void init() {
@@ -232,7 +305,7 @@ public class Fragment_Tab_Lichdonnha_Admin extends BaseFragment implements View.
         String sUser = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         String sStartDate = edt_date_start.getText().toString();
         String sEndDate = edt_date_end.getText().toString();
-        mPresenter.api_get_booking_services(sUser, sGetLink, sStartDate, sEndDate);
+        mPresenter.api_get_booking_services(sUser, sGetLink, sStartDate, sEndDate, BOOKING_STATUS, BILLING_STATUS);
 
     }
 

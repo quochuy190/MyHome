@@ -18,6 +18,8 @@ public class ObjErrorApi {
     String RESULT;
     @SerializedName("GENLINK")
     String GENLINK;
+    @SerializedName("INFO")
+    ObjListBookCar INFO;
     @SerializedName("CODE_ACTIVE")
     String CODE_ACTIVE;
     @SerializedName("IDROOM")
@@ -29,8 +31,17 @@ public class ObjErrorApi {
     @SerializedName("PRICE")
     String PRICE;
     @SerializedName("ID_BOOKROOM")
-    String ID_BOOKROOM;    @SerializedName("ID_BOOK_SERVICE")
+    String ID_BOOKROOM;
+    @SerializedName("ID_BOOK_SERVICE")
     String ID_BOOK_SERVICE;
+
+    public ObjListBookCar getINFO() {
+        return INFO;
+    }
+
+    public void setINFO(ObjListBookCar INFO) {
+        this.INFO = INFO;
+    }
 
     public String getPRICE() {
         return PRICE;

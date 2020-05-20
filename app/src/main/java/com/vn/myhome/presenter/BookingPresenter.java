@@ -198,13 +198,16 @@ public class BookingPresenter implements InterfaceBooking.Presenter {
     }
 
     @Override
-    public void api_get_booking_services(String USERNAME, String GENLINK, String CHECKIN, String CHECKOUT) {
-        String sService = "book/get_booking_services";
+    public void api_get_booking_services(String USERNAME, String GENLINK, String CHECKIN,
+                                         String CHECKOUT, String BOOKING_STATUS, String BILLING_STATUS) {
+        String sService = "book/get_booking_services2";
         Map<String, String> mMap = new LinkedHashMap<>();
         mMap.put("USERNAME", USERNAME);
         mMap.put("GENLINK", GENLINK);
         mMap.put("CHECKIN", CHECKIN);
         mMap.put("CHECKOUT", CHECKOUT);
+        mMap.put("BOOKING_STATUS", BOOKING_STATUS);
+        mMap.put("BILLING_STATUS", BILLING_STATUS);
 
         mApiService.getApi_Token_Enable(new CallbackData<String>() {
             @Override
@@ -229,7 +232,7 @@ public class BookingPresenter implements InterfaceBooking.Presenter {
 
     @Override
     public void api_booking_services2(String USERNAME, String GENLINK, String CHECKIN,
-                                      String CHECKOUT, String ID_BOOKROOM) {
+                                      String CHECKOUT, String ID_BOOKROOM, String NOTES) {
         String sService = "book/booking_services2";
         Map<String, String> mMap = new LinkedHashMap<>();
         mMap.put("USERNAME", USERNAME);
@@ -237,6 +240,7 @@ public class BookingPresenter implements InterfaceBooking.Presenter {
         mMap.put("CHECKIN", CHECKIN);
         mMap.put("CHECKOUT", CHECKOUT);
         mMap.put("ID_BOOKROOM", ID_BOOKROOM);
+        mMap.put("NOTES", NOTES);
 
         mApiService.getApi_Token_Enable(new CallbackData<String>() {
             @Override

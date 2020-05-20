@@ -83,9 +83,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp7"
-
             android:padding="@dimen/dp1"
-            android:text="TECHCOMBACK chi nhánh Hoàn Kiếm"
+            android:text="TECHCOMBANK chi nhánh Hoàn Kiếm"
             android:textColor="@color/Black"
             android:textSize="@dimen/txt_16sp"
             android:textStyle="bold"
@@ -110,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp7"
             android:padding="@dimen/dp1"
-            android:text="180.000VNĐ"
+
             android:textColor="@color/Black"
             android:textSize="@dimen/txt_16sp"
             android:textStyle="bold"

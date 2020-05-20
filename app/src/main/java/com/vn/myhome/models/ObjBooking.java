@@ -30,7 +30,15 @@ public class ObjBooking {
     String MONEY_SERVICES;
     String CONTENT_SERVICES;
     String BOOKING_PRICE;
+    String KIND_OF_PAID;
 
+    public String getKIND_OF_PAID() {
+        return KIND_OF_PAID;
+    }
+
+    public void setKIND_OF_PAID(String KIND_OF_PAID) {
+        this.KIND_OF_PAID = KIND_OF_PAID;
+    }
 
     public String getBOOKING_PRICE() {
         return BOOKING_PRICE;

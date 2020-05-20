@@ -1,19 +1,25 @@
 package com.vn.myhome;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.multidex.BuildConfig;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vn.myhome.activity.login.InterfaceLogin;
 import com.vn.myhome.activity.login.PresenterLogin;
 import com.vn.myhome.base.BaseActivity;
+import com.vn.myhome.callback.ClickDialog;
 import com.vn.myhome.config.Constants;
 import com.vn.myhome.fragment.FragmentDatphong;
 import com.vn.myhome.fragment.FragmentHome;
@@ -23,6 +29,7 @@ import com.vn.myhome.fragment.FragmentSetup;
 import com.vn.myhome.fragment.FragmentThongke;
 import com.vn.myhome.fragment.bottom_bar.FragmentHostBottombar;
 import com.vn.myhome.fragment.qldondep.FragmentHomeQldondep;
+import com.vn.myhome.fragment.services.ActivityBookCar;
 import com.vn.myhome.fragment.services.FragmentServicesAll;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjLogin;
@@ -43,6 +50,13 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
     private static final String TAG = "MainActivity";
     @BindView(R.id.nav_bottom_bar)
     BottomNavigationView bottom_bar;
+    @BindView(R.id.txt_xemthem)
+    TextView txt_xemthem;    @BindView(R.id.txt_dong)
+    TextView txt_dong;
+    @BindView(R.id.ll_promotion)
+    ConstraintLayout ll_promotion;
+    @BindView(R.id.img_sale)
+    ImageView img_sale;
     PresenterLogin mPresenterLogin;
     AmentiniesPresenter mPresenterAmentinies;
     UpdateVersionPresenter mPresenterUpdateVersion;
@@ -53,14 +67,39 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         mPresenterLogin = new PresenterLogin(this);
         mPresenterAmentinies = new AmentiniesPresenter(this);
         mPresenterUpdateVersion = new UpdateVersionPresenter(this);
+        check_show_popup();
         initBottomBar();
         initData();
         ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         if (!objLogin.getUSER_TYPE().equals(Constants.UserType.CTV)) {
             TextView textView = (TextView) bottom_bar.findViewById(R.id.tab_myhome).findViewById(R.id.largeLabel);
-            textView.setText("abc");
+            textView.setText("MyHome");
         }
 
+    }
+
+    Dialog dialog;
+
+    private void check_show_popup() {
+
+        img_sale.setImageResource(R.drawable.img_sale_home);
+        if (!App.isShowPopup) {
+            ll_promotion.setVisibility(View.VISIBLE);
+            App.isShowPopup = true;
+        }
+        txt_xemthem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ActivityBookCar.class));
+                ll_promotion.setVisibility(View.GONE);
+            }
+        });
+        txt_dong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ll_promotion.setVisibility(View.GONE);
+            }
+        });
     }
 
     String sUserName = "", sPass = "";
@@ -98,7 +137,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 mPresenterAmentinies.api_get_amenities(sUserName);
                 String UUID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
                 String sTokenKey = SharedPrefs.getInstance().get(Constants.KEY_TOKEN, String.class);
-                mPresenterLogin.api_update_device(sUserName, BuildConfig.VERSION_NAME,
+                mPresenterLogin.api_update_device(sUserName, App.versionName,
                         android.os.Build.BRAND + " " + android.os.Build.MODEL, sTokenKey,
                         android.os.Build.VERSION.RELEASE, "2", UUID);
             }
@@ -203,6 +242,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             }
             if (fragmentHost != null && fragmentHost.isAdded()) {
                 transaction.hide(fragmentHost);
+            }
+            if (fragmentServicesAll != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
             }
             transaction.show(fragmentHome);
         }
@@ -333,6 +375,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentLichdonnha_home != null && fragmentLichdonnha_home.isAdded()) {
                 transaction.hide(fragmentLichdonnha_home);
             }
+            if (fragmentServicesAll != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
+            }
             transaction.show(fragmentHost);
         }
         //   fragmentCurrent = fragmentHome;
@@ -376,6 +421,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         //   fragmentCurrent = fragmentHome;
         transaction.commit();
     }
+
     private void loadFragmentServiceAll() {
         //   objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);
         fragmentServicesAll = (FragmentServicesAll) getSupportFragmentManager().findFragmentByTag(FragmentServicesAll.class.getName());
@@ -390,8 +436,8 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentHome != null && fragmentHome.isAdded()) {
                 transaction.hide(fragmentHome);
             }
-            if (fragmentDatphong != null && fragmentServicesAll.isAdded()) {
-                transaction.hide(fragmentServicesAll);
+            if (fragmentDatphong != null && fragmentDatphong.isAdded()) {
+                transaction.hide(fragmentDatphong);
             }
             if (fragmentSetup != null && fragmentSetup.isAdded()) {
                 transaction.hide(fragmentSetup);
@@ -452,6 +498,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentHost != null && fragmentHost.isAdded()) {
                 transaction.hide(fragmentHost);
             }
+            if (fragmentServicesAll != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
+            }
             transaction.show(fragmentDatphong);
         }
         //   fragmentCurrent = fragmentHome;
@@ -487,6 +536,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             }
             if (fragmentHost != null && fragmentHost.isAdded()) {
                 transaction.hide(fragmentHost);
+            }
+            if (fragmentServicesAll != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
             }
             transaction.show(fragmentLichnhaAdmin);
         }
@@ -528,6 +580,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentHost != null && fragmentHost.isAdded()) {
                 transaction.hide(fragmentHost);
             }
+            if (fragmentServicesAll != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
+            }
             transaction.show(fragmentLichdonnha_home);
         }
         //   fragmentCurrent = fragmentHome;
@@ -566,6 +621,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (fragmentHost != null && fragmentHost.isAdded()) {
                 transaction.hide(fragmentHost);
             }
+            if (fragmentServicesAll != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
+            }
             transaction.show(fragmentSetup);
         }
         //   fragmentCurrent = fragmentHome;
@@ -590,9 +648,8 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 }
 
             }
-          /*  int version = Integer.parseInt(mVersion.getVERSION());
-            int version_code = BuildConfig.VERSION_CODE;
-            Log.d(TAG, "show_get_version: "+BuildConfig.VERSION_CODE);
+            int version = Integer.parseInt(mVersion.getVERSION());
+            int version_code = App.versionCode;
             if (version_code < version) {
                 //  showDialogNotify("Thông báo","Hiện đang có phiên bản mới ");
                 showDialogComfirm("Thông báo",
@@ -613,7 +670,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
 
                             }
                         });
-            }*/
+            }
         }
     }
 
@@ -658,7 +715,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
             if (sTokenKey == null)
                 sTokenKey = "";
             String UUID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-            mPresenterLogin.api_update_device(sUserName, BuildConfig.VERSION_NAME,
+            mPresenterLogin.api_update_device(sUserName, App.versionName,
                     android.os.Build.BRAND + " " + android.os.Build.MODEL, sTokenKey,
                     android.os.Build.VERSION.RELEASE, "2", UUID);
             SharedPrefs.getInstance().put(Constants.KEY_SAVE_OBJECT_LOGIN, objLogin);

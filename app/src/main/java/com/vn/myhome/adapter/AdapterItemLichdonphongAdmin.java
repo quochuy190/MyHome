@@ -83,6 +83,8 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                 });
                 if (obj.getROOM_NAME() != null)
                     holder.txt_name_home.setText("" + obj.getROOM_NAME());
+                if (obj.getNOTES() != null)
+                    holder.txt_note.setText("Ghi chú:\n" + obj.getNOTES());
                 if (obj.getFULL_NAME() != null) {
                     //  holder.txt_name_booker.setText("Người đặt: " + obj.getBOOK_NAME());
                     String styledText = "Người đặt: <font color='#3300FF'><b><u>" + obj.getFULL_NAME() + "</u></b></font>";
@@ -138,15 +140,31 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                     holder.txt_status_home.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
                     //holder.txt_status_room.setText("Trạng thái phòng: Đang trống");
                 }
-                if (obj.getBILLING_STATUS() != null && obj.getBILLING_STATUS().equals("1")) {
+                if (obj.getSTATE().equals("4")){
+                    holder.btn_trangthainha.setVisibility(View.GONE);
+                }else
                     holder.btn_trangthainha.setVisibility(View.VISIBLE);
+                if (obj.getBILLING_STATUS() != null && obj.getBILLING_STATUS().equals("1")) {
+                    holder.btn_update_pay.setVisibility(View.GONE);
                     String styledText = "Trạng thái thanh toán: <font color='#006666'><b>Đã thanh toán</b></font>.";
                     holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
                     //   holder.txt_status_room.setText("Trạng thái phòng: Đã khóa");
                 } else {
-                    holder.btn_trangthainha.setVisibility(View.VISIBLE);
-                    String styledText = "Trạng thái thanh toán: <font color='#FF3300'><b>Chưa thanh toán</b></font>.";
-                    holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                    holder.btn_update_pay.setVisibility(View.VISIBLE);
+                    ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+                    if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
+                        holder.btn_update_pay.setVisibility(View.GONE);
+                    } else {
+                        holder.btn_update_pay.setVisibility(View.VISIBLE);
+                    }
+                    if (obj.getKIND_OF_PAID().equals("1")){
+                        String styledText = "Trạng thái thanh toán: <font color='#CC6633'><b>Thanh toán trả sau</b></font>.";
+                        holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                    }else {
+                        String styledText = "Trạng thái thanh toán: <font color='#FF3300'><b>Chưa thanh toán</b></font>.";
+                        holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                    }
+
                     //holder.txt_status_room.setText("Trạng thái phòng: Đang trống");
                 }
                 if (obj.getCONTENT() != null) {
@@ -166,12 +184,6 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                         OnIListener.OnItemClickListener_Two_Btn(position);
                     }
                 });
-                ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
-                if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
-                    holder.btn_update_pay.setVisibility(View.GONE);
-                } else {
-                    holder.btn_update_pay.setVisibility(View.VISIBLE);
-                }
                 holder.txt_name_booker.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -206,6 +218,8 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
             View.OnClickListener, View.OnLongClickListener {
         @BindView(R.id.txt_name_home)
         TextView txt_name_home;
+        @BindView(R.id.txt_note)
+        TextView txt_note;
         @BindView(R.id.txt_name_booker)
         TextView txt_name_booker;
         @BindView(R.id.txt_time_checkin)

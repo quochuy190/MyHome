@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.jaiselrahman.filepicker.activity.FilePickerActivity;
 import com.jaiselrahman.filepicker.config.Configurations;
 import com.jaiselrahman.filepicker.model.MediaFile;
@@ -108,6 +109,10 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
     TextView btn_doimatkhau;
     @BindView(R.id.ll_city)
     ConstraintLayout ll_city;
+    @BindView(R.id.ll_stype)
+    ConstraintLayout ll_stype;
+    @BindView(R.id.img_user_type)
+    ImageView img_user_type;
     @BindView(R.id.img_get_city)
     ImageView img_get_city;
     @BindView(R.id.img_get_image)
@@ -145,6 +150,42 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         }
 
     };
+    BottomSheetDialog mBottomSheetDialog;
+    TextView txt_chunha;
+    TextView txt_dichvu;
+    TextView txt_dong;
+
+    private void show_bottom_dialog() {
+        mBottomSheetDialog = new BottomSheetDialog(Activity_Info_User.this);
+        View sheetView = getLayoutInflater().inflate(R.layout.dialog_usertype, null);
+        mBottomSheetDialog.setContentView(sheetView);
+        txt_chunha = sheetView.findViewById(R.id.txt_chunha);
+        txt_dichvu = sheetView.findViewById(R.id.txt_dichvu);
+        txt_dong = sheetView.findViewById(R.id.txt_dong_dialog);
+        txt_chunha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sUserType = "1";
+                edt_stype.setText("Chủ nhà");
+                mBottomSheetDialog.dismiss();
+            }
+        });
+        txt_dichvu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sUserType = "2";
+                edt_stype.setText("Cộng tác viên");
+                mBottomSheetDialog.dismiss();
+            }
+        });
+        txt_dong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBottomSheetDialog.dismiss();
+            }
+        });
+        mBottomSheetDialog.show();
+    }
 
     private void update_start_date() {
         String myFormat = "dd/MM/yyyy"; //In which you need put here
@@ -153,6 +194,21 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
     }
 
     private void initEvent() {
+        img_user_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+                String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.ADMIN)) {
+                    if (sUserId != null) {
+                        if (!sUserName.equals(sUserId)) {
+                            show_bottom_dialog();
+                        }
+                    }
+                }
+
+            }
+        });
         switch_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -202,7 +258,7 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
                     get_api_reg(sUserId, "1");
                 }*/
                 String pass = SharedPrefs.getInstance().get(Constants.KEY_SAVE_PASSWORD, String.class);
-                get_api_reg(sUserId, "", pass);
+                get_api_reg(sUserId, sState, pass);
 
             }
         });
@@ -346,8 +402,13 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         if (objRes != null && objRes.getINFO() != null) {
             if (objRes.getINFO().size() > 0) {
                 ObjLogin objLogin = objRes.getINFO().get(0);
-                if (objLogin != null)
+                if (objLogin != null) {
+                    // SharedPrefs.getInstance().put(Constants.KEY_SAVE_OBJECT_LOGIN, objLogin);
+              /*      if (isUpdate)
+                        finish();*/
                     set_info(objLogin);
+                }
+
             }
 
         }
@@ -410,14 +471,20 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         }
     }
 
+    boolean isUpdate = false;
+
     @Override
     public void show_update_user_info(ObjErrorApi objError) {
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
             Toast.makeText(this, "Cập nhật thông tin tài khoản thành công.", Toast.LENGTH_SHORT).show();
+            SharedPrefs.getInstance().put(Constants.KEY_SAVE_OBJECT_LOGIN, mObjLogin);
+            setResult(RESULT_OK);
             finish();
-        } else
+        } else {
             showDialogNotify("Thông báo", objError.getRESULT());
+        }
+
     }
 
     @Override
@@ -490,6 +557,10 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         } else {
             sAddress = edt_address.getText().toString().trim();
         }
+        sSTK = edt_stk_bank.getText().toString().trim();
+        sTenTK = edt_name_bank.getText().toString().trim();
+        sTenNN = edt_nganhang.getText().toString();
+        sTenCN = edt_chinhanh.getText().toString();
         if (IMAGE_PATH.length() > 0) {
             showDialogLoading();
             mPresenterUpload.api_upload_image_only(IMAGE_PATH);
@@ -498,10 +569,23 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         }
 
     }
-
+    ObjLogin mObjLogin;
     private void get_api() {
         showDialogLoading();
         sUsername = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+        mObjLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+        if (sUserId != null) {
+            if (sUsername.equals(sUserId)) {
+                mObjLogin.setMOBILE(sMobile);
+                mObjLogin.setEMAIL(sEmail);
+                mObjLogin.setFULL_NAME(sFulName);
+                mObjLogin.setADDRESS(sAddress);
+                mObjLogin.setSO_TK(sSTK);
+                mObjLogin.setTEN_TK(sTenTK);
+                mObjLogin.setTEN_NH(sTenNN);
+                mObjLogin.setTEN_CN(sTenCN);
+            }
+        }
         mPresenter.api_update_user_info(sUsername, sUserId, sPassWord, sMobile, sEmail, sFulName,
                 sDOB, sUserType, sAVATAR, sState, sAddress, sProvince, sSTK, sTenTK,
                 sTenNN, sTenCN);

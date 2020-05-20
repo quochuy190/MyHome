@@ -91,12 +91,12 @@
                     android:text="Trạng thái thanh toán"
                     android:textColor="@color/Gray"
                     android:textSize="@dimen/txt_14sp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinner_home" />
 
                 <Spinner
-                    android:id="@+id/spinner_trangthai_thanhtoan"
+                    android:id="@+id/spinner_trangthai_thanhtoan_donnha"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/height_spinner"
                     android:layout_marginLeft="@dimen/dp10"
@@ -107,7 +107,7 @@
                     android:spinnerMode="dropdown"
                     android:textSize="20sp"
                     android:theme="@style/Spinner"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_lable_trangthai_thanhtoan"
                     app:layout_constraintWidth_percent="0.46">
@@ -122,10 +122,10 @@
                     android:layout_marginBottom="@dimen/dp2"
                     android:padding="@dimen/dp10"
                     android:src="@drawable/ic_down_blue"
-                    app:layout_constraintBottom_toBottomOf="@+id/spinner_trangthai_thanhtoan"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_trangthai_thanhtoan_donnha"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="@+id/spinner_trangthai_thanhtoan"
-                    app:layout_constraintTop_toTopOf="@+id/spinner_trangthai_thanhtoan" />
+                    app:layout_constraintEnd_toEndOf="@+id/spinner_trangthai_thanhtoan_donnha"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_trangthai_thanhtoan_donnha" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -133,23 +133,23 @@
                     android:layout_marginTop="@dimen/dp5"
                     android:layout_marginBottom="@dimen/dp5"
                     android:background="@color/app_main"
-                    app:layout_constraintBottom_toBottomOf="@id/spinner_trangthai_thanhtoan"
+                    app:layout_constraintBottom_toBottomOf="@id/spinner_trangthai_thanhtoan_donnha"
                     app:layout_constraintStart_toStartOf="@+id/img_down_status_pay"
-                    app:layout_constraintTop_toTopOf="@id/spinner_trangthai_thanhtoan" />
+                    app:layout_constraintTop_toTopOf="@id/spinner_trangthai_thanhtoan_donnha" />
 
                 <TextView
                     android:id="@+id/txt_lable_trangthai_bookphong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
-                    android:text="Trạng thái thanh toán"
+                    android:text="Trạng thái đơn"
                     android:textColor="@color/Gray"
                     android:textSize="@dimen/txt_14sp"
-                    app:layout_constraintStart_toStartOf="@+id/spinner_trangthai_bookphong"
+                    app:layout_constraintStart_toStartOf="@+id/spinner_trangthai_don"
                     app:layout_constraintTop_toBottomOf="@+id/spinner_home" />
 
                 <Spinner
-                    android:id="@+id/spinner_trangthai_bookphong"
+                    android:id="@+id/spinner_trangthai_don"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/height_spinner"
                     android:layout_marginLeft="@dimen/dp10"
@@ -160,7 +160,7 @@
                     android:spinnerMode="dropdown"
                     android:textSize="20sp"
                     android:theme="@style/Spinner"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_lable_trangthai_thanhtoan"
                     app:layout_constraintWidth_percent="0.46">
@@ -175,10 +175,10 @@
                     android:layout_marginBottom="@dimen/dp2"
                     android:padding="@dimen/dp10"
                     android:src="@drawable/ic_down_blue"
-                    app:layout_constraintBottom_toBottomOf="@+id/spinner_trangthai_bookphong"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_trangthai_don"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="@+id/spinner_trangthai_bookphong"
-                    app:layout_constraintTop_toTopOf="@+id/spinner_trangthai_bookphong" />
+                    app:layout_constraintEnd_toEndOf="@+id/spinner_trangthai_don"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_trangthai_don" />
 
                 <View
                     android:layout_width="@dimen/dp1"
@@ -186,9 +186,9 @@
                     android:layout_marginTop="@dimen/dp5"
                     android:layout_marginBottom="@dimen/dp5"
                     android:background="@color/app_main"
-                    app:layout_constraintBottom_toBottomOf="@id/spinner_trangthai_bookphong"
+                    app:layout_constraintBottom_toBottomOf="@id/spinner_trangthai_don"
                     app:layout_constraintStart_toStartOf="@+id/img_down_status_bookroom"
-                    app:layout_constraintTop_toTopOf="@id/spinner_trangthai_bookphong" />
+                    app:layout_constraintTop_toTopOf="@id/spinner_trangthai_don" />
 
                 <TextView
                     android:id="@+id/txt_lable_date_start"
@@ -200,7 +200,7 @@
                     android:textColor="@color/Gray"
                     android:textSize="@dimen/txt_14sp"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner_trangthai_thanhtoan" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_trangthai_don" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ll_date_start"
@@ -261,7 +261,7 @@
                     android:textColor="@color/Gray"
                     android:textSize="@dimen/txt_14sp"
                     app:layout_constraintStart_toStartOf="@+id/ll_date_end"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner_trangthai_thanhtoan" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_trangthai_don" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ll_date_end"

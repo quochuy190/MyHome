@@ -1,27 +1,30 @@
 package com.vn.myhome.fragment.lichnha_admin;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vn.myhome.App;
 import com.vn.myhome.R;
+import com.vn.myhome.activity.login.ActivityListHomestay;
 import com.vn.myhome.adapter.AdapterListTabLich;
 import com.vn.myhome.base.BaseFragment;
 import com.vn.myhome.callback.ClickDialog;
@@ -52,6 +55,8 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -158,6 +163,13 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
     }
 
     private void initEvent() {
+        spinner_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_city = new Intent(getActivity(), ActivityListHomestay.class);
+                startActivityForResult(intent_city, Constants.RequestCode.GET_LIST_MYHOME);
+            }
+        });
         ll_date_start.setOnClickListener(this);
         ll_date_end.setOnClickListener(this);
         btn_tracuu.setOnClickListener(this);
@@ -183,6 +195,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
                         .get(Calendar.YEAR), myCalendar_start.get(Calendar.MONTH),
                         myCalendar_start.get(Calendar.DAY_OF_MONTH)).show();
                 break;
+
             case R.id.ll_date_end:
                 new DatePickerDialog(getContext(), R.style.MyDatePickerStyle, end_date, myCalendar_end
                         .get(Calendar.YEAR), myCalendar_end.get(Calendar.MONTH),
@@ -207,23 +220,26 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
 
     List<String> data_Home;
     @BindView(R.id.spinner_home)
-    Spinner spinner_home;
+    TextView spinner_home;
     String sGetLink = "";
     List<ObjHomeStay> mListHome;
 
     private void set_data_spinner() {
         try {
             if (FragmentLichnhaAdmin.mListMyhome.size() > 0) {
-                for (ObjHomeStay obj : FragmentLichnhaAdmin.mListMyhome) {
+               /* for (ObjHomeStay obj : FragmentLichnhaAdmin.mListMyhome) {
                     if (obj != null && obj.getNAME() != null) {
                         mListHome.add(obj);
                         data_Home.add(obj.getNAME());
                     }
-                }
+                }*/
+               spinner_home.setText(FragmentLichnhaAdmin.mListMyhome.get(0).getNAME());
+                sGetLink = FragmentLichnhaAdmin.mListMyhome.get(0).getGENLINK();
+                get_api_list_booking();
             }
             ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item_spinner, data_Home);
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            spinner_home.setAdapter(adapter);
+            /*spinner_home.setAdapter(adapter);
             spinner_home.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -243,7 +259,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
                 public void onNothingSelected(AdapterView<?> parent) {
 
                 }
-            });
+            });*/
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -537,7 +553,7 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
     }
     public  void get_api_book_service(String sGetLink, String CHECKIN, String CHECKOUT, String ID_BOOKROOM) {
         String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
-        mPresenterBooking.api_booking_services2(sUserName, sGetLink, CHECKIN, CHECKOUT, ID_BOOKROOM);
+        mPresenterBooking.api_booking_services2(sUserName, sGetLink, CHECKIN, CHECKOUT, ID_BOOKROOM, "");
     }
 
     @Override
@@ -587,5 +603,19 @@ public class Fragment_Tab_Calendar_Admin extends BaseFragment implements Interfa
     @Override
     public void show_change_booking(ObjErrorApi objError) {
 
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case Constants.RequestCode.GET_LIST_MYHOME:
+                if (resultCode == RESULT_OK) {
+                    spinner_home.setText(App.mHomestay.getNAME());
+                    sGetLink= App.mHomestay.getGENLINK();
+                    showDialogLoading();
+                    get_api_list_booking();
+                }
+                break;
+        }
     }
 }

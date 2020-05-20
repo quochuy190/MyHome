@@ -72,14 +72,22 @@ public class AdapterFragmentSearchHome
             ViewHoderFragmentSearchHome holderBanner = (ViewHoderFragmentSearchHome) holder;
             if (obj.getmListHomeStay() != null)
                 holderBanner.bannerCityAdapter.setData(obj.getmListHomeStay(), mContext);
-            if (obj.getTITLE()!=null)
+            if (obj.getTITLE() != null)
                 holderBanner.title_header_city.setText(obj.getTITLE());
         } else {
             ViewHoderLisHomestay holderListRoom = (ViewHoderLisHomestay) holder;
+            holderListRoom.txt_xemthem.setVisibility(View.GONE);
             if (obj.getmListHomeStay() != null)
                 holderListRoom.adapterListHomestay.setData(obj.getmListHomeStay(), mContext);
-            if (obj.getTITLE()!=null)
+            if (obj.getTITLE() != null)
                 holderListRoom.title_header_city.setText(obj.getTITLE());
+            holderListRoom.txt_xemthem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                  /*  Intent intent = new Intent(mContext, ActivityListHomestayShowAll.class);
+                    mContext.startActivity(intent);*/
+                }
+            });
         }
     }
 
@@ -147,6 +155,8 @@ public class AdapterFragmentSearchHome
             View.OnClickListener, View.OnLongClickListener {
         @BindView(R.id.title_header_city)
         TextView title_header_city;
+        @BindView(R.id.txt_xemthem)
+        TextView txt_xemthem;
         @BindView(R.id.rcv_banner_city)
         RecyclerView rcv_banner_city;
         private AdapterItemBannerCitys bannerCityAdapter;

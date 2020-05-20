@@ -102,7 +102,7 @@ public class FragmentAmenitiesNewRoom extends BaseFragment implements InterfaceA
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event.message.equals(Constants.EventBus.KEY_UPDATE_MYHOME)) {
-            get_api_update();
+           // get_api_update();
         }
     }
     String sUsername = "";
@@ -164,7 +164,7 @@ public class FragmentAmenitiesNewRoom extends BaseFragment implements InterfaceA
             public void onClick(View v) {
                 showDialogLoading();
                 get_api_update();
-                EventBus.getDefault().post(new MessageEvent(Constants.EventBus.KEY_UPDATE_MYHOME, 1, 0));
+               // EventBus.getDefault().post(new MessageEvent(Constants.EventBus.KEY_UPDATE_MYHOME, 1, 0));
             }
         });
     }

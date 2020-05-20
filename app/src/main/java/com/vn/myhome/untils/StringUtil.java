@@ -230,7 +230,7 @@ public class StringUtil {
             sMonney = (formatter.format(iNumber));
         }
 
-        return sMonney;
+        return sMonney.replaceAll(",", ".");
     }
 
     public static String conventMonney(String number) {
@@ -249,7 +249,7 @@ public class StringUtil {
                 sMonney = "";
             }
         }
-        return sMonney;
+        return sMonney.replaceAll(",", ".");
     }
 
     public static String conventMonney_Long(String number) {
@@ -269,7 +269,7 @@ public class StringUtil {
                 sMonney = "";
             }
         }
-        return sMonney;
+        return sMonney.replaceAll(",", ".");
     }
 
     /* public static String removeAccent(String s) {

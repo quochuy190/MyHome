@@ -154,14 +154,20 @@ public class AdapterTabChitietDatphong extends RecyclerView.Adapter<AdapterTabCh
                         } else {
                             holder.btn_booking_clearroom.setBackgroundResource(R.drawable.spr_btn_orange);
                             holder.btn_booking_clearroom.setText("Thanh toán dv");
-                            String txt_book_status = "Trạng thái dv: <font color='#FF9900'><b>" +
-                                    "Đã đặt phòng - Chờ thanh toán</b></font>";
+                            String txt_book_status = "";
+                            if (obj.getKIND_OF_PAID().equals("1")) {
+                                txt_book_status = "Trạng thái dv: <font color='#CC6633'><b>" +
+                                        "Đã đặt - Thanh toán sau</b></font>";
+                            } else {
+                                txt_book_status = "Trạng thái dv: <font color='#CC6633'><b>" +
+                                        "Đã đặt - Chờ thanh toán</b></font>";
+                            }
                             holder.txt_status_room.setText(Html.fromHtml(txt_book_status), TextView.BufferType.SPANNABLE);
                         }
 
                     } else {
                         String txt_book_status = "Trạng thái dv: <font color='#FF3300'><b>" +
-                                "Chưa đặt phòng</b></font>";
+                                "Chưa đặt dv</b></font>";
                         holder.txt_status_room.setText(Html.fromHtml(txt_book_status), TextView.BufferType.SPANNABLE);
                         holder.btn_booking_clearroom.setText("Đặt dọn phòng");
                         holder.btn_booking_clearroom.setBackgroundResource(R.drawable.spr_btn_red);

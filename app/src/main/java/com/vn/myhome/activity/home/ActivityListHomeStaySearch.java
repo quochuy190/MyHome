@@ -418,7 +418,6 @@ public class ActivityListHomeStaySearch extends BaseActivity
 
 
     private void get_api_search() {
-
         LOCATION = edt_name_homestay.getText().toString();
         CHECKIN = edt_date_start.getText().toString();
         CHECKOUT = edt_date_end.getText().toString();

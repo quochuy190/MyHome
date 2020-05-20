@@ -245,7 +245,8 @@ public class FragmentPriceNewRoom extends BaseFragment implements InterfaceMyHom
                 txt_percent_discount_value.setText(objMyhome.getPERCENT() + "%");
             }
             if (objMyhome.getPROMO_ST_TIME() != null && objMyhome.getPROMO_ED_TIME() != null) {
-                txt_starttime_discount_value.setText(TimeUtils.convent_date(objMyhome.getPROMO_ST_TIME(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                txt_starttime_discount_value.setText(TimeUtils.convent_date(objMyhome.getPROMO_ST_TIME(),
+                        "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
                         "dd/MM/yyyy"));
                 txt_endtime_discount_value.setText(TimeUtils.convent_date(objMyhome.getPROMO_ED_TIME(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
                         "dd/MM/yyyy"));

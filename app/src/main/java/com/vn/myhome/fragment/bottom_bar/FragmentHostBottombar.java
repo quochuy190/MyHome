@@ -70,7 +70,8 @@ public class FragmentHostBottombar extends BaseFragment {
     @BindView(R.id.ll_layout)
     LinearLayout ll_layout;
     PresenterHostBottombar mPresenter;
-
+    @BindView(R.id.txt_list_bookxe_trasau)
+    TextView txt_list_bookxe_trasau;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_host_bottombar, container, false);
@@ -94,7 +95,7 @@ public class FragmentHostBottombar extends BaseFragment {
     private void check_add_myhome(boolean isShow) {
         ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         if (objLogin != null && objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
-            txt_title.setText("DANH SÁCH NHÀ CỦA TÔI");
+            txt_title.setText("MYHOME");
             if (isShow) {
                 img_home.setVisibility(View.VISIBLE);
                 img_home.setImageDrawable(getResources().getDrawable(R.drawable.ic_add));
@@ -206,6 +207,7 @@ public class FragmentHostBottombar extends BaseFragment {
     public AdapterViewpager adapterViewpager;
 
     public void initViewpager() {
+        txt_list_bookxe_trasau.setVisibility(View.GONE);
         adapterViewpager = new AdapterViewpager(getChildFragmentManager());
         ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {

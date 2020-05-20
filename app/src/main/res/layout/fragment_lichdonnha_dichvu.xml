@@ -76,7 +76,7 @@
             android:text="Trạng thái thanh toán"
             android:textColor="@color/Gray"
             android:textSize="@dimen/txt_14sp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_home" />
 
@@ -92,7 +92,7 @@
             android:spinnerMode="dropdown"
             android:textSize="20sp"
             android:theme="@style/Spinner"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_lable_trangthai_thanhtoan"
             app:layout_constraintWidth_percent="0.46">
@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp5"
-            android:text="Trạng thái thanh toán"
+            android:text="Trạng thái đơn"
             android:textColor="@color/Gray"
             android:textSize="@dimen/txt_14sp"
             app:layout_constraintStart_toStartOf="@+id/spinner_trangthai_bookphong"
@@ -145,7 +145,7 @@
             android:spinnerMode="dropdown"
             android:textSize="20sp"
             android:theme="@style/Spinner"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_lable_trangthai_thanhtoan"
             app:layout_constraintWidth_percent="0.46">

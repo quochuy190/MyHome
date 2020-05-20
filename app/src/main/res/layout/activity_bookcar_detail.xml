@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/appbar_all_activity"/>
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/txt_madh"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/txt_16sp"
+        android:padding="@dimen/dp7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingRight="@dimen/dp7"
+        android:paddingLeft="@dimen/dp7"
+        android:id="@+id/txt_state"
+        app:layout_constraintTop_toBottomOf="@+id/txt_madh"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/White"
+        android:background="@drawable/spr_btn_red"
+        android:textSize="@dimen/txt_15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:padding="@dimen/dp3">
+
+        <ImageView
+            android:id="@+id/ic_name_customer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp7"
+            android:src="@drawable/btn_avatar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/txt_name_customer"
+            android:textCursorDrawable="@color/app_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_name_customer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ic_name_customer"
+            app:layout_constraintTop_toTopOf="@+id/ic_name_customer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:padding="@dimen/dp3">
+
+        <ImageView
+            android:tint="@color/app_main"
+            android:id="@+id/ic_phone_customer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp7"
+            android:src="@drawable/icon_phone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/txt_phone_customer"
+            android:textCursorDrawable="@color/app_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_phone_customer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ic_phone_customer"
+            app:layout_constraintTop_toTopOf="@+id/ic_phone_customer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:padding="@dimen/dp3">
+
+        <ImageView
+            android:tint="@color/app_main"
+            android:id="@+id/ic_address_customer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/dp7"
+            android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/txt_address_customer"
+            android:textCursorDrawable="@color/app_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_address_customer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ic_address_customer"
+            app:layout_constraintTop_toTopOf="@+id/ic_address_customer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp5"
+            android:padding="@dimen/dp3"
+            app:layout_constraintEnd_toStartOf="@+id/ll_gio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ic_ngaydon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/ic_date"
+                android:tint="@color/app_main"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.1" />
+
+            <EditText
+                android:focusable="false"
+                android:backgroundTint="@color/White"
+                android:textCursorDrawable="@color/app_main"
+                android:id="@+id/edt_ngaydon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Ngày đón*"
+                android:imeOptions="actionNext"
+                android:padding="@dimen/dp10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_ngaydon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ic_ngaydon"
+                app:layout_constraintTop_toTopOf="@+id/ic_ngaydon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/ll_gio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp5"
+            android:padding="@dimen/dp3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ll_date"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ic_gio"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp7"
+                android:src="@drawable/ic_time"
+                android:tint="@color/app_main"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <EditText
+                android:backgroundTint="@color/White"
+                android:textCursorDrawable="@color/app_main"
+                android:id="@+id/edt_gio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Giờ đón*"
+                android:imeOptions="actionNext"
+                android:padding="@dimen/dp10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ic_gio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ic_gio"
+                app:layout_constraintTop_toTopOf="@+id/ic_gio" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_marginLeft="@dimen/dp10"
+       android:text="Chi tiết đơn hàng"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/txt_16sp"
+        android:padding="@dimen/dp3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="@dimen/dp2"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:id="@+id/txt_detail"
+        android:textCursorDrawable="@color/app_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ic_name_customer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ic_name_customer"
+        app:layout_constraintTop_toTopOf="@+id/ic_name_customer" />
+</LinearLayout>

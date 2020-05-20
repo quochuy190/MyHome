@@ -11,12 +11,14 @@
         android:id="@+id/ll_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp10"
+        android:layout_margin="@dimen/dp5"
         android:background="@drawable/spr_bg_tablayout_host"
         android:orientation="horizontal"
         android:padding="@dimen/dp2">
 
         <TextView
+            android:ellipsize="end"
+            android:maxLines="2"
             android:id="@+id/txt_thongke"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -27,10 +29,12 @@
             android:padding="@dimen/dp5"
             android:text="@string/tab_thongke"
             android:textColor="@color/black"
-            android:textSize="@dimen/txt_14sp"
+            android:textSize="@dimen/txt_13sp"
             android:textStyle="bold" />
 
         <TextView
+            android:ellipsize="end"
+            android:maxLines="2"
             android:id="@+id/txt_list_myhome"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -41,17 +45,32 @@
             android:padding="@dimen/dp5"
             android:text="@string/tab_list_myhome"
             android:textColor="@color/black"
-            android:textSize="@dimen/txt_14sp"
+            android:textSize="@dimen/txt_13sp"
             android:textStyle="bold" />
 
-
+        <TextView
+            android:visibility="gone"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:id="@+id/txt_list_bookxe_trasau"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp1"
+            android:layout_weight="1"
+            android:background="@drawable/spr_tablayout_lichnha"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="@string/tab_list_myhome"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_13sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:layout_marginLeft="@dimen/dp2"
         android:layout_marginEnd="@dimen/dp2"
-        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp2"
         android:id="@+id/viewpager_host_bottombar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

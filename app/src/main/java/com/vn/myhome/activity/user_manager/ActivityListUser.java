@@ -108,6 +108,11 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
                 initData();
             }
         }
+        if (requestCode == Constants.RequestCode.GET_MY_HOME) {
+            if (resultCode == RESULT_OK) {
+                initData();
+            }
+        }
     }
 
     private void initEvent() {
@@ -255,7 +260,6 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
             data_status_user.add("- Tất cả -");
             data_status_user.add("Đã kích hoạt");
             data_status_user.add("Đang bị khóa");
-
             ArrayAdapter adapter = new ArrayAdapter(this, R.layout.item_spinner, data_status_user);
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
             spinner_status_user.setAdapter(adapter);

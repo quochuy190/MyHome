@@ -25,6 +25,16 @@ public class ObjBookingService {
     String ID_BOOKER;
     String FULL_NAME;
     String USERID;
+    String KIND_OF_PAID;
+    String NOTES;
+
+    public String getKIND_OF_PAID() {
+        return KIND_OF_PAID;
+    }
+
+    public void setKIND_OF_PAID(String KIND_OF_PAID) {
+        this.KIND_OF_PAID = KIND_OF_PAID;
+    }
 
     public String getUSERID() {
         return USERID;
@@ -160,5 +170,13 @@ public class ObjBookingService {
 
     public void setFULL_NAME(String FULL_NAME) {
         this.FULL_NAME = FULL_NAME;
+    }
+
+    public String getNOTES() {
+        return NOTES;
+    }
+
+    public void setNOTES(String NOTES) {
+        this.NOTES = NOTES;
     }
 }

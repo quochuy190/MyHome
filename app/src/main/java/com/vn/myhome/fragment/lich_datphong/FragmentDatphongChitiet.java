@@ -1,11 +1,19 @@
 package com.vn.myhome.fragment.lich_datphong;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -37,6 +45,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -204,7 +213,7 @@ public class FragmentDatphongChitiet extends BaseFragment implements InterfaceBo
                                 });
 
                     } else {
-                        showDialogComfirm("Thông báo",
+                      /*  showDialogComfirm("Thông báo",
                                 "Bạn có chắc chắn muốn đặt dịch vụ dọn nhà?",
                                 true, new ClickDialog() {
                                     @Override
@@ -218,7 +227,8 @@ public class FragmentDatphongChitiet extends BaseFragment implements InterfaceBo
                                     @Override
                                     public void onClickNoDialog() {
                                     }
-                                });
+                                });*/
+                      showDialog_Note_Dondep(objBooking);
 
                     }
                 }
@@ -242,12 +252,77 @@ public class FragmentDatphongChitiet extends BaseFragment implements InterfaceBo
             }
         });
     }
+    Dialog dialog;
+    EditText tvPhoneDialog;
+    EditText tvNameDialog;
+    EditText tvNumberDialog;
+    EditText tvTimeDialog;
+    EditText tvNoteDialog;
+    TextView btnBackDialog;
+    TextView btnDoneDialog;
 
+    public void showDialog_Note_Dondep(ObjBooking objBooking) {
+        dialog = new Dialog(getContext(), R.style.Theme_Dialog);
+        dialog.setCancelable(true);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_note_dondep);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        tvPhoneDialog = dialog.findViewById(R.id.edt_dialog_phone);
+        tvNameDialog = dialog.findViewById(R.id.edt_dialog_name);
+        tvNumberDialog = dialog.findViewById(R.id.edt_dialog_number_guest);
+        tvTimeDialog = dialog.findViewById(R.id.edt_dialog_time);
+        tvNoteDialog = dialog.findViewById(R.id.edt_dialog_note);
+        btnBackDialog = dialog.findViewById(R.id.txt_exit_dialog);
+        btnDoneDialog = dialog.findViewById(R.id.txt_comfirm_dialog);
+        tvTimeDialog.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(dialog.getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String sTime = selectedHour+":"+selectedMinute;
+                        tvTimeDialog.setText(sTime);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
+        btnBackDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        btnDoneDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sNote = "SĐT khách: "+tvPhoneDialog.getText().toString()+"\n"
+                        +"Tên khách: "+tvNameDialog.getText().toString()+"\n"
+                        +"Số lượng khách: "+tvNumberDialog.getText().toString()+"\n"
+                        +"Thời gian check-in: "+tvTimeDialog.getText().toString()+"\n"
+                        +"Ghi chú: "+tvNumberDialog.getText().toString()+"\n";
+                FragmentDatphong.get_api_book_service(objBooking.getGENLINK(),
+                        objBooking.getSTART_TIME(),
+                        objBooking.getEND_TIME(), objBooking.getID(), sNote);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
     private void get_api(ObjBooking objBooking) {
         showDialogLoading();
         String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         mPresenter.api_booking_services2(sUserName, FragmentDatphong.objHome.getGENLINK(),
-                objBooking.getSTART_TIME(), objBooking.getEND_TIME(), objBooking.getID());
+                objBooking.getSTART_TIME(), objBooking.getEND_TIME(), objBooking.getID(), "");
     }
 
     @Override

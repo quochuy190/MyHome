@@ -71,9 +71,11 @@ public class ActivityThongtinChuyenkhoan extends BaseActivity implements Interfa
     private void initData() {
         try {
             String price = getIntent().getStringExtra(Constants.KEY_SEND_PRICE_THANHTOAN);
+            long lPrice = Long.parseLong(price);
             String sContent = getIntent().getStringExtra(Constants.KEY_SEND_CONTENT_THANHTOAN);
             sId_BookService = getIntent().getStringExtra(Constants.KEY_SEND_ID_BOOKSERVICE_THANHTOAN);
-            txt_price_thanhtoan.setText(StringUtil.conventMonney_Long(price));
+            long price_chietkhau = (lPrice*85)/100;
+            txt_price_thanhtoan.setText(StringUtil.conventMonney_Long(price_chietkhau+""));
             txt_content.setText(sContent);
             if (sId_BookService != null && sId_BookService.length() > 0) {
                 txt_title_bnt_change.setVisibility(View.VISIBLE);

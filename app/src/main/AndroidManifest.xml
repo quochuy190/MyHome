@@ -33,6 +33,18 @@
 
         </activity>
         <activity
+            android:name=".fragment.services.ActivityBookCarDetail"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+
+        </activity>
+        <activity
+            android:name=".activity.home.ActivityListHomestayShowAll"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+
+        </activity>
+        <activity
             tools:ignore="LockedOrientationActivity"
             android:name=".activity.user_manager.ActivityListUser"
             android:screenOrientation="portrait">
@@ -40,7 +52,19 @@
         </activity>
         <activity
             tools:ignore="LockedOrientationActivity"
-            android:name=".fragment.services.ActivityBookOto"
+            android:name=".fragment.services.ActivityListHanhtrinhxe"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            tools:ignore="LockedOrientationActivity"
+            android:name=".fragment.services.ActivityListCar"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            tools:ignore="LockedOrientationActivity"
+            android:name=".fragment.services.ActivityBookCar"
             android:screenOrientation="portrait">
 
         </activity>

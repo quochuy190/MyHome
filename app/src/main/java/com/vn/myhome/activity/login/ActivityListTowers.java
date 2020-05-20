@@ -17,12 +17,11 @@ import com.vn.myhome.R;
 import com.vn.myhome.adapter.AdapterListTower;
 import com.vn.myhome.base.BaseActivity;
 import com.vn.myhome.callback.ItemClickListener;
-import com.vn.myhome.models.ObjErrorApi;
-import com.vn.myhome.models.ObjLogin;
-import com.vn.myhome.models.ResponseApi.CityResponse;
-import com.vn.myhome.models.ResponseApi.GetTypeResponse;
+import com.vn.myhome.config.Constants;
+import com.vn.myhome.models.ResponseApi.LocationResponse;
 import com.vn.myhome.models.TowerObj;
 import com.vn.myhome.untils.KeyboardUtil;
+import com.vn.myhome.untils.SharedPrefs;
 import com.vn.myhome.untils.StringUtil;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ import butterknife.ButterKnife;
  */
 
 public class ActivityListTowers extends BaseActivity
-        implements InterfaceLogin.View {
+         {
 
     private List<TowerObj> mLisCity;
     private AdapterListTower adapterService;
@@ -50,7 +49,7 @@ public class ActivityListTowers extends BaseActivity
     ImageView img_back;
     private List<TowerObj> temp;
     String sUserId;
-    PresenterLogin mPresenter;
+    PresenterListTowers mPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,7 @@ public class ActivityListTowers extends BaseActivity
         ButterKnife.bind(this);
         KeyboardUtil.hideSoftKeyboard(this);
         //  initData();
-        mPresenter = new PresenterLogin(this);
+        mPresenter = new PresenterListTowers(this);
         //initAppbar();
         init();
         initData();
@@ -162,14 +161,15 @@ public class ActivityListTowers extends BaseActivity
     private void initData() {
         mLisCity.clear();
         temp.clear();
-        mLisCity.add(new TowerObj("Sunrise", "1"));
-        mLisCity.add(new TowerObj("Greenbay Premium", "2"));
-        mLisCity.add(new TowerObj("Greenbay Garden", "3"));
-        mLisCity.add(new TowerObj("Greenbay Village", "4"));
-        mLisCity.add(new TowerObj("Royal Lotus", "5"));
-        mLisCity.add(new TowerObj("Tòa nhà khác", "0"));
-        temp.addAll(mLisCity);
-        adapterService.notifyDataSetChanged();
+        if (App.mListLocation != null && App.mListLocation.size() > 0) {
+            mLisCity.addAll(App.mListLocation);
+            temp.addAll(mLisCity);
+            adapterService.notifyDataSetChanged();
+        } else {
+            showDialogLoading();
+            String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+            mPresenter.api_get_list_tower(sUserName);
+        }
     }
 
     @Override
@@ -184,35 +184,25 @@ public class ActivityListTowers extends BaseActivity
 
     }
 
-
-    @Override
-    public void show_error_api(String sService) {
+    public void show_error_api() {
         hideDialogLoading();
         showAlertErrorNetwork();
     }
 
-    @Override
-    public void show_login(ObjLogin objLogin) {
-
-    }
-
-    @Override
-    public void show_reg_user(ObjErrorApi objError) {
-
-    }
-
-    @Override
-    public void show_get_type(GetTypeResponse objRes) {
-
-    }
-
-    @Override
-    public void show_get_city(CityResponse objResCity) {
+    public void show_list_tower(LocationResponse objError) {
         hideDialogLoading();
+        if (objError != null && objError.getERROR().equals("0000")) {
+            if (objError.getINFO() != null) {
+                mLisCity.clear();
+                temp.clear();
+                mLisCity.addAll(objError.getINFO());
+                temp.addAll(objError.getINFO());
+                App.mListLocation.clear();
+                App.mListLocation.addAll(mLisCity);
+                adapterService.notifyDataSetChanged();
+            }
+        } else showDialogNotify("Thông báo", objError.getRESULT());
     }
 
-    @Override
-    public void show_update_device(ObjErrorApi objError) {
 
-    }
 }

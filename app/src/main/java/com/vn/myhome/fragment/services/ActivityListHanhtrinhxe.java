@@ -14,17 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vn.myhome.App;
 import com.vn.myhome.R;
-import com.vn.myhome.activity.login.InterfaceLogin;
-import com.vn.myhome.activity.login.PresenterLogin;
-import com.vn.myhome.adapter.AdapterListCity;
+import com.vn.myhome.adapter.AdapterRoute;
 import com.vn.myhome.base.BaseActivity;
 import com.vn.myhome.callback.ItemClickListener;
+import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjErrorApi;
-import com.vn.myhome.models.ObjLogin;
-import com.vn.myhome.models.ResponseApi.CityResponse;
-import com.vn.myhome.models.ResponseApi.GetTypeResponse;
-import com.vn.myhome.models.ResponseApi.ObjCity;
+import com.vn.myhome.models.ObjRoute;
+import com.vn.myhome.models.ResponseApi.ResponseBookCarDetail;
+import com.vn.myhome.models.ResponseApi.ResponsePriceEstimates;
+import com.vn.myhome.models.ResponseApi.RouteResponse;
+import com.vn.myhome.network.response.ResponGetListBookCar;
 import com.vn.myhome.untils.KeyboardUtil;
+import com.vn.myhome.untils.SharedPrefs;
 import com.vn.myhome.untils.StringUtil;
 
 import java.util.ArrayList;
@@ -39,10 +40,10 @@ import butterknife.ButterKnife;
  */
 
 public class ActivityListHanhtrinhxe extends BaseActivity
-        implements InterfaceLogin.View {
+        implements InterfaceServices.View {
 
-    private List<ObjCity> mLisCity;
-    private AdapterListCity adapterService;
+    private List<ObjRoute> mList;
+    private AdapterRoute adapterService;
     @BindView(R.id.recycle_list_service)
     RecyclerView recycle_service;
     RecyclerView.LayoutManager mLayoutManager;
@@ -50,9 +51,9 @@ public class ActivityListHanhtrinhxe extends BaseActivity
     EditText edt_search_service;
     @BindView(R.id.img_back)
     ImageView img_back;
-    private List<ObjCity> temp;
+    private List<ObjRoute> temp;
     String sUserId;
-    PresenterLogin mPresenter;
+    PresenterServices mPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class ActivityListHanhtrinhxe extends BaseActivity
         ButterKnife.bind(this);
         KeyboardUtil.hideSoftKeyboard(this);
         //  initData();
-        mPresenter = new PresenterLogin(this);
+        mPresenter = new PresenterServices(this);
         //initAppbar();
         init();
         initData();
@@ -78,22 +79,6 @@ public class ActivityListHanhtrinhxe extends BaseActivity
         super.onResume();
 
     }
-
-    /*  @Nullable
-          @Override
-          public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-              View view= inflater.inflate(R.layout.fragment_service, container, false);
-
-
-              view.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-
-                  }
-              });
-              return view;
-          }
-      */
     private void initEvent() {
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +113,8 @@ public class ActivityListHanhtrinhxe extends BaseActivity
 
     void filter(String text) {
         temp.clear();
-        for (ObjCity d : mLisCity) {
-            String sName = StringUtil.removeAccent(d.getNAME().toLowerCase());
+        for (ObjRoute d : mList) {
+            String sName = StringUtil.removeAccent(d.getName().toLowerCase());
             String sInput = StringUtil.removeAccent(text.toLowerCase());
             if (sName.contains(sInput)) {
                 //adding the element to filtered list
@@ -141,16 +126,16 @@ public class ActivityListHanhtrinhxe extends BaseActivity
             @Override
             public void onClickItem(int position, Object item) {
                 setResult(RESULT_OK, new Intent());
-                App.mCity = (ObjCity) item;
+                App.mRoute = (ObjRoute) item;
                 finish();
             }
         });
     }
 
     private void init() {
-        mLisCity = new ArrayList<>();
+        mList = new ArrayList<>();
         temp = new ArrayList<>();
-        adapterService = new AdapterListCity(temp, this);
+        adapterService = new AdapterRoute(temp, this);
         mLayoutManager = new GridLayoutManager(this, 1);
         recycle_service.setNestedScrollingEnabled(false);
         recycle_service.setHasFixedSize(true);
@@ -158,18 +143,11 @@ public class ActivityListHanhtrinhxe extends BaseActivity
         recycle_service.setItemAnimator(new DefaultItemAnimator());
         recycle_service.setAdapter(adapterService);
         adapterService.updateList(temp);
-      /*  adapterService.setOnIListener(new ItemClickListener() {
-            @Override
-            public void onClickItem(int position, Object item) {
-                setResult(RESULT_OK, new Intent());
-                App.mCity = (City) item;
-            }
-        });*/
         adapterService.setOnIListener(new ItemClickListener() {
             @Override
             public void onClickItem(int position, Object item) {
                 setResult(RESULT_OK, new Intent());
-                App.mCity = (ObjCity) item;
+                App.mRoute = (ObjRoute) item;
                 finish();
             }
         });
@@ -177,13 +155,13 @@ public class ActivityListHanhtrinhxe extends BaseActivity
     }
 
     private void initData() {
-        if (App.mListCity != null && App.mListCity.size() > 0) {
-            mLisCity.addAll(App.mListCity);
-            temp.addAll(mLisCity);
+        if (App.mListRoute != null && App.mListRoute.size() > 0) {
+            mList.addAll(App.mListRoute);
+            temp.addAll(mList);
             adapterService.notifyDataSetChanged();
         } else {
             showDialogLoading();
-            mPresenter.api_get_city("");
+            mPresenter.api_get_route_car(SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class));
         }
     }
 
@@ -207,38 +185,55 @@ public class ActivityListHanhtrinhxe extends BaseActivity
     }
 
     @Override
-    public void show_login(ObjLogin objLogin) {
+    public void show_get_type_car(RouteResponse objLogin) {
 
     }
 
     @Override
-    public void show_reg_user(ObjErrorApi objError) {
-
-    }
-
-    @Override
-    public void show_get_type(GetTypeResponse objRes) {
-
-    }
-
-    @Override
-    public void show_get_city(CityResponse objResCity) {
+    public void show_get_route_car(RouteResponse objError) {
         hideDialogLoading();
-        if (objResCity != null && objResCity.getERROR().equals("0000")) {
-            if (objResCity.getINFO() != null) {
-                mLisCity.clear();
+        if (objError != null && objError.getERROR().equals("0000")) {
+            if (objError.getINFO() != null) {
+                mList.clear();
                 temp.clear();
-                mLisCity.addAll(objResCity.getINFO());
-                temp.addAll(objResCity.getINFO());
-                App.mListCity.clear();
-                App.mListCity.addAll(mLisCity);
+                mList.addAll(objError.getINFO());
+                temp.addAll(objError.getINFO());
+                App.mListRoute.clear();
+                App.mListRoute.addAll(mList);
                 adapterService.notifyDataSetChanged();
             }
-        } else showDialogNotify("Thông báo", objResCity.getRESULT());
+        } else showDialogNotify("Thông báo", objError.getRESULT());
     }
 
     @Override
-    public void show_update_device(ObjErrorApi objError) {
+    public void show_get_price_estimates(ResponsePriceEstimates objRes) {
 
     }
+
+    @Override
+    public void show_bookcar(ObjErrorApi objResCity) {
+
+    }
+
+    @Override
+    public void show_get_bookcar_detail(ResponseBookCarDetail objError) {
+
+    }
+
+
+    @Override
+    public void show_list_book_car(ResponGetListBookCar objError) {
+
+    }
+
+    @Override
+    public void show_list_book_car_pre(ResponGetListBookCar objError) {
+
+    }
+
+    @Override
+    public void show_update_billing(ObjErrorApi objError) {
+
+    }
+
 }

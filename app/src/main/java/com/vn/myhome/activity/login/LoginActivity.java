@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.vn.myhome.BuildConfig;
+import com.vn.myhome.App;
 import com.vn.myhome.MainActivity;
 import com.vn.myhome.R;
 import com.vn.myhome.base.BaseActivity;
@@ -162,7 +162,7 @@ public class LoginActivity extends BaseActivity implements
             if (sTokenKey == null)
                 sTokenKey = "";
             String UUID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-            mPresenter.api_update_device(sUserName, BuildConfig.VERSION_NAME,
+            mPresenter.api_update_device(sUserName, App.versionName,
                     android.os.Build.BRAND + " " + android.os.Build.MODEL, sTokenKey,
                     android.os.Build.VERSION.RELEASE, "2", UUID);
             SharedPrefs.getInstance().put(Constants.KEY_SAVE_OBJECT_LOGIN, objLogin);

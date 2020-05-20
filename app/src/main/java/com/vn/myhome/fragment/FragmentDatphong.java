@@ -1,12 +1,17 @@
 package com.vn.myhome.fragment;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -472,25 +478,75 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
             get_api_list_booking();
-            showDialogComfirm("Thông báo",
-                    "Khóa nhà thành công,bạn có muốn đặt dịch vụ dọn dẹp không?",
-                    true,
-                    new ClickDialog() {
-                        @Override
-                        public void onClickYesDialog() {
-                            get_api_book_service(mGetLink, mStartDay, mEndDay, objError.getID_BOOKROOM());
-                        }
-
-                        @Override
-                        public void onClickNoDialog() {
-
-                        }
-                    });
+            showDialog_Note_Dondep(mGetLink, mStartDay, mEndDay, objError.getID_BOOKROOM());
         } else {
             showAlertDialog("Thông báo", objError.getRESULT());
         }
     }
+    Dialog dialog;
+    EditText tvPhoneDialog;
+    EditText tvNameDialog;
+    EditText tvNumberDialog;
+    EditText tvTimeDialog;
+    EditText tvNoteDialog;
+    TextView btnBackDialog;
+    TextView btnDoneDialog;
 
+    public void showDialog_Note_Dondep(String mGetLink, String mStartDay, String mEndDay, String idBookRoom) {
+        dialog = new Dialog(getContext(), R.style.Theme_Dialog);
+        dialog.setCancelable(true);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_note_dondep);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        tvPhoneDialog = dialog.findViewById(R.id.edt_dialog_phone);
+        tvNameDialog = dialog.findViewById(R.id.edt_dialog_name);
+        tvNumberDialog = dialog.findViewById(R.id.edt_dialog_number_guest);
+        tvTimeDialog = dialog.findViewById(R.id.edt_dialog_time);
+        tvNoteDialog = dialog.findViewById(R.id.edt_dialog_note);
+        btnBackDialog = dialog.findViewById(R.id.txt_exit_dialog);
+        btnDoneDialog = dialog.findViewById(R.id.txt_comfirm_dialog);
+        tvTimeDialog.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(dialog.getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String sTime = selectedHour+":"+selectedMinute;
+                        tvTimeDialog.setText(sTime);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
+        btnBackDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        btnDoneDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sNote = "SĐT khách: "+tvPhoneDialog.getText().toString()+"\n"
+                        +"Tên khách: "+tvNameDialog.getText().toString()+"\n"
+                        +"Số lượng khách: "+tvNumberDialog.getText().toString()+"\n"
+                        +"Thời gian check-in: "+tvTimeDialog.getText().toString()+"\n"
+                        +"Ghi chú: "+tvNumberDialog.getText().toString()+"\n";
+                get_api_book_service(mGetLink, mStartDay, mEndDay, idBookRoom, sNote);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
     public static List<ObjBooking> mListBooking;
 
     @Override
@@ -601,9 +657,9 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
         mPresenterBooking.api_change_booking(sUserName, ID_BOOKROOM, BOOKING_STATUS);
     }
 
-    public static void get_api_book_service(String sGetLink, String CHECKIN, String CHECKOUT, String ID_BOOKROOM) {
+    public static void get_api_book_service(String sGetLink, String CHECKIN, String CHECKOUT, String ID_BOOKROOM, String sNote) {
         String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
-        mPresenterBooking.api_booking_services2(sUserName, sGetLink, CHECKIN, CHECKOUT, ID_BOOKROOM);
+        mPresenterBooking.api_booking_services2(sUserName, sGetLink, CHECKIN, CHECKOUT, ID_BOOKROOM, sNote);
     }
 
     @Override

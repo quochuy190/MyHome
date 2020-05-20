@@ -1,6 +1,7 @@
 package com.vn.myhome.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.vn.myhome.R;
+import com.vn.myhome.activity.home.ActivityRoomDetail;
 import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Config;
+import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.untils.StringUtil;
 
@@ -55,6 +58,12 @@ public class AdapterHomeStaySmall extends RecyclerView.Adapter<AdapterHomeStaySm
 
     public AdapterHomeStaySmall(Context context) {
         this.context = context;
+    }
+
+    public AdapterHomeStaySmall(List<ObjHomeStay> mList, Context context, ItemClickListener onIListener) {
+        this.mList = mList;
+        this.context = context;
+        OnIListener = onIListener;
     }
 
     @Override
@@ -147,12 +156,15 @@ public class AdapterHomeStaySmall extends RecyclerView.Adapter<AdapterHomeStaySm
         public ViewHoderItem(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-           // itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            OnIListener.onClickItem(getLayoutPosition(), mList.get(getLayoutPosition()));
+          //  OnIListener.onClickItem(getLayoutPosition(), mList.get(getLayoutPosition()));
+            Intent intent = new Intent(context, ActivityRoomDetail.class);
+            intent.putExtra(Constants.KEY_SEND_ROOM_DETAIL, mList.get(getLayoutPosition()));
+            context.startActivity(intent);
         }
 
         @Override
@@ -165,7 +177,6 @@ public class AdapterHomeStaySmall extends RecyclerView.Adapter<AdapterHomeStaySm
         mList = new ArrayList<>();
         if (mList != data) {
             mList = data;
-            notifyDataSetChanged();
         }
         notifyDataSetChanged();
     }
