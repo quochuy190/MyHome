@@ -393,9 +393,19 @@ public class ActivityBooking extends BaseActivity implements InterfaceBooking.Vi
                 txt_total_price.setText(StringUtil.conventMonney_Long("" + (iPrice_special + price_thuong)));
                 txt_total_price_cuoituan.setText(iWeekend + " * " + StringUtil.conventMonney_Long(objHomeStay.getPRICE_SPECIAL()));
                 txt_total_price_ngaythuong.setText(iNoWeekend + " * " + StringUtil.conventMonney_Long(objHomeStay.getPRICE()));
-                price_clear = (iWeekend + iNoWeekend+iDay_discount+iWeekend_discount) * Long.parseLong(objHomeStay.getCLEAN_ROOM());
+                int total_day = iWeekend + iNoWeekend+iDay_discount+iWeekend_discount;
+                if (total_day>0&&total_day<=3){
+                    price_clear = (1) * Long.parseLong(objHomeStay.getCLEAN_ROOM());
+                    txt_price_clearroom.setText((1) + " * " + StringUtil.conventMonney_Long(objHomeStay.getCLEAN_ROOM()));
+                }else if (total_day>3&&total_day<=6){
+                    price_clear = (2) * Long.parseLong(objHomeStay.getCLEAN_ROOM());
+                    txt_price_clearroom.setText((2) + " * " + StringUtil.conventMonney_Long(objHomeStay.getCLEAN_ROOM()));
+                }else if (total_day>6){
+                    price_clear = (3) * Long.parseLong(objHomeStay.getCLEAN_ROOM());
+                    txt_price_clearroom.setText((3) + " * " + StringUtil.conventMonney_Long(objHomeStay.getCLEAN_ROOM()));
+                }
                 txt_phikhac.setText(StringUtil.conventMonney_Long(price_clear + ""));
-                txt_price_clearroom.setText((iNoWeekend + iWeekend+iDay_discount+iWeekend_discount) + " * " + StringUtil.conventMonney_Long(objHomeStay.getCLEAN_ROOM()));
+
                 int iGuest = Integer.parseInt(objHomeStay.getMAX_GUEST());
                 int maxGuest = Integer.parseInt(edt_num_guest.getText().toString());
                 if (maxGuest > iGuest) {

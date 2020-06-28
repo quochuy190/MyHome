@@ -200,8 +200,9 @@ public class FragmentDatphongChitiet extends BaseFragment implements InterfaceBo
                                     @Override
                                     public void onClickYesDialog() {
                                         Intent intent = new Intent(getContext(), ActivityThongtinChuyenkhoan.class);
+                                        String sContent = objBooking.getCONTENT_SERVICES();
                                         intent.putExtra(Constants.KEY_SEND_PRICE_THANHTOAN, "" + objBooking.getMONEY_SERVICES());
-                                        intent.putExtra(Constants.KEY_SEND_CONTENT_THANHTOAN, objBooking.getCONTENT_SERVICES());
+                                        intent.putExtra(Constants.KEY_SEND_CONTENT_THANHTOAN, sContent);
                                         intent.putExtra(Constants.KEY_SEND_ID_BOOKSERVICE_THANHTOAN, objBooking.getID_BOOK_SERVICES());
                                         startActivityForResult(intent, Constants.RequestCode.GET_BOOKING);
                                     }

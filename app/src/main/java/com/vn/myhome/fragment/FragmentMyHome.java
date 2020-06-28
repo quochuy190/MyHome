@@ -123,9 +123,9 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
             txt_title.setText("DANH SÁCH NHÀ");
             img_home.setVisibility(View.INVISIBLE);
         }
-
         initPulltoRefesh();
         init();
+        initData();
         set_data_spinner();
         initEvent();
         img_back.setOnClickListener(new View.OnClickListener() {
@@ -408,6 +408,6 @@ public class FragmentMyHome extends BaseFragment implements InterfaceMyHome.View
                 initData();
                 pull_refresh_product.setRefreshing(false);
             }
-        }, 500);
+        }, 1000);
     }
 }

@@ -2,10 +2,11 @@ package com.vn.myhome.activity.notifycation;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class Activity_Notify_Detail extends BaseActivity implements InterfaceNot
     @BindView(R.id.txt_title_notify)
     TextView txt_title;
     @BindView(R.id.webview_content)
-    TextView webview_content;
+    WebView webview_content;
     public static final int PERMISSIONS_REQUEST_CODE = 0;
     public static final int FILE_PICKER_REQUEST_CODE = 1;
     private final static int FILE_REQUEST_CODE = 1;
@@ -87,8 +88,8 @@ public class Activity_Notify_Detail extends BaseActivity implements InterfaceNot
         txt_title.setText(objNotify.getTITLE());
         txt_time.setText(objNotify.getSENT_TIME());
         if (objNotify.getCONTENT() != null) {
-            //  initWebview(webview_content, objNotify.getCONTENT());
-            webview_content.setText(objNotify.getCONTENT());
+              initWebview(webview_content, objNotify.getCONTENT());
+         //   webview_content.setText(objNotify.getCONTENT());
         }
     }
 
@@ -187,18 +188,27 @@ public class Activity_Notify_Detail extends BaseActivity implements InterfaceNot
 
     }
 
-    public static void initWebview(WebView webview_debai, String link_web) {
+    public void initWebview(WebView webview_debai, String link_web) {
         webview_debai.getSettings().setJavaScriptEnabled(true);
         webview_debai.getSettings();
         webview_debai.setBackgroundColor(Color.TRANSPARENT);
-        WebSettings webSettings = webview_debai.getSettings();
+      /*  WebSettings webSettings = webview_debai.getSettings();
         webSettings.setTextSize(WebSettings.TextSize.NORMAL);
         webSettings.setDefaultFontSize(18);
-        webSettings.setTextZoom((int) (webSettings.getTextZoom() * 1));
+        webSettings.setTextZoom((int) (webSettings.getTextZoom() * 1));*/
+        webview_debai.setWebViewClient(new WebViewClient() {
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.startsWith("Tel:")) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
         /* <html><body  align='center'>You scored <b>192</b> points.</body></html>*/
         String pish = "<html><body>";
         String pas = "</body></html>";
-
         webview_debai.loadDataWithBaseURL("", pish + link_web + pas,
                 "text/html", "UTF-8", "");
     }
@@ -216,5 +226,15 @@ public class Activity_Notify_Detail extends BaseActivity implements InterfaceNot
     @Override
     public void show_update_list_notifi(ObjErrorApi objError) {
 
+    }
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if (url.startsWith("tel:")) {
+            Intent intent = new Intent(Intent.ACTION_DIAL,
+                    Uri.parse(url));
+            startActivity(intent);
+        }else if(url.startsWith("http:") || url.startsWith("https:")) {
+            view.loadUrl(url);
+        }
+        return true;
     }
 }

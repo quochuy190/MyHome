@@ -50,7 +50,7 @@ public class HomePresenterNew {
         Map<String, String> mMap_get_room = new LinkedHashMap<>();
         mMap_get_room.put("USERNAME", sUserName);
         mMap_get_room.put("PAGE", "1");
-        mMap_get_room.put("NUMOFPAGE", "1000");
+        mMap_get_room.put("NUMOFPAGE", "500");
 
         Observable<ResponGetBannerCity> userObservable1 = mApi.get_banner_city(mMap)
                 .subscribeOn(Schedulers.newThread())

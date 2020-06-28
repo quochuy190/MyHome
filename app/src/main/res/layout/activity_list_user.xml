@@ -9,6 +9,7 @@
     <include layout="@layout/appbar_all_activity" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_search_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -120,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp5"
             android:padding="@dimen/dp1"
-            android:text="Loại người dùng"
+            android:text="Trạng thái người dùng"
             android:textColor="@color/Gray"
             android:textSize="@dimen/txt_14sp"
             app:layout_constraintStart_toStartOf="@+id/text_phone"

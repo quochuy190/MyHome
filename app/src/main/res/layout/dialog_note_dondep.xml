@@ -112,7 +112,6 @@
         android:minLines="4"
         android:textColor="@color/black"
         android:textSize="@dimen/txt_15sp"
-        android:hint="- Số điện thoại khách"
         android:layout_marginTop="@dimen/dp2"
         android:background="@drawable/spr_edt_booking"
         android:padding="@dimen/dp10"

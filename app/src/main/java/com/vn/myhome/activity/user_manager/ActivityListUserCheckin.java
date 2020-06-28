@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,8 +24,10 @@ import com.vn.myhome.activity.login.PresenterLogin;
 import com.vn.myhome.activity.login.RegisterActivity;
 import com.vn.myhome.adapter.AdapterListUser;
 import com.vn.myhome.base.BaseActivity;
+import com.vn.myhome.callback.ClickDialog;
 import com.vn.myhome.callback.ItemClickListener;
 import com.vn.myhome.config.Constants;
+import com.vn.myhome.fragment.tabCheckinCheckout.PresenterTabCheckinCheckout;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ObjTypeUser;
@@ -46,7 +50,7 @@ import butterknife.BindView;
  * Time: 10:31
  * Version: 1.0
  */
-public class ActivityListUser extends BaseActivity implements InterfaceUser.View, InterfaceLogin.View {
+public class ActivityListUserCheckin extends BaseActivity implements InterfaceUser.View, InterfaceLogin.View {
     UserPresenter mPresenter;
     private List<ObjLogin> mList;
     private AdapterListUser adapter;
@@ -58,9 +62,13 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
     EditText edt_phone;
     @BindView(R.id.btn_tracuu)
     Button btn_tracuu;
+    @BindView(R.id.view_search_user)
+    ConstraintLayout viewSearchUser;
     RecyclerView.LayoutManager mLayoutManager;
-    String USER_TYPE = "", sSTATE = "", sFullName = "", sPhone = "";
+    String USER_TYPE = "5", sSTATE = "", sFullName = "", sPhone = "";
     PresenterLogin mPresenterLogin;
+    private String mContent;
+    PresenterTabCheckinCheckout mPresenterTabCheckinCheckout;
     @Override
     public int setContentViewId() {
         return R.layout.activity_list_user;
@@ -71,11 +79,13 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
         super.onCreate(savedInstanceState);
         mPresenter = new UserPresenter(this);
         mPresenterLogin = new PresenterLogin(this);
+        mPresenterTabCheckinCheckout = new PresenterTabCheckinCheckout(this);
         KeyboardUtil.hideSoftKeyboard(this);
+        viewSearchUser.setVisibility(View.GONE);
         init();
         initAppbar();
-       // set_class_user_spinner();
-        set_status_user_spinner();
+        // set_class_user_spinner();
+        //   set_status_user_spinner();
         initData();
         initEvent();
     }
@@ -93,13 +103,13 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
                 finish();
             }
         });
-        txt_title.setText("DANH SÁCH NGƯỜI DÙNG");
-        img_home.setVisibility(View.VISIBLE);
+        txt_title.setText("DANH SÁCH TK CHECKIN");
+        img_home.setVisibility(View.INVISIBLE);
         img_home.setImageDrawable(getResources().getDrawable(R.drawable.ic_add));
         img_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityListUser.this, RegisterActivity.class);
+                Intent intent = new Intent(ActivityListUserCheckin.this, RegisterActivity.class);
                 intent.putExtra(Constants.KEY_IS_REGISTER_ADMIN, true);
                 startActivityForResult(intent, Constants.RequestCode.START_REGISTER_ADMIN);
             }
@@ -125,13 +135,14 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
         btn_tracuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                KeyboardUtil.hideSoftKeyboard(ActivityListUser.this);
+                KeyboardUtil.hideSoftKeyboard(ActivityListUserCheckin.this);
                 initData();
             }
         });
     }
 
     private void initData() {
+        mContent = getIntent().getStringExtra(Constants.KEY_SEND_CONTENT_BOOK_SERVICE);
         showDialogLoading();
         String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         if (edt_name.getText().toString().length() > 0) {
@@ -146,7 +157,7 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
         }
         mPresenter.api_get_listuser(sUserName, "", sPhone, "",
                 sFullName, USER_TYPE, sSTATE, "", "1", "500");
-        mPresenterLogin.api_get_type(sUserName);
+        //  mPresenterLogin.api_get_type(sUserName);
     }
 
     private void init() {
@@ -162,12 +173,22 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
         adapter.setOnIListener(new ItemClickListener() {
             @Override
             public void onClickItem(int position, Object item) {
-                ObjLogin obj = mList.get(position);
-                Intent intent = new Intent(ActivityListUser.this, Activity_Info_User.class);
-                intent.putExtra(Constants.KEY_SEND_INFO_USERID, obj.getUSERID());
-                intent.putExtra(Constants.KEY_SEND_INFO_USERID_TITLE, "Thông tin người dùng");
-                //startActivity(intent);
-                startActivityForResult(intent, Constants.RequestCode.GET_MY_HOME);
+                ObjLogin obj = (ObjLogin) item;
+                showDialogComfirm("Thông báo",
+                        "Bạn có chắc chắn muốn chia đơn dọn dẹp cho nhân viên "+obj.getFULL_NAME()+" không?",
+                        true, new ClickDialog() {
+                    @Override
+                    public void onClickYesDialog() {
+                        showDialogLoading();
+                        String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+                        mPresenterTabCheckinCheckout.api_split_book_services(sUserName, mContent, obj.getUSERID());
+                    }
+
+                    @Override
+                    public void onClickNoDialog() {
+
+                    }
+                });
             }
         });
     }
@@ -191,7 +212,7 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
     @Override
     public void show_get_type(GetTypeResponse objRes) {
         hideDialogLoading();
-        if (objRes.getERROR().equals("0000")){
+        if (objRes.getERROR().equals("0000")) {
             set_class_user_spinner(objRes.getINFO());
         }
     }
@@ -240,7 +261,7 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
         try {
             data_class_user = new ArrayList<>();
             data_class_user.add("- Tất cả -");
-            for (ObjTypeUser obj : mList){
+            for (ObjTypeUser obj : mList) {
                 data_class_user.add(obj.getTYPE_NAME());
             }
          /*   data_class_user.add("- Tất cả -");
@@ -255,10 +276,10 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     try {
-                        if (position==0){
+                        if (position == 0) {
                             USER_TYPE = "";
-                        }else {
-                            USER_TYPE = mList.get(position-1).getUSER_TYPE();
+                        } else {
+                            USER_TYPE = mList.get(position - 1).getUSER_TYPE();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -320,5 +341,12 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
             e.printStackTrace();
         }
 
+    }
+    public void show_api_chiadon(ObjErrorApi obj){
+        hideDialogLoading();
+        if (obj.getERROR().equals("0000")){
+            Toast.makeText(this, "Chia đơn dọn dẹp thành công", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }

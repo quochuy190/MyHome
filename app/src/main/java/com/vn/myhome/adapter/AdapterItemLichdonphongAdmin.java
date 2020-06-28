@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vn.myhome.R;
 import com.vn.myhome.activity.home.ActivityRoomDetail;
+import com.vn.myhome.activity.user_manager.ActivityListUserCheckin;
 import com.vn.myhome.activity.user_manager.Activity_Info_User;
 import com.vn.myhome.callback.OnItemClickListennerTwoBtn;
 import com.vn.myhome.callback.setOnItemClickListener;
@@ -70,6 +72,7 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
     @Override
     public void onBindViewHolder(TopicViewHoder holder, int position) {
         ObjBookingService obj = mList.get(position);
+        ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
         try {
             if (obj != null) {
                 holder.txt_name_home.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +88,9 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                     holder.txt_name_home.setText("" + obj.getROOM_NAME());
                 if (obj.getNOTES() != null)
                     holder.txt_note.setText("Ghi chú:\n" + obj.getNOTES());
+                else {
+                    holder.txt_note.setText("Ghi chú:");
+                }
                 if (obj.getFULL_NAME() != null) {
                     //  holder.txt_name_booker.setText("Người đặt: " + obj.getBOOK_NAME());
                     String styledText = "Người đặt: <font color='#3300FF'><b><u>" + obj.getFULL_NAME() + "</u></b></font>";
@@ -140,9 +146,9 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                     holder.txt_status_home.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
                     //holder.txt_status_room.setText("Trạng thái phòng: Đang trống");
                 }
-                if (obj.getSTATE().equals("4")){
+                if (obj.getSTATE().equals("4")) {
                     holder.btn_trangthainha.setVisibility(View.GONE);
-                }else
+                } else
                     holder.btn_trangthainha.setVisibility(View.VISIBLE);
                 if (obj.getBILLING_STATUS() != null && obj.getBILLING_STATUS().equals("1")) {
                     holder.btn_update_pay.setVisibility(View.GONE);
@@ -151,16 +157,16 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                     //   holder.txt_status_room.setText("Trạng thái phòng: Đã khóa");
                 } else {
                     holder.btn_update_pay.setVisibility(View.VISIBLE);
-                    ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
-                    if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
+                    if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)
+                            || objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
                         holder.btn_update_pay.setVisibility(View.GONE);
                     } else {
                         holder.btn_update_pay.setVisibility(View.VISIBLE);
                     }
-                    if (obj.getKIND_OF_PAID().equals("1")){
+                    if (obj.getKIND_OF_PAID().equals("1")) {
                         String styledText = "Trạng thái thanh toán: <font color='#CC6633'><b>Thanh toán trả sau</b></font>.";
                         holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-                    }else {
+                    } else {
                         String styledText = "Trạng thái thanh toán: <font color='#FF3300'><b>Chưa thanh toán</b></font>.";
                         holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
                     }
@@ -187,7 +193,7 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                 holder.txt_name_booker.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                      //  click_lable.OnLongItemClickListener(position);
+                        //  click_lable.OnLongItemClickListener(position);
                         ObjBookingService obj = mList.get(position);
                         Intent intent = new Intent(context, Activity_Info_User.class);
                         intent.putExtra(Constants.KEY_SEND_INFO_USERID, obj.getUSERID());
@@ -196,6 +202,25 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                         context.startActivity(intent);
                     }
                 });
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.ADMIN)
+                        || objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
+                    if (obj.getSTATE().equals("0") && obj.getID_CHECKIN() == null) {
+                        holder.img_chiadon.setVisibility(View.VISIBLE);
+                    } else
+                        holder.img_chiadon.setVisibility(View.GONE);
+                } else {
+                    holder.img_chiadon.setVisibility(View.GONE);
+                }
+                holder.img_chiadon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, ActivityListUserCheckin.class);
+                        intent.putExtra(Constants.KEY_SEND_CONTENT_BOOK_SERVICE, mList.get(position).getCONTENT());
+                        mList.get(position);
+                        context.startActivity(intent);
+                    }
+                });
+
               /*  holder.txt_name_home.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -240,6 +265,8 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
         Button btn_trangthainha;
         @BindView(R.id.btn_update_pay)
         Button btn_update_pay;
+        @BindView(R.id.img_chiadon)
+        ImageView img_chiadon;
 
         public TopicViewHoder(View itemView) {
             super(itemView);

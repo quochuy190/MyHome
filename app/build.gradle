@@ -16,8 +16,8 @@ android {
         applicationId "com.vn.myhome"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 26
-        versionName "1.9.4"
+        versionCode 30
+        versionName "1.9.8"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

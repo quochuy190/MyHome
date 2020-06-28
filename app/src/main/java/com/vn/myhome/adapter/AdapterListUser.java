@@ -90,6 +90,10 @@ public class AdapterListUser extends RecyclerView.Adapter<AdapterListUser.TopicV
                     holder.txt_type_user.setText(Html.fromHtml
                             ("User type: <font color='#000000'>Supper Gold</font>"));
                     break;
+                case Constants.UserType.CHECK_IN:
+                    holder.txt_type_user.setText(Html.fromHtml
+                            ("User type: <font color='#000000'>Check - in</font>"));
+                    break;
             }
             if (obj.getSTATE().equals("1")) {
                 holder.txt_status.setBackgroundColor(context.getResources().getColor(R.color.NeoColorXanhHoangGia));

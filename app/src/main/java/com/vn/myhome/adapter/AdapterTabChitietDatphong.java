@@ -183,6 +183,10 @@ public class AdapterTabChitietDatphong extends RecyclerView.Adapter<AdapterTabCh
                         holder.btn_open_room.setVisibility(View.VISIBLE);
                     }
                 }
+                String txt_book_status_room = "Trạng thái nhà: <font color='#FF9900'><b>"
+                        + obj.getBOOK_STATUS_NAME() + "</b></font>";
+                //holder.txt_status_room.setText(room_status);
+                holder.txt_status_book_room.setText(Html.fromHtml(txt_book_status_room), TextView.BufferType.SPANNABLE);
                 if (objLogin.getUSER_TYPE().
                         equals(Constants.UserType.CTV) || objLogin.getUSER_TYPE().
                         equals(Constants.UserType.DICHVU)) {
@@ -206,6 +210,7 @@ public class AdapterTabChitietDatphong extends RecyclerView.Adapter<AdapterTabCh
                                 + obj.getBILLING_STATUS_NAME() + "</b></font>";
                         holder.txt_status_pay.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
                     }
+
                     // holder.txt_status_pay.setText(obj.getBILLING_STATUS_NAME());
                 }
             }
@@ -234,6 +239,8 @@ public class AdapterTabChitietDatphong extends RecyclerView.Adapter<AdapterTabCh
         TextView txt_status_room;
         @BindView(R.id.txt_status_pay)
         TextView txt_status_pay;
+        @BindView(R.id.txt_status_book_room)
+        TextView txt_status_book_room;
         @BindView(R.id.btn_booking_clearroom)
         Button btn_booking_clearroom;
         @BindView(R.id.btn_open_room)

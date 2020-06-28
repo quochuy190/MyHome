@@ -129,6 +129,12 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
     }
 
     private void initEvent() {
+        txt_phome_host.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StringUtil.call_phone(ActivityRoomDetail.this, txt_phome_host.getText().toString());
+            }
+        });
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -225,7 +231,7 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
         if (objRoomDetail.getEMAIL() != null)
             txt_email_host.setText(objRoomDetail.getEMAIL());
         if (objRoomDetail.getMOBILE() != null)
-            txt_phome_host.setText(objRoomDetail.getMOBILE());
+            txt_phome_host.setText(Html.fromHtml("<u>"+objRoomDetail.getMOBILE()+"</u>"));
         if (objRoomDetail.getHOST_NAME() != null)
             txt_name_host.setText(objRoomDetail.getHOST_NAME());
         if (objRoomDetail.getMAX_BED() != null)
@@ -292,7 +298,6 @@ public class ActivityRoomDetail extends BaseActivity implements InterfaceRoom.Vi
         }
 
         if (objRoomDetail.getPRICE_SPECIAL() != null)
-
             if (objRoomDetail.getCLEAN_ROOM() != null)
                 txt_price_dondep.setText(StringUtil.conventMonney_Long(objRoomDetail.getCLEAN_ROOM()));
         if (objRoomDetail.getPRICE_EXTRA() != null)

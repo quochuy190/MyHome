@@ -132,7 +132,6 @@ public class FragmentHome extends BaseFragment
     }
 
     public void init(List<ObjFragmentSearchHome> objFragmentSearchHome) {
-
         mList = new ArrayList<>();
         mAdapter = new AdapterFragmentSearchHome(objFragmentSearchHome, getContext());
         mLayoutManager = new GridLayoutManager(getContext(), 1);

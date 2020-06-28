@@ -232,7 +232,7 @@
                         android:layout_marginLeft="@dimen/dp3"
                         android:gravity="center_vertical"
                         android:singleLine="true"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/blue_text"
                         android:textSize="@dimen/txt_15sp"
                         app:layout_constraintBottom_toBottomOf="@+id/ic_detail_room_3"
                         app:layout_constraintEnd_toEndOf="parent"

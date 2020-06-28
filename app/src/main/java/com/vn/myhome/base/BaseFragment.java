@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 
 import com.vn.myhome.R;
 import com.vn.myhome.callback.ClickDialog;
-import com.vn.myhome.fragment.myhome.FragmentInfoNewRoom;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
@@ -90,7 +89,7 @@ public class BaseFragment extends Fragment {
         TextView txt_name = dialog_call.findViewById(R.id.txt_title);
         TextView txt_exit = dialog_call.findViewById(R.id.txt_exit);
         TextView txt_call = dialog_call.findViewById(R.id.txt_call);
-        String sName = "Tổng đài chăm sóc khách hàng <b><font color='#FF0000'>0981.04.5225</font></b>";
+        String sName = "Tổng đài chăm sóc khách hàng <b><font color='#FF0000'>0944.975.886</font></b>";
         txt_name.setText(Html.fromHtml(sName), TextView.BufferType.SPANNABLE);
         txt_call.setOnClickListener(new View.OnClickListener() {
             @Override

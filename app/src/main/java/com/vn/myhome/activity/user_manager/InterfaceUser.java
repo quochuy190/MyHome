@@ -23,6 +23,8 @@ public interface InterfaceUser {
                               String USER_TYPE, String STATE, String ADDRESS, String PAGE, String NUMOFPAGE);
 
         void api_change_pass(String USERNAME, String OLD_PASS, String NEW_PASS);
+
+
     }
 
     interface View {

@@ -27,6 +27,7 @@ public class ObjBookingService {
     String USERID;
     String KIND_OF_PAID;
     String NOTES;
+    String ID_CHECKIN;
 
     public String getKIND_OF_PAID() {
         return KIND_OF_PAID;
@@ -178,5 +179,13 @@ public class ObjBookingService {
 
     public void setNOTES(String NOTES) {
         this.NOTES = NOTES;
+    }
+
+    public String getID_CHECKIN() {
+        return ID_CHECKIN;
+    }
+
+    public void setID_CHECKIN(String ID_CHECKIN) {
+        this.ID_CHECKIN = ID_CHECKIN;
     }
 }

@@ -234,7 +234,7 @@ public class FragmentSetup extends BaseFragment implements InterfaceUser.View {
                         showDialog_CallPhone(new ClickDialog() {
                             @Override
                             public void onClickYesDialog() {
-                                StringUtil.call_phone(getContext(), "0981045225");
+                                StringUtil.call_phone(getContext(), "0944975886");
                             }
 
                             @Override

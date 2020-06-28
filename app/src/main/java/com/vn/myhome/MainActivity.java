@@ -31,6 +31,7 @@ import com.vn.myhome.fragment.bottom_bar.FragmentHostBottombar;
 import com.vn.myhome.fragment.qldondep.FragmentHomeQldondep;
 import com.vn.myhome.fragment.services.ActivityBookCar;
 import com.vn.myhome.fragment.services.FragmentServicesAll;
+import com.vn.myhome.fragment.tabCheckinCheckout.FragmentTabCheckinCheckout;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ObjVersion;
@@ -51,7 +52,8 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
     @BindView(R.id.nav_bottom_bar)
     BottomNavigationView bottom_bar;
     @BindView(R.id.txt_xemthem)
-    TextView txt_xemthem;    @BindView(R.id.txt_dong)
+    TextView txt_xemthem;
+    @BindView(R.id.txt_dong)
     TextView txt_dong;
     @BindView(R.id.ll_promotion)
     ConstraintLayout ll_promotion;
@@ -71,9 +73,16 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         initBottomBar();
         initData();
         ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
-        if (!objLogin.getUSER_TYPE().equals(Constants.UserType.CTV)) {
+        if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)
+                || objLogin.getUSER_TYPE().equals(Constants.UserType.ADMIN)) {
             TextView textView = (TextView) bottom_bar.findViewById(R.id.tab_myhome).findViewById(R.id.largeLabel);
             textView.setText("MyHome");
+        } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
+            TextView textView = (TextView) bottom_bar.findViewById(R.id.tab_myhome).findViewById(R.id.largeLabel);
+            textView.setText("Ql dọn dẹp");
+        }else if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
+            TextView textView = (TextView) bottom_bar.findViewById(R.id.tab_myhome).findViewById(R.id.largeLabel);
+            textView.setText("Lịch dọn dẹp");
         }
 
     }
@@ -127,7 +136,16 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 bottom_bar.setSelectedItemId(R.id.tab_setup);
             } else {
                 ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+            /*    if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+                    bottom_bar.setSelectedItemId(R.id.tab_myhome);
+                } else
+                    loadFragmentHome();*/
                 if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+                    bottom_bar.setSelectedItemId(R.id.tab_myhome);
+                } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.ADMIN)) {
+                    bottom_bar.setSelectedItemId(R.id.tab_datphong);
+                } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU) ||
+                        objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
                     bottom_bar.setSelectedItemId(R.id.tab_myhome);
                 } else
                     loadFragmentHome();
@@ -160,6 +178,9 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
             MenuItem selectedItem = bottom_bar.getMenu().findItem(R.id.tab_myhome);
             selectedItem.setTitle("Ql dọn dẹp");
+        } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
+            MenuItem selectedItem = bottom_bar.getMenu().findItem(R.id.tab_myhome);
+            selectedItem.setTitle("Lịch dọn dẹp");
         }
 
         // init_badger();
@@ -191,6 +212,8 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 case R.id.tab_myhome:
                     if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU)) {
                         loadFragment_Lichdonnha_DV();
+                    } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
+                        loadFragmentUserCheckin();
                     } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
                         loadFragmentHost();
                     } else
@@ -209,6 +232,7 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
     FragmentLichnhaAdmin fragmentLichnhaAdmin;
     FragmentHomeQldondep fragmentLichdonnha_home;
     FragmentServicesAll fragmentServicesAll;
+    FragmentTabCheckinCheckout fragmentTabCheckinCheckout;
 
     private void loadFragmentHome() {
         check_user_type();
@@ -546,6 +570,49 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
         transaction.commit();
     }
 
+    private void loadFragmentUserCheckin() {
+        //   objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);
+        fragmentTabCheckinCheckout = (FragmentTabCheckinCheckout) getSupportFragmentManager().
+                findFragmentByTag(FragmentTabCheckinCheckout.class.getName());
+        if (fragmentTabCheckinCheckout == null) {
+            fragmentTabCheckinCheckout = FragmentTabCheckinCheckout.getInstance();
+        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!fragmentTabCheckinCheckout.isAdded()) {
+            transaction.add(R.id.frame_home_fragment, fragmentTabCheckinCheckout,
+                    FragmentTabCheckinCheckout.class.getName());
+        } else {
+            //  transaction.hide(fragmentCurrent);
+            if (fragmentHome != null && fragmentHome.isAdded()) {
+                transaction.hide(fragmentHome);
+            }
+            if (fragmentThongke != null && fragmentThongke.isAdded()) {
+                transaction.hide(fragmentThongke);
+            }
+            if (fragmentSetup != null && fragmentSetup.isAdded()) {
+                transaction.hide(fragmentSetup);
+            }
+            if (fragmentMyhome != null && fragmentMyhome.isAdded()) {
+                transaction.hide(fragmentMyhome);
+            }
+            if (fragmentDatphong != null && fragmentDatphong.isAdded()) {
+                transaction.hide(fragmentDatphong);
+            }
+            if (fragmentLichnhaAdmin != null && fragmentLichnhaAdmin.isAdded()) {
+                transaction.hide(fragmentLichnhaAdmin);
+            }
+            if (fragmentHost != null && fragmentHost.isAdded()) {
+                transaction.hide(fragmentHost);
+            }
+            if (fragmentServicesAll != null && fragmentServicesAll.isAdded()) {
+                transaction.hide(fragmentServicesAll);
+            }
+            transaction.show(fragmentTabCheckinCheckout);
+        }
+        //   fragmentCurrent = fragmentHome;
+        transaction.commit();
+    }
+
     private void loadFragment_Lichdonnha_DV() {
         //   objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USER_LOGIN, ObjLogin.class);
         fragmentLichdonnha_home = (FragmentHomeQldondep) getSupportFragmentManager().
@@ -646,7 +713,6 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                         mVersion = objError.getINFO().get(i);
                     }
                 }
-
             }
             int version = Integer.parseInt(mVersion.getVERSION());
             int version_code = App.versionCode;
@@ -707,6 +773,11 @@ public class MainActivity extends BaseActivity implements InterfaceLogin.View, I
                 bottom_bar.setSelectedItemId(R.id.tab_setup);
             } else {
                 if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHUNHA)) {
+                    bottom_bar.setSelectedItemId(R.id.tab_myhome);
+                } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.ADMIN)) {
+                    bottom_bar.setSelectedItemId(R.id.tab_datphong);
+                } else if (objLogin.getUSER_TYPE().equals(Constants.UserType.DICHVU) ||
+                        objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
                     bottom_bar.setSelectedItemId(R.id.tab_myhome);
                 } else
                     loadFragmentHome();

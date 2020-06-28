@@ -386,7 +386,7 @@ public class Fragment_TabLichdatnha_Admin extends BaseFragment implements Interf
                 if (position == 0) {
                     sStatusBook = "";
                 } else
-                    sStatusBook = "" + (position - 1);
+                    sStatusBook = "" + position;
             }
 
             @Override

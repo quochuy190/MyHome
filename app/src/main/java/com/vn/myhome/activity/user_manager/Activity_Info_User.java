@@ -154,6 +154,7 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
     TextView txt_chunha;
     TextView txt_dichvu;
     TextView txt_dong;
+    TextView txtCheckin;
 
     private void show_bottom_dialog() {
         mBottomSheetDialog = new BottomSheetDialog(Activity_Info_User.this);
@@ -162,6 +163,7 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         txt_chunha = sheetView.findViewById(R.id.txt_chunha);
         txt_dichvu = sheetView.findViewById(R.id.txt_dichvu);
         txt_dong = sheetView.findViewById(R.id.txt_dong_dialog);
+        txtCheckin = sheetView.findViewById(R.id.txt_checkin);
         txt_chunha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,6 +183,14 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         txt_dong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mBottomSheetDialog.dismiss();
+            }
+        });
+        txtCheckin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sUserType = "5";
+                edt_stype.setText("Check - in");
                 mBottomSheetDialog.dismiss();
             }
         });

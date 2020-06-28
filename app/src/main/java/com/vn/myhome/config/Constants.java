@@ -32,6 +32,7 @@ public class Constants {
         public static final String CTV = "2";
         public static final String DICHVU = "4";
         public static final String GOLD = "3";
+        public static final String CHECK_IN = "5";
     }
     public class EventBus {
         public static final String TAB_LICH = "TAB_LICH";
@@ -69,10 +70,11 @@ public class Constants {
     public static final String KEY_SEND_NOTIFY_DETAIL = "KEY_SEND_NOTIFY_DETAIL";
     public static final String KEY_IS_REGISTER_ADMIN = "KEY_IS_REGISTER_ADMIN";
     public static final String KEY_IS_UPDATE_MYHOME= "KEY_IS_UPDATE_MYHOME";
-    public static final String KEY_SEND_ID_BOOKSERVICE_THANHTOAN = "KEY_SEND_CONTENT_THANHTOAN";
+    public static final String KEY_SEND_ID_BOOKSERVICE_THANHTOAN = "KEY_SEND_ID_BOOKSERVICE_THANHTOAN";
     public static final String DIEM_DEN_YEU_THICH = "ĐIỂM ĐIẾN YÊU THÍCH";
     public static final String TOP_NHA_NOI_BAT = "TOP NHÀ NỔI BẬT";
     public static final String KEY_SEND_ID_PROVINCE = "KEY_SEND_ID_PROVINCE";
     public static final String KEY_SEND_NAME_PROVINCE = "KEY_SEND_NAME_PROVINCE";
     public static final String KEY_SEND_ID_BOOKCAR = "KEY_SEND_ID_BOOKCAR";
+    public static final String KEY_SEND_CONTENT_BOOK_SERVICE = "KEY_SEND_CONTENT_BOOK_SERVICE";
 }

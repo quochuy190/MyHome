@@ -56,14 +56,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp1"/>
     <TextView
-        android:visibility="gone"
+        android:visibility="visible"
         android:background="@drawable/spr_click_view"
-        android:id="@+id/txt_menu_dialog_5"
+        android:id="@+id/txt_checkin"
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="@dimen/txt_16sp"
         android:textColor="@color/blue_introduce"
-        android:text="Hủy đặt phòng"
+        android:text="Check - in"
         android:padding="@dimen/dp15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

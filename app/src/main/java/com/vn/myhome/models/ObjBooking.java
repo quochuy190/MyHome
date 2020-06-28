@@ -32,6 +32,7 @@ public class ObjBooking {
     String BOOKING_PRICE;
     String KIND_OF_PAID;
 
+
     public String getKIND_OF_PAID() {
         return KIND_OF_PAID;
     }
