@@ -145,7 +145,7 @@ public class ActivityListUser extends BaseActivity implements InterfaceUser.View
             sPhone = "";
         }
         mPresenter.api_get_listuser(sUserName, "", sPhone, "",
-                sFullName, USER_TYPE, sSTATE, "", "1", "500");
+                sFullName, USER_TYPE, sSTATE, "","", "1", "500");
         mPresenterLogin.api_get_type(sUserName);
     }
 

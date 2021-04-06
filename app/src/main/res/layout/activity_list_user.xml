@@ -180,6 +180,16 @@
             app:layout_constraintWidth_percent="0.4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/txt_data_empty"
+        android:visibility="gone"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:padding="@dimen/dp5"
+        android:text="@string/txt_data_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_list_user"
         android:layout_width="match_parent"

@@ -24,6 +24,7 @@ public class Constants {
         public static final int GET_LIST_MYHOME = 1011;
         public static final int GET_LIST_ROUTE = 1012;
         public static final int GET_LIST_CAR = 1013;
+        public static final int UPLOAD_IMAGE_SERVICE = 1014;
     }
 
     public class UserType {
@@ -77,4 +78,7 @@ public class Constants {
     public static final String KEY_SEND_NAME_PROVINCE = "KEY_SEND_NAME_PROVINCE";
     public static final String KEY_SEND_ID_BOOKCAR = "KEY_SEND_ID_BOOKCAR";
     public static final String KEY_SEND_CONTENT_BOOK_SERVICE = "KEY_SEND_CONTENT_BOOK_SERVICE";
+    public static final String KEY_SEND_ID_BOOK_SERVICE = "KEY_SEND_ID_BOOK_SERVICE";
+    public static final String KEY_SEND_TYPE_UPLOAD_IMAGE_SERVICE = "KEY_SEND_TYPE_UPLOAD_IMAGE_SERVICE";
+    public static final String KEY_SEND_GETLINK = "KEY_SEND_GETLINK";
 }

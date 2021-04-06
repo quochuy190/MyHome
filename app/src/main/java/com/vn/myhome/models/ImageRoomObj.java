@@ -23,6 +23,10 @@ public class ImageRoomObj {
     @SerializedName("UPDATE_TIME")
     String UPDATE_TIME;
 
+    public ImageRoomObj(String IMG) {
+        this.IMG = IMG;
+    }
+
     public String getID() {
         return ID;
     }

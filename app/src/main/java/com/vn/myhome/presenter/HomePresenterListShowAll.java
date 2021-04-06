@@ -2,18 +2,15 @@ package com.vn.myhome.presenter;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.vn.myhome.activity.home.ActivityListHomestayShowAll;
+import com.vn.myhome.apiservice_base.ApiServicePost;
+import com.vn.myhome.callback.CallbackData;
 import com.vn.myhome.models.ResponseApi.GetRoomResponse;
-import com.vn.myhome.network.RequestApiInterface;
-import com.vn.myhome.network.RetrofitClient;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 /**
@@ -27,52 +24,44 @@ public class HomePresenterListShowAll {
     private static final String TAG = "HomePresenterNew";
     ActivityListHomestayShowAll mView;
     Retrofit retrofit;
-    RequestApiInterface mApi;
+    ApiServicePost mApiService;
 
     public HomePresenterListShowAll(ActivityListHomestayShowAll mView) {
         this.mView = mView;
-        retrofit = RetrofitClient.getInstance();
-        mApi = retrofit.create(RequestApiInterface.class);
+        mApiService = new ApiServicePost();
     }
 
 
     public void getListHomeStay(String sUserName, String Page) {
-        Map<String, String> mMap_get_room = new LinkedHashMap<>();
-        mMap_get_room.put("USERNAME", sUserName);
-        mMap_get_room.put("PAGE", Page);
-        mMap_get_room.put("NUMOFPAGE", "20");
+        String sService = "room/get_listroom_idx";
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("USERNAME", sUserName);
+        mMap.put("PAGE", Page);
+        mMap.put("NUMOFPAGE", "20");
 
-        Observable<GetRoomResponse> userObservable = mApi.get_listroom_idx(mMap_get_room)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.io());
-        userObservable.subscribe(new Observer<GetRoomResponse>() {
+        mApiService.getApi_Token_Enable(new CallbackData<String>() {
             @Override
-            public void onSubscribe(Disposable d) {
-                Log.e(TAG, "onSubscribe: " );
+            public void onGetDataErrorFault(Exception e) {
+                mView.showAlertErrorNetwork();
+                Log.i(TAG, "onGetDataErrorFault: " + e);
             }
 
             @Override
-            public void onNext(GetRoomResponse getRoomResponse) {
-                if (getRoomResponse.getERROR().equals("0000")){
-                    if (getRoomResponse.getINFO()!=null){
-                        mView.update_data(getRoomResponse.getINFO());
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                mView.hideDialogLoading();
+                try {
+                    GetRoomResponse obj = new Gson().fromJson(objT, GetRoomResponse.class);
+                    if (obj.getERROR().equals("0000")){
+                        mView.update_data(obj.getINFO());
                     }
 
+                } catch (Exception e) {
+                    e.printStackTrace();
+                  // mView.show_error_api("");
                 }
-
             }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "onError: " );
-            }
-
-            @Override
-            public void onComplete() {
-                Log.e(TAG, "onComplete: " );
-                mView.hideDialogLoading();
-            }
-        });
+        }, sService, mMap);
     }
 
 }

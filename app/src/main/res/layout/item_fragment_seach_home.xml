@@ -26,11 +26,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
         android:text="Xem thêm"
-        android:textColor="@color/black"
-        android:textSize="@dimen/txt_12sp"
+        android:gravity="center"
+        android:textColor="@color/app_main"
+        android:textSize="@dimen/txt_14sp"
         android:textStyle="italic"
         android:id="@+id/txt_xemthem"
-        android:padding="@dimen/dp10"
+        android:padding="@dimen/dp7"
         android:layout_width="wrap_content"
         android:layout_height="0dp" />
 

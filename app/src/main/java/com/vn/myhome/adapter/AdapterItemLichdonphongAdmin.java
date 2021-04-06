@@ -22,6 +22,7 @@ import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjBookingService;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ObjLogin;
+import com.vn.myhome.ui.updateImageCheckin.UpdateImageCheckinActivity;
 import com.vn.myhome.untils.SharedPrefs;
 import com.vn.myhome.untils.TimeUtils;
 
@@ -216,11 +217,26 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
                     public void onClick(View view) {
                         Intent intent = new Intent(context, ActivityListUserCheckin.class);
                         intent.putExtra(Constants.KEY_SEND_CONTENT_BOOK_SERVICE, mList.get(position).getCONTENT());
+                        intent.putExtra(Constants.KEY_SEND_GETLINK, mList.get(position).getGENLINK());
                         mList.get(position);
                         context.startActivity(intent);
                     }
                 });
-
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
+                    holder.imgShowImage.setVisibility(View.GONE);
+                    holder.btn_update_pay.setVisibility(View.VISIBLE);
+                    holder.btn_update_pay.setText("Cập nhật ảnh");
+                }else {
+                    holder.imgShowImage.setVisibility(View.VISIBLE);
+                    holder.imgShowImage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(context, UpdateImageCheckinActivity.class);
+                            intent.putExtra(Constants.KEY_SEND_ID_BOOK_SERVICE, mList.get(position).getID());
+                            context.startActivity(intent);
+                        }
+                    });
+                }
               /*  holder.txt_name_home.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -267,6 +283,8 @@ public class AdapterItemLichdonphongAdmin extends RecyclerView.Adapter<AdapterIt
         Button btn_update_pay;
         @BindView(R.id.img_chiadon)
         ImageView img_chiadon;
+        @BindView(R.id.img_show_image)
+        ImageView imgShowImage;
 
         public TopicViewHoder(View itemView) {
             super(itemView);

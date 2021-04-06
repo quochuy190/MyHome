@@ -1,6 +1,7 @@
 package com.vn.myhome.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vn.myhome.R;
+import com.vn.myhome.activity.home.ActivityListHomestayShowAll;
 import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjFragmentSearchHome;
 
@@ -76,7 +78,7 @@ public class AdapterFragmentSearchHome
                 holderBanner.title_header_city.setText(obj.getTITLE());
         } else {
             ViewHoderLisHomestay holderListRoom = (ViewHoderLisHomestay) holder;
-            holderListRoom.txt_xemthem.setVisibility(View.GONE);
+            holderListRoom.txt_xemthem.setVisibility(View.VISIBLE);
             if (obj.getmListHomeStay() != null)
                 holderListRoom.adapterListHomestay.setData(obj.getmListHomeStay(), mContext);
             if (obj.getTITLE() != null)
@@ -84,8 +86,8 @@ public class AdapterFragmentSearchHome
             holderListRoom.txt_xemthem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                  /*  Intent intent = new Intent(mContext, ActivityListHomestayShowAll.class);
-                    mContext.startActivity(intent);*/
+                    Intent intent = new Intent(mContext, ActivityListHomestayShowAll.class);
+                    mContext.startActivity(intent);
                 }
             });
         }

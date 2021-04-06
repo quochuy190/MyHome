@@ -36,6 +36,7 @@ import com.jaiselrahman.filepicker.model.MediaFile;
 import com.vn.myhome.App;
 import com.vn.myhome.R;
 import com.vn.myhome.activity.login.ActivityListCity;
+import com.vn.myhome.activity.login.ActivityListTowers;
 import com.vn.myhome.base.BaseActivity;
 import com.vn.myhome.callback.ClickDialog;
 import com.vn.myhome.config.Config;
@@ -117,10 +118,14 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
     ImageView img_get_city;
     @BindView(R.id.img_get_image)
     ImageView img_get_image;
+    @BindView(R.id.ll_location)
+    ConstraintLayout llLocation;
+    @BindView(R.id.edt_location)
+    EditText edtLocation;
     PresenterUploadImage mPresenterUpload;
     private String sUserType = "", sUsername = "", sPassWord = "", sEmail = "",
             sFulName = "", sMobile = "", sAddress = "", sDOB = "", sProvince = "", sSTK = "",
-            sTenTK = "", sTenNN = "", sTenCN = "", sAVATAR = "", sState = "";
+            sTenTK = "", sTenNN = "", sTenCN = "", sAVATAR = "", sState = "", sLocationId="";
 
     @Override
     public int setContentViewId() {
@@ -204,6 +209,18 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
     }
 
     private void initEvent() {
+        llLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityLocation();
+            }
+        });
+        edtLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityLocation();
+            }
+        });
         img_user_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -300,6 +317,17 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
         });
     }
 
+    private void startActivityLocation() {
+        if (sProvince != null && sProvince.length()>0) {
+            App.mTower = null;
+            Intent intent_tower = new Intent(this, ActivityListTowers.class);
+            intent_tower.putExtra(Constants.KEY_SEND_ID_PROVINCE, sProvince);
+            startActivityForResult(intent_tower, Constants.RequestCode.GET_TOWER);
+        } else
+            showAlertDialog(getString(R.string.txt_dialog_title), getString(R.string.txt_dialog_content_validate_city));
+
+    }
+
     private void checkPermissionsAndOpenFilePicker() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED) {
@@ -340,6 +368,20 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
                 if (resultCode == RESULT_OK) {
                     edt_city.setText(App.mCity.getNAME());
                     sProvince = App.mCity.getMATP();
+                }
+                App.mTower = null;
+                edtLocation.setText("");
+                sLocationId = "";
+                break;
+            case Constants.RequestCode.GET_TOWER:
+                if (resultCode == RESULT_OK) {
+                    if (App.mTower != null) {
+                        edtLocation.setText(App.mTower.getsName());
+                        sLocationId = App.mTower.getsId();
+                    } else {
+                        edtLocation.setText("");
+                        edtLocation.setHint(getString(R.string.hide_tower));
+                    }
                 }
                 break;
         }
@@ -450,6 +492,7 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
             edt_fullname.setText(objLogin.getFULL_NAME());
             edt_email.setText(objLogin.getEMAIL());
             edt_city.setText(objLogin.getPROVINCE_NAME());
+            edtLocation.setText(objLogin.getLOCATION_NAME());
             edt_address.setText(objLogin.getADDRESS());
             edt_phone.setText(objLogin.getMOBILE());
             edt_birthday.setText(TimeUtils.convent_date(objLogin.getDOB(), "dd/MM/yyyy HH:mm:ss",
@@ -457,6 +500,7 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
             set_sate(objLogin.getSTATE());
             sUserType = objLogin.getUSER_TYPE();
             sProvince = objLogin.getID_PROVINCE();
+            sLocationId = objLogin.getLOCATION_ID();
             edt_name_bank.setText(objLogin.getTEN_TK());
             edt_nganhang.setText(objLogin.getTEN_NH());
             edt_stk_bank.setText(objLogin.getSO_TK());
@@ -597,7 +641,7 @@ public class Activity_Info_User extends BaseActivity implements InterfaceUser.Vi
             }
         }
         mPresenter.api_update_user_info(sUsername, sUserId, sPassWord, sMobile, sEmail, sFulName,
-                sDOB, sUserType, sAVATAR, sState, sAddress, sProvince, sSTK, sTenTK,
+                sDOB, sUserType, sAVATAR, sState, sAddress, sProvince, sLocationId, sSTK, sTenTK,
                 sTenNN, sTenCN);
     }
 

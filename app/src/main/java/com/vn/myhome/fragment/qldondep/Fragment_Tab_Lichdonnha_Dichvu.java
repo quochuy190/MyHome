@@ -35,10 +35,12 @@ import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjBookingService;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
+import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ResponseApi.ListBookingResponse;
 import com.vn.myhome.models.ResponseApi.ResponseListBookingService;
 import com.vn.myhome.presenter.BookingPresenter;
 import com.vn.myhome.presenter.InterfaceBooking;
+import com.vn.myhome.ui.updateImageCheckin.UpdateImageCheckinActivity;
 import com.vn.myhome.untils.SharedPrefs;
 
 import java.text.SimpleDateFormat;
@@ -300,7 +302,17 @@ public class Fragment_Tab_Lichdonnha_Dichvu extends BaseFragment implements View
             @Override
             public void OnItemClickListener_Two_Btn(int position) {
                 // cập nhật thanh toán
-                show_bottom_dialog_thanhtoan(mList.get(position));
+                Log.d(TAG, "OnItemClickListener_Two_Btn: start activity");
+                ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
+                    Intent intent = new Intent(getContext(), UpdateImageCheckinActivity.class);
+                    intent.putExtra(Constants.KEY_SEND_ID_BOOK_SERVICE, mList.get(position).getID());
+                    getActivity().startActivity(intent);
+                } else{
+                    Log.d(TAG, "OnItemClickListener_Two_Btn: show dialog");
+                    show_bottom_dialog_thanhtoan(mList.get(position));
+                }
+
             }
         });
         adapter.setClick_lable(new setOnItemClickListener() {

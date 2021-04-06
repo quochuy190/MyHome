@@ -31,7 +31,15 @@ public class ObjBooking {
     String CONTENT_SERVICES;
     String BOOKING_PRICE;
     String KIND_OF_PAID;
+    String ID_BOOK_SV;
 
+    public String getID_BOOK_SV() {
+        return ID_BOOK_SV;
+    }
+
+    public void setID_BOOK_SV(String ID_BOOK_SV) {
+        this.ID_BOOK_SV = ID_BOOK_SV;
+    }
 
     public String getKIND_OF_PAID() {
         return KIND_OF_PAID;

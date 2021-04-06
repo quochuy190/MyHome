@@ -28,11 +28,11 @@ public class PresenterListTowers  {
         mApiService = new ApiServicePost();
     }
 
-    public void api_get_list_tower( String USERNAME) {
+    public void api_get_list_tower( String USERNAME, String PROVINCE_ID) {
         String sService = "room/get_location";
         Map<String, String> mMap = new LinkedHashMap<>();
         mMap.put("USERNAME", USERNAME);
-
+        mMap.put("PROVINCE_ID", PROVINCE_ID);
         mApiService.getApi_Token_Enable(new CallbackData<String>() {
             @Override
             public void onGetDataErrorFault(Exception e) {

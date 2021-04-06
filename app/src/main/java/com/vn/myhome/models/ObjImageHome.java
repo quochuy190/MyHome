@@ -26,6 +26,9 @@ public class ObjImageHome implements Serializable {
     String UPDATE_TIME;
     String sPath;
 
+    public ObjImageHome() {
+    }
+
     public ObjImageHome(String sPath) {
         this.sPath = sPath;
     }

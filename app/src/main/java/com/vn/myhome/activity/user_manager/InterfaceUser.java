@@ -16,11 +16,11 @@ public interface InterfaceUser {
 
         void api_update_user_info(String USERNAME, String USERID, String PASSWORD, String MOBILE, String EMAIL,
                                   String FULL_NAME, String DOB, String USER_TYPE, String AVATAR, String STATE,
-                                  String ADDRESS, String ID_PROVINCE, String STK, String TENTK, String TENNH,
+                                  String ADDRESS, String ID_PROVINCE, String LOCATION_ID, String STK, String TENTK, String TENNH,
                                   String TENCN);
 
         void api_get_listuser(String USERNAME, String USERID, String MOBILE, String EMAIL, String FULL_NAME,
-                              String USER_TYPE, String STATE, String ADDRESS, String PAGE, String NUMOFPAGE);
+                              String USER_TYPE, String STATE, String ADDRESS, String GENLINK, String PAGE, String NUMOFPAGE);
 
         void api_change_pass(String USERNAME, String OLD_PASS, String NEW_PASS);
 

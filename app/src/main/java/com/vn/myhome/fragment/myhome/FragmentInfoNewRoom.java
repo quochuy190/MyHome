@@ -295,14 +295,23 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
                 startActivityForResult(intent_city, Constants.RequestCode.GET_CITY);
                 break;
             case R.id.ll_tower:
-                App.mTower = null;
-                Intent intent_tower = new Intent(getContext(), ActivityListTowers.class);
-                startActivityForResult(intent_tower, Constants.RequestCode.GET_TOWER);
+                if (objCity != null && objCity.getMATP() != null) {
+                    App.mTower = null;
+                    Intent intent_tower = new Intent(getContext(), ActivityListTowers.class);
+                    intent_tower.putExtra(Constants.KEY_SEND_ID_PROVINCE, objCity.getMATP());
+                    startActivityForResult(intent_tower, Constants.RequestCode.GET_TOWER);
+                } else
+                    showAlertDialog(getString(R.string.txt_dialog_title), getString(R.string.txt_dialog_content_validate_city));
+
                 break;
             case R.id.edt_tower_myhome:
-                App.mTower = null;
-                Intent intent_tower1 = new Intent(getContext(), ActivityListTowers.class);
-                startActivityForResult(intent_tower1, Constants.RequestCode.GET_TOWER);
+                if (objCity != null && objCity.getMATP() != null) {
+                    App.mTower = null;
+                    Intent intent_tower = new Intent(getContext(), ActivityListTowers.class);
+                    intent_tower.putExtra(Constants.KEY_SEND_ID_PROVINCE, objCity.getMATP());
+                    startActivityForResult(intent_tower, Constants.RequestCode.GET_TOWER);
+                } else
+                    showAlertDialog(getString(R.string.txt_dialog_title), getString(R.string.txt_dialog_content_validate_city));
                 break;
             case R.id.edt_city_myhome:
                 App.mCity = null;
@@ -546,6 +555,10 @@ public class FragmentInfoNewRoom extends BaseFragment implements View.OnClickLis
                         edt_city.setText("");
                         edt_city.setHint(getContext().getString(R.string.hide_register_city));
                     }
+                    sLocationId = "";
+                    edt_tower.setText("");
+                    edt_tower.setHint(getContext().getString(R.string.hide_tower));
+                    App.mTower = null;
                 }
             case Constants.RequestCode.GET_TOWER:
                 if (resultCode == RESULT_OK) {

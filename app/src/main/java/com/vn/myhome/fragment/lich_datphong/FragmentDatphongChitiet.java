@@ -309,7 +309,7 @@ public class FragmentDatphongChitiet extends BaseFragment implements InterfaceBo
                         +"Tên khách: "+tvNameDialog.getText().toString()+"\n"
                         +"Số lượng khách: "+tvNumberDialog.getText().toString()+"\n"
                         +"Thời gian check-in: "+tvTimeDialog.getText().toString()+"\n"
-                        +"Ghi chú: "+tvNumberDialog.getText().toString()+"\n";
+                        +"Ghi chú: "+tvNoteDialog.getText().toString()+"\n";
                 FragmentDatphong.get_api_book_service(objBooking.getGENLINK(),
                         objBooking.getSTART_TIME(),
                         objBooking.getEND_TIME(), objBooking.getID(), sNote);

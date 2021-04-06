@@ -514,7 +514,8 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(dialog.getContext(), new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(dialog.getContext(), TimePickerDialog.THEME_HOLO_LIGHT
+                        ,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         String sTime = selectedHour+":"+selectedMinute;
@@ -539,7 +540,7 @@ public class FragmentDatphong extends BaseFragment implements View.OnClickListen
                         +"Tên khách: "+tvNameDialog.getText().toString()+"\n"
                         +"Số lượng khách: "+tvNumberDialog.getText().toString()+"\n"
                         +"Thời gian check-in: "+tvTimeDialog.getText().toString()+"\n"
-                        +"Ghi chú: "+tvNumberDialog.getText().toString()+"\n";
+                        +"Ghi chú: "+tvNoteDialog.getText().toString()+"\n";
                 get_api_book_service(mGetLink, mStartDay, mEndDay, idBookRoom, sNote);
                 dialog.dismiss();
             }

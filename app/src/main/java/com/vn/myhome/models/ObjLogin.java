@@ -74,6 +74,10 @@ public class ObjLogin {
     String TEN_TK;
     @SerializedName("SO_TK")
     String SO_TK;
+    @SerializedName("LOCATION_NAME")
+    String LOCATION_NAME;
+    @SerializedName("LOCATION_ID")
+    String LOCATION_ID;
 
     public String getPROVINCE_NAME() {
         return PROVINCE_NAME;
@@ -329,5 +333,21 @@ public class ObjLogin {
 
     public void setRESULT(String RESULT) {
         this.RESULT = RESULT;
+    }
+
+    public String getLOCATION_NAME() {
+        return LOCATION_NAME;
+    }
+
+    public void setLOCATION_NAME(String LOCATION_NAME) {
+        this.LOCATION_NAME = LOCATION_NAME;
+    }
+
+    public String getLOCATION_ID() {
+        return LOCATION_ID;
+    }
+
+    public void setLOCATION_ID(String LOCATION_ID) {
+        this.LOCATION_ID = LOCATION_ID;
     }
 }

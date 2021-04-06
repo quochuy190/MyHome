@@ -35,10 +35,12 @@ import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjBookingService;
 import com.vn.myhome.models.ObjErrorApi;
 import com.vn.myhome.models.ObjHomeStay;
+import com.vn.myhome.models.ObjLogin;
 import com.vn.myhome.models.ResponseApi.ListBookingResponse;
 import com.vn.myhome.models.ResponseApi.ResponseListBookingService;
 import com.vn.myhome.presenter.BookingPresenter;
 import com.vn.myhome.presenter.InterfaceBooking;
+import com.vn.myhome.ui.updateImageCheckin.UpdateImageCheckinActivity;
 import com.vn.myhome.untils.SharedPrefs;
 
 import java.text.SimpleDateFormat;
@@ -59,7 +61,7 @@ import butterknife.ButterKnife;
  * Version: 1.0
  */
 public class FragmentLichdonnhaUserCheckin extends BaseFragment implements View.OnClickListener, InterfaceBooking.View {
-    private static final String TAG = "FragmentSetup";
+    private static final String TAG = "FragmentLichdonnhaUserC";
     public static FragmentLichdonnhaUserCheckin fragment;
 
     public static FragmentLichdonnhaUserCheckin getInstance() {
@@ -152,8 +154,8 @@ public class FragmentLichdonnhaUserCheckin extends BaseFragment implements View.
 
             }
         });
-      //  initAppbar();
-      //  check_title_notify();
+        //  initAppbar();
+        //  check_title_notify();
         init();
         get_time();
         initEvent();
@@ -163,10 +165,12 @@ public class FragmentLichdonnhaUserCheckin extends BaseFragment implements View.
         get_list_donphong();
         return view;
     }
+
     List<String> data_trangthai_thanhtoan;
     @BindView(R.id.spinner_trangthai_thanhtoan)
     Spinner spinner_trangthai_thanhtoan;
     String BILLING_STATUS = "";// 0: chua tt ;1: da tt
+
     private void set_data_spinner_thanhtoan_donnha() {
         data_trangthai_thanhtoan = new ArrayList<>();
         // add trạng thái thanh toán
@@ -191,10 +195,12 @@ public class FragmentLichdonnhaUserCheckin extends BaseFragment implements View.
             }
         });
     }
+
     List<String> data_trangthai_bookphong;
     @BindView(R.id.spinner_trangthai_bookphong)
     Spinner spinner_trangthai_bookphong;
     String BOOKING_STATUS = "";//1: duyet ok ;2 :lock ;3 huy
+
     private void set_data_spinner_trangthai_don() {
         data_trangthai_bookphong = new ArrayList<>();
         data_trangthai_bookphong.add("- Tất cả - ");
@@ -209,7 +215,7 @@ public class FragmentLichdonnhaUserCheckin extends BaseFragment implements View.
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // sStatusBook = "" + position;
-                switch (position){
+                switch (position) {
                     case 0:
                         BOOKING_STATUS = "";
                         break;
@@ -258,13 +264,14 @@ public class FragmentLichdonnhaUserCheckin extends BaseFragment implements View.
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  EventBus.getDefault().register(this);
+        Log.d(TAG, "onCreate: ");
+        //  EventBus.getDefault().register(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-       // EventBus.getDefault().unregister(this);
+        // EventBus.getDefault().unregister(this);
     }
 
     /*private void initAppbar() {
@@ -300,7 +307,17 @@ public class FragmentLichdonnhaUserCheckin extends BaseFragment implements View.
             @Override
             public void OnItemClickListener_Two_Btn(int position) {
                 // cập nhật thanh toán
-                show_bottom_dialog_thanhtoan(mList.get(position));
+                Log.d(TAG, "OnItemClickListener_Two_Btn: start activity");
+                ObjLogin objLogin = SharedPrefs.getInstance().get(Constants.KEY_SAVE_OBJECT_LOGIN, ObjLogin.class);
+                if (objLogin.getUSER_TYPE().equals(Constants.UserType.CHECK_IN)) {
+                    Intent intent = new Intent(getContext(), UpdateImageCheckinActivity.class);
+                    intent.putExtra(Constants.KEY_SEND_ID_BOOK_SERVICE, mList.get(position).getID());
+                    getActivity().startActivity(intent);
+                } else{
+                    Log.d(TAG, "OnItemClickListener_Two_Btn: show dialog");
+                    show_bottom_dialog_thanhtoan(mList.get(position));
+                }
+
             }
         });
         adapter.setClick_lable(new setOnItemClickListener() {

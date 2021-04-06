@@ -48,7 +48,7 @@ import butterknife.ButterKnife;
  * Version: 1.0
  */
 public class FragmentTabCheckinCheckout extends BaseFragment implements InterfaceMyHome.View {
-    private static final String TAG = "FragmentLichnhaAdmin";
+    private static final String TAG = "FragmentTabCheckinCheck";
     public static FragmentTabCheckinCheckout fragment;
     private List<ObjSetupMain> mList;
     private AdapterSetupMain adapterSetupMain;
@@ -84,6 +84,7 @@ public class FragmentTabCheckinCheckout extends BaseFragment implements Interfac
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fagment_tabhome_qldondep, container, false);
         ButterKnife.bind(this, view);
+        Log.d(TAG, "onCreateView: ");
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

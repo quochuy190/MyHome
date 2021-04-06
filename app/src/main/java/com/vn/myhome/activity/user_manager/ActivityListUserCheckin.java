@@ -61,13 +61,14 @@ public class ActivityListUserCheckin extends BaseActivity implements InterfaceUs
     @BindView(R.id.edt_phone)
     EditText edt_phone;
     @BindView(R.id.btn_tracuu)
-    Button btn_tracuu;
+    Button btn_tracuu;    @BindView(R.id.txt_data_empty)
+    TextView txtDataEmpty;
     @BindView(R.id.view_search_user)
     ConstraintLayout viewSearchUser;
     RecyclerView.LayoutManager mLayoutManager;
     String USER_TYPE = "5", sSTATE = "", sFullName = "", sPhone = "";
     PresenterLogin mPresenterLogin;
-    private String mContent;
+    private String mContent ="", mGetLink ="";
     PresenterTabCheckinCheckout mPresenterTabCheckinCheckout;
     @Override
     public int setContentViewId() {
@@ -143,6 +144,8 @@ public class ActivityListUserCheckin extends BaseActivity implements InterfaceUs
 
     private void initData() {
         mContent = getIntent().getStringExtra(Constants.KEY_SEND_CONTENT_BOOK_SERVICE);
+        mGetLink = getIntent().getStringExtra(Constants.KEY_SEND_GETLINK);
+        txtDataEmpty.setVisibility(View.GONE);
         showDialogLoading();
         String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         if (edt_name.getText().toString().length() > 0) {
@@ -156,7 +159,7 @@ public class ActivityListUserCheckin extends BaseActivity implements InterfaceUs
             sPhone = "";
         }
         mPresenter.api_get_listuser(sUserName, "", sPhone, "",
-                sFullName, USER_TYPE, sSTATE, "", "1", "500");
+                sFullName, USER_TYPE, sSTATE, "",mGetLink,"1", "100");
         //  mPresenterLogin.api_get_type(sUserName);
     }
 
@@ -242,8 +245,12 @@ public class ActivityListUserCheckin extends BaseActivity implements InterfaceUs
         hideDialogLoading();
         mList.clear();
         if (objRes != null && objRes.getERROR().equals("0000")) {
+            txtDataEmpty.setVisibility(View.GONE);
             if (objRes.getINFO() != null)
                 mList.addAll(objRes.getINFO());
+        }else {
+            txtDataEmpty.setVisibility(View.VISIBLE);
+            txtDataEmpty.setText(objRes.getRESULT());
         }
         adapter.notifyDataSetChanged();
     }

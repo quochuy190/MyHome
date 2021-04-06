@@ -90,7 +90,7 @@ public class ActivityListHomeStaySearch extends BaseActivity
         init();
         initSeekbar();
         get_intent();
-        initData();
+       // initData();
         initEvent();
     }
 
@@ -273,6 +273,9 @@ public class ActivityListHomeStaySearch extends BaseActivity
     }
 
     private void initData() {
+        if (ID_PROVINCE != null && ID_PROVINCE.equals("home")) {
+            ID_PROVINCE="";
+        }
         String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
         mPresenter.get_api_search_home(sUserName, LOCATION, CHECKIN,
                 CHECKOUT, PEOPLE, PRICE_FROM, PRICE_TO, "", ID_PROVINCE);
@@ -418,6 +421,9 @@ public class ActivityListHomeStaySearch extends BaseActivity
 
 
     private void get_api_search() {
+      /*  LOCATION, CHECKIN,
+                CHECKOUT, PEOPLE, PRICE_FROM, PRICE_TO, "", ID_PROVINCE*/
+
         LOCATION = edt_name_homestay.getText().toString();
         CHECKIN = edt_date_start.getText().toString();
         CHECKOUT = edt_date_end.getText().toString();
@@ -428,6 +434,7 @@ public class ActivityListHomeStaySearch extends BaseActivity
         PRICE_TO = txt_price_end.getText().toString().trim();
         PRICE_TO = PRICE_TO.replaceAll(",", "").replaceAll("\\.", "");
         PRICE_TO = PRICE_TO.replaceAll("VND", "");
+       // ID_PROVINCE =
         ll_dialog.setVisibility(View.GONE);
         initData();
     }

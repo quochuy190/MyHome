@@ -53,19 +53,39 @@
             android:textSize="@dimen/txt_16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txt_stk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp7"
+                android:padding="@dimen/dp1"
+                android:text="19025376156021"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/txt_16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/txt_copy_stk"
+                android:background="@color/bg_card_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:padding="@dimen/dp7"
+                android:text="Copy STK"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/txt_16sp"
+                android:textStyle="bold"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
-            android:padding="@dimen/dp1"
-            android:text="1902 5376 1560 21"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/txt_16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -127,19 +147,36 @@
             android:textSize="@dimen/txt_16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txt_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp7"
+                android:padding="@dimen/dp1"
 
-        <TextView
-            android:id="@+id/txt_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp7"
-            android:padding="@dimen/dp1"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/txt_16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:background="@color/bg_card_city"
+                android:id="@+id/txt_copy_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:padding="@dimen/dp7"
+                android:text="Copy nội dung"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/txt_16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
-            android:textColor="@color/Black"
-            android:textSize="@dimen/txt_16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/txt_title_bnt_change"
             android:layout_width="wrap_content"

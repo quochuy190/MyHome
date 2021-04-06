@@ -59,7 +59,7 @@ public class UserPresenter implements InterfaceUser.Presenter {
     @Override
     public void api_update_user_info(String USERNAME, String USERID, String PASSWORD, String MOBILE, String EMAIL,
                                      String FULL_NAME, String DOB, String USER_TYPE, String AVATAR, String STATE,
-                                     String ADDRESS, String ID_PROVINCE, String STK, String TENTK, String TENNH,
+                                     String ADDRESS, String ID_PROVINCE,String LOCATION_ID , String STK, String TENTK, String TENNH,
                                      String TENCN) {
         String sService = "user/update_info";
         Map<String, String> mMap = new LinkedHashMap<>();
@@ -75,6 +75,7 @@ public class UserPresenter implements InterfaceUser.Presenter {
         mMap.put("STATE", STATE);
         mMap.put("ADDRESS", ADDRESS);
         mMap.put("ID_PROVINCE", ID_PROVINCE);
+        mMap.put("LOCATION_ID", LOCATION_ID );
         mMap.put("STK", STK);
         mMap.put("TENTK", TENTK);
         mMap.put("TENNH", TENNH);
@@ -103,7 +104,7 @@ public class UserPresenter implements InterfaceUser.Presenter {
 
     @Override
     public void api_get_listuser(String USERNAME, String USERID, String MOBILE, String EMAIL,
-                                 String FULL_NAME, String USER_TYPE, String STATE, String ADDRESS,
+                                 String FULL_NAME, String USER_TYPE, String STATE, String ADDRESS, String GENLINK,
                                  String PAGE, String NUMOFPAGE) {
         String sService = "user/get_listuser";
         Map<String, String> mMap = new LinkedHashMap<>();
@@ -117,6 +118,7 @@ public class UserPresenter implements InterfaceUser.Presenter {
         mMap.put("ADDRESS", ADDRESS);
         mMap.put("PAGE", PAGE);
         mMap.put("NUMOFPAGE", NUMOFPAGE);
+        mMap.put("GENLINK", GENLINK);
         mApiService.getApi_Token_Enable(new CallbackData<String>() {
             @Override
             public void onGetDataErrorFault(Exception e) {

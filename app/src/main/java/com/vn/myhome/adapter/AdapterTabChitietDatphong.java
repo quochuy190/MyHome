@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.vn.myhome.config.Constants;
 import com.vn.myhome.models.ObjBooking;
 import com.vn.myhome.models.ObjHomeStay;
 import com.vn.myhome.models.ObjLogin;
+import com.vn.myhome.ui.updateImageCheckin.UpdateImageCheckinActivity;
 import com.vn.myhome.untils.SharedPrefs;
 import com.vn.myhome.untils.TimeUtils;
 
@@ -213,6 +215,14 @@ public class AdapterTabChitietDatphong extends RecyclerView.Adapter<AdapterTabCh
 
                     // holder.txt_status_pay.setText(obj.getBILLING_STATUS_NAME());
                 }
+                holder.imgShowImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, UpdateImageCheckinActivity.class);
+                        intent.putExtra(Constants.KEY_SEND_ID_BOOK_SERVICE, mList.get(position).getID_BOOK_SV());
+                        context.startActivity(intent);
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -245,6 +255,8 @@ public class AdapterTabChitietDatphong extends RecyclerView.Adapter<AdapterTabCh
         Button btn_booking_clearroom;
         @BindView(R.id.btn_open_room)
         Button btn_open_room;
+        @BindView(R.id.img_show_image)
+        ImageView imgShowImage;
 
         public TopicViewHoder(View itemView) {
             super(itemView);

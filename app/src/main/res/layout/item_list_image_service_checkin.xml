@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/White"
+    android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="2:1"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+        <TextView
+            app:layout_constraintEnd_toStartOf="@+id/icon_down"
+            android:padding="@dimen/dp7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/txt_title_objservice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:singleLine="true"
+            android:text="Checkin"
+            android:textColor="@color/app_main"
+            android:textSize="@dimen/txt_15sp" />
+        <ImageView
+            android:visibility="gone"
+            android:padding="@dimen/dp3"
+            android:src="@drawable/ic_camera_new"
+            android:id="@+id/icon_down"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="@id/txt_title_objservice"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_title_objservice"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_title_objservice"
+            android:id="@+id/recycle_lis_objservice"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/White">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

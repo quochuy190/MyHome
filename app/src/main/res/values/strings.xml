@@ -55,4 +55,8 @@
     <string name="tab_list_myhome">Danh sách nhà của tôi</string>
     <string name="txt_note">Ghi chú</string>
     <string name="txt_note_address_bookcar">*Vui lòng ghi chi tiết địa chỉ đón và trả khách</string>
+
+    <string name="txt_dialog_title">Thông báo</string>
+    <string name="txt_dialog_content_validate_city">Mời bạn chọn tỉnh thành phố</string>
+    <string name="txt_data_empty">Không có dữ liệu</string>
 </resources>

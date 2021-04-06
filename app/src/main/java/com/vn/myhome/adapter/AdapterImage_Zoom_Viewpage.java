@@ -61,7 +61,7 @@ public class AdapterImage_Zoom_Viewpage extends PagerAdapter {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.drawable.img_defaul)
                 .error(R.drawable.img_defaul);
-        Glide.with(mContext).load(Config.BASE_URL_MEDIA + mLisUrl.get(position).getIMG())
+        Glide.with(mContext).load(Config.BASE_URL_MEDIA + mLisUrl.get(position).getIMG().replace("\n", ""))
                 .apply(options).into(imageView);
        /* Glide.with(mContext).load(mLisUrl.get(position)).asBitmap()
                 .placeholder(R.drawable.img_defaul)

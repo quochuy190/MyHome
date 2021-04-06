@@ -291,7 +291,8 @@ public class FragmentDatXe extends BaseFragment implements View.OnClickListener,
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(getContext(),TimePickerDialog.THEME_HOLO_LIGHT,
+                        new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         String hour = "";

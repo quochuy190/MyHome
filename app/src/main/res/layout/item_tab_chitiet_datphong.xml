@@ -119,4 +119,15 @@
         app:layout_constraintTop_toBottomOf="@id/txt_status_pay"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_btn_30" />
+
+    <ImageView
+        android:id="@+id/img_show_image"
+        android:layout_marginEnd="@dimen/dp5"
+        android:src="@drawable/icon_show_pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.08"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

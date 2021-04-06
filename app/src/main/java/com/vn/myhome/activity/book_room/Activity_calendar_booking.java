@@ -145,7 +145,7 @@ public class Activity_calendar_booking extends BaseActivity implements Interface
                 finish();
             }
         });
-        txt_title.setText("DANH SÁCH NHÀ");
+        txt_title.setText("LỊCH ĐẶT PHÒNG");
     }
 
     private void initData() {

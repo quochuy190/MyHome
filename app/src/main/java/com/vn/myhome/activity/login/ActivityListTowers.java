@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
 public class ActivityListTowers extends BaseActivity
          {
 
-    private List<TowerObj> mLisCity;
+    private List<TowerObj> mListTower;
     private AdapterListTower adapterService;
     @BindView(R.id.recycle_list_service)
     RecyclerView recycle_service;
@@ -50,7 +50,7 @@ public class ActivityListTowers extends BaseActivity
     private List<TowerObj> temp;
     String sUserId;
     PresenterListTowers mPresenter;
-
+    String mProvinceID ="";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +110,7 @@ public class ActivityListTowers extends BaseActivity
 
     void filter(String text) {
         temp.clear();
-        for (TowerObj d : mLisCity) {
+        for (TowerObj d : mListTower) {
             String sName = StringUtil.removeAccent(d.getsName().toLowerCase());
             String sInput = StringUtil.removeAccent(text.toLowerCase());
             if (sName.contains(sInput)) {
@@ -130,7 +130,7 @@ public class ActivityListTowers extends BaseActivity
     }
 
     private void init() {
-        mLisCity = new ArrayList<>();
+        mListTower = new ArrayList<>();
         temp = new ArrayList<>();
         adapterService = new AdapterListTower(temp, this);
         mLayoutManager = new GridLayoutManager(this, 1);
@@ -159,17 +159,12 @@ public class ActivityListTowers extends BaseActivity
     }
 
     private void initData() {
-        mLisCity.clear();
+        mProvinceID = getIntent().getStringExtra(Constants.KEY_SEND_ID_PROVINCE);
+        mListTower.clear();
         temp.clear();
-        if (App.mListLocation != null && App.mListLocation.size() > 0) {
-            mLisCity.addAll(App.mListLocation);
-            temp.addAll(mLisCity);
-            adapterService.notifyDataSetChanged();
-        } else {
-            showDialogLoading();
-            String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
-            mPresenter.api_get_list_tower(sUserName);
-        }
+        showDialogLoading();
+        String sUserName = SharedPrefs.getInstance().get(Constants.KEY_SAVE_USERNAME, String.class);
+        mPresenter.api_get_list_tower(sUserName, mProvinceID);
     }
 
     @Override
@@ -193,12 +188,12 @@ public class ActivityListTowers extends BaseActivity
         hideDialogLoading();
         if (objError != null && objError.getERROR().equals("0000")) {
             if (objError.getINFO() != null) {
-                mLisCity.clear();
+                mListTower.clear();
                 temp.clear();
-                mLisCity.addAll(objError.getINFO());
+                mListTower.addAll(objError.getINFO());
                 temp.addAll(objError.getINFO());
                 App.mListLocation.clear();
-                App.mListLocation.addAll(mLisCity);
+                App.mListLocation.addAll(mListTower);
                 adapterService.notifyDataSetChanged();
             }
         } else showDialogNotify("Thông báo", objError.getRESULT());

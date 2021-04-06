@@ -1,5 +1,8 @@
 package com.vn.myhome.activity.book_room;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +40,12 @@ public class ActivityThongtinChuyenkhoan extends BaseActivity implements Interfa
     TextView btn_change_pay;
     @BindView(R.id.txt_title_bnt_change)
     TextView txt_title_bnt_change;
+    @BindView(R.id.txt_copy_stk)
+    TextView txtCopyStk;
+    @BindView(R.id.txt_copy_content)
+    TextView txtCopyContent;
+    @BindView(R.id.txt_stk)
+    TextView txtStk;
     KindofPairPresenter mPresenterKindokPair;
     ImageView img_home;
     String sId_BookService;
@@ -91,6 +100,22 @@ public class ActivityThongtinChuyenkhoan extends BaseActivity implements Interfa
     }
 
     private void initEvent() {
+        txtCopyContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("label", txt_content.getText().toString());
+                clipboard.setPrimaryClip(clip);
+            }
+        });
+        txtCopyStk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("label", txtStk.getText().toString());
+                clipboard.setPrimaryClip(clip);
+            }
+        });
         btn_change_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
